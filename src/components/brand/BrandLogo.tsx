@@ -1,42 +1,41 @@
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
-export function BrandLogo({ className }: { className?: string }) {
+interface BrandLogoProps {
+  className?: string;
+  variant?: "color" | "light";
+  width?: number;
+}
+
+/**
+ * Renders /public/logo.png. The PNG already includes both the mark and the
+ * "GLOVAL shipping" wordmark, so this component is just a tuned <Image>.
+ *
+ * Native asset is 1510×1749 (≈1:1.16). Width prop drives the rendered size;
+ * height auto-scales to preserve aspect ratio.
+ */
+export function BrandLogo({
+  className,
+  variant = "color",
+  width = 96,
+}: BrandLogoProps) {
+  const height = Math.round(width * (1749 / 1510));
   return (
-    <div className={cn("flex flex-col items-start leading-none", className)}>
-      <div className="flex items-end gap-2">
-        <svg
-          width="44"
-          height="36"
-          viewBox="0 0 44 36"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-hidden
-        >
-          <ellipse
-            cx="22"
-            cy="18"
-            rx="20"
-            ry="9"
-            stroke="#003DA5"
-            strokeWidth="3"
-            fill="none"
-          />
-          <path
-            d="M 4 12 Q 22 4 40 12"
-            stroke="#FF9500"
-            strokeWidth="3"
-            fill="none"
-            strokeLinecap="round"
-          />
-          <circle cx="22" cy="18" r="4" fill="#003DA5" />
-        </svg>
-        <span className="text-3xl font-extrabold tracking-tight text-gv-blue">
-          GLO<span className="text-gv-orange">VAL</span>
-        </span>
-      </div>
-      <span className="text-[10px] tracking-[0.4em] text-gv-muted uppercase mt-1 ml-12">
-        shipping
-      </span>
+    <div
+      className={cn(
+        "inline-flex items-center justify-center",
+        variant === "light" && "[&>img]:brightness-0 [&>img]:invert",
+        className,
+      )}
+      style={{ width, height }}
+    >
+      <Image
+        src="/logo.png"
+        alt="Gloval Shipping"
+        width={width}
+        height={height}
+        priority
+      />
     </div>
   );
 }

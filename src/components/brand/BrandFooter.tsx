@@ -12,7 +12,7 @@ export function BrandFooter() {
     <footer className="w-full bg-gv-navy text-white mt-24">
       <div className="max-w-7xl mx-auto px-6 py-16 grid md:grid-cols-3 gap-12">
         <div>
-          <BrandLogo className="[&_span]:text-white [&_.text-gv-blue]:text-white" />
+          <BrandLogo variant="light" width={120} />
           <p className="mt-6 text-sm text-white/70 leading-relaxed max-w-sm">
             Expertos en logística internacional con más de 20 años de experiencia
             sirviendo a Latinoamérica.

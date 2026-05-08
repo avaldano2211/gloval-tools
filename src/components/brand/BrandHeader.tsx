@@ -16,7 +16,7 @@ export function BrandHeader() {
     <header className="w-full border-b border-gv-border bg-white">
       <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
         <Link href="/herramientas" aria-label="Gloval Shipping — Herramientas">
-          <BrandLogo />
+          <BrandLogo width={100} />
         </Link>
         <nav className="hidden md:flex items-center gap-8">
           {NAV.map((item) => (
