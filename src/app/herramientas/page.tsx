@@ -5,6 +5,7 @@ import {
   GitBranch,
   MapPin,
   TriangleAlert,
+  FolderDown,
 } from "lucide-react";
 import { ToolCard } from "@/components/brand/ToolCard";
 import { H2 } from "@/components/brand/H2";
@@ -57,6 +58,14 @@ const TOOLS = [
     description:
       "Las 9 clases de mercancías peligrosas, matriz de segregación y restricciones específicas por país LATAM.",
     href: "/herramientas/imdg",
+    comingSoon: false,
+  },
+  {
+    icon: FolderDown,
+    title: "Centro de Documentos",
+    description:
+      "POA, Shipping Instructions, formularios aduaneros, T&C, directorio de oficinas y más. Plantillas listas para usar.",
+    href: "/herramientas/documentos",
     comingSoon: false,
   },
 ];

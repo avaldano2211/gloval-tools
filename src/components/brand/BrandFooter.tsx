@@ -44,6 +44,7 @@ export function BrandFooter() {
             <li>Incoterms 2020</li>
             <li>Códigos UN/LOCODE</li>
             <li>Tabla IMO/IMDG</li>
+            <li>Centro de Documentos</li>
           </ul>
         </div>
       </div>
