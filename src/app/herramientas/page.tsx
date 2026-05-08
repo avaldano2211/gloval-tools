@@ -25,7 +25,7 @@ const TOOLS = [
     description:
       "Calcula CBM, peso volumétrico y peso facturable para envíos marítimos, aéreos y courier. Sugiere modalidad óptima según ruta LATAM.",
     href: "/herramientas/cubicaje",
-    comingSoon: true,
+    comingSoon: false,
   },
   {
     icon: Radar,
