@@ -45,6 +45,7 @@ export function BrandFooter() {
             <li>Códigos UN/LOCODE</li>
             <li>Tabla IMO/IMDG</li>
             <li>Centro de Documentos</li>
+            <li>Glosario de Logística</li>
           </ul>
         </div>
       </div>

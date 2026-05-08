@@ -6,6 +6,7 @@ import {
   MapPin,
   TriangleAlert,
   FolderDown,
+  BookOpen,
 } from "lucide-react";
 import { ToolCard } from "@/components/brand/ToolCard";
 import { H2 } from "@/components/brand/H2";
@@ -66,6 +67,14 @@ const TOOLS = [
     description:
       "POA, Shipping Instructions, formularios aduaneros, T&C, directorio de oficinas y más. Plantillas listas para usar.",
     href: "/herramientas/documentos",
+    comingSoon: false,
+  },
+  {
+    icon: BookOpen,
+    title: "Glosario de Logística",
+    description:
+      "Diccionario de siglas y términos del comercio internacional con foco LATAM. BL, AWB, CFS, NANDINA, NCM, ZLC y muchos más.",
+    href: "/herramientas/glosario",
     comingSoon: false,
   },
 ];
