@@ -14,15 +14,46 @@ export interface Piece {
 const TO_M: Record<DimUnit, number> = { cm: 0.01, m: 1, in: 0.0254 };
 const TO_KG: Record<WeightUnit, number> = { kg: 1, lb: 0.453592 };
 
+export type ContainerKey = "c20" | "c40" | "c40hc";
+
+export interface ContainerLimits {
+  cbm: number;
+  /** Internal dimensions in meters: [length, width, height] */
+  internal: [number, number, number];
+  /** Max payload kg */
+  payloadKg: number;
+}
+
+/** Internal dims from src/lib/containers.ts (kept in sync manually). */
+export const CONTAINER_LIMITS: Record<ContainerKey, ContainerLimits> = {
+  c20:   { cbm: 33.2, internal: [5.898, 2.352, 2.393], payloadKg: 28250 },
+  c40:   { cbm: 67.7, internal: [12.032, 2.352, 2.393], payloadKg: 28750 },
+  c40hc: { cbm: 76.4, internal: [12.032, 2.352, 2.698], payloadKg: 28600 },
+};
+
+export interface ContainerFit {
+  fitsByDimension: boolean;
+  fillPct: number;
+  exceedsPayload: boolean;
+}
+
+export interface PieceIssue {
+  index: number;
+  pieceLabel: string;
+  oversize: ContainerKey[];   // contenedores donde NO entra esta pieza
+}
+
 export interface CalcResult {
   totalCBM: number;
   totalGrossKg: number;
   volumetricKg: number;
   chargeableKg: number;
-  fillPct20: number;
-  fillPct40: number;
-  fillPct40HC: number;
-  suggestion: { mode: Mode | "fcl-20" | "fcl-40" | "fcl-40hc"; reason: string };
+  containers: Record<ContainerKey, ContainerFit>;
+  /** Piezas que no entran en NINGÚN contenedor estándar */
+  oversizedPieces: PieceIssue[];
+  /** Piezas con al menos una dimensión problemática en algún contenedor */
+  oversizedAnywhere: boolean;
+  suggestion: { mode: Mode | "fcl-20" | "fcl-40" | "fcl-40hc" | "flat-rack"; reason: string };
 }
 
 const VOL_DIVISOR_M3_PER_KG: Record<Mode, number> = {
@@ -31,7 +62,19 @@ const VOL_DIVISOR_M3_PER_KG: Record<Mode, number> = {
   courier: 1 / 200,
 };
 
-const CONTAINER_CBM = { c20: 33.2, c40: 67.7, c40hc: 76.4 };
+/**
+ * Una pieza encaja en un contenedor si, ordenadas ambas por dimensión
+ * ascendente, cada dim de la pieza ≤ dim correspondiente del contenedor.
+ * (Esto cubre cualquier rotación posible.)
+ */
+function pieceFitsInContainer(
+  pieceDimsM: [number, number, number],
+  containerDimsM: [number, number, number],
+): boolean {
+  const p = [...pieceDimsM].sort((a, b) => a - b);
+  const c = [...containerDimsM].sort((a, b) => a - b);
+  return p[0] <= c[0] && p[1] <= c[1] && p[2] <= c[2];
+}
 
 export function calc(
   pieces: Piece[],
@@ -41,14 +84,38 @@ export function calc(
 ): CalcResult {
   let totalCBM = 0;
   let totalGrossKg = 0;
-  for (const p of pieces) {
+  const oversizedPieces: PieceIssue[] = [];
+
+  // Track if each container type can hold ALL pieces dimensionally
+  const dimFitByContainer: Record<ContainerKey, boolean> = {
+    c20: true,
+    c40: true,
+    c40hc: true,
+  };
+
+  pieces.forEach((p, idx) => {
     const L = p.length * TO_M[dimUnit];
     const W = p.width * TO_M[dimUnit];
     const H = p.height * TO_M[dimUnit];
-    const cbm = L * W * H;
-    totalCBM += cbm * p.qty;
+    const dims: [number, number, number] = [L, W, H];
+    totalCBM += L * W * H * p.qty;
     totalGrossKg += p.weight * TO_KG[weightUnit] * p.qty;
-  }
+
+    const oversize: ContainerKey[] = [];
+    (Object.keys(CONTAINER_LIMITS) as ContainerKey[]).forEach((k) => {
+      if (!pieceFitsInContainer(dims, CONTAINER_LIMITS[k].internal)) {
+        oversize.push(k);
+        dimFitByContainer[k] = false;
+      }
+    });
+    if (oversize.length === 3) {
+      oversizedPieces.push({
+        index: idx,
+        pieceLabel: `Pieza ${idx + 1}: ${p.length}×${p.width}×${p.height} ${dimUnit}`,
+        oversize,
+      });
+    }
+  });
 
   const volumetricKg =
     mode === "ocean"
@@ -60,22 +127,40 @@ export function calc(
       ? Math.max(totalGrossKg, totalCBM * 1000)
       : Math.max(totalGrossKg, volumetricKg);
 
-  const fillPct20 = (totalCBM / CONTAINER_CBM.c20) * 100;
-  const fillPct40 = (totalCBM / CONTAINER_CBM.c40) * 100;
-  const fillPct40HC = (totalCBM / CONTAINER_CBM.c40hc) * 100;
+  const containers = (Object.keys(CONTAINER_LIMITS) as ContainerKey[]).reduce(
+    (acc, k) => {
+      const lim = CONTAINER_LIMITS[k];
+      acc[k] = {
+        fitsByDimension: dimFitByContainer[k],
+        fillPct: (totalCBM / lim.cbm) * 100,
+        exceedsPayload: totalGrossKg > lim.payloadKg,
+      };
+      return acc;
+    },
+    {} as Record<ContainerKey, ContainerFit>,
+  );
 
-  let suggestion: CalcResult["suggestion"] = {
-    mode: "ocean",
-    reason: "Volumen y peso aptos para LCL marítimo.",
-  };
-  if (totalCBM < 1 && totalGrossKg < 100) {
-    suggestion = { mode: "air", reason: "Volumen y peso bajos: aéreo o courier suelen ser más rápidos y económicos." };
+  let suggestion: CalcResult["suggestion"];
+  if (oversizedPieces.length > 0) {
+    suggestion = {
+      mode: "flat-rack",
+      reason:
+        "Hay piezas que NO entran en contenedor estándar por dimensión. Considera Flat Rack, Open Top o break-bulk; consulta con tu agente Gloval.",
+    };
+  } else if (totalCBM < 1 && totalGrossKg < 100) {
+    suggestion = {
+      mode: "air",
+      reason:
+        "Volumen y peso bajos: aéreo o courier suelen ser más rápidos y económicos.",
+    };
   } else if (totalCBM > 25) {
     suggestion = { mode: "fcl-40hc", reason: "Volumen alto: cotiza FCL 40' HC para mejor tarifa." };
   } else if (totalCBM > 15) {
     suggestion = { mode: "fcl-40", reason: "Volumen medio-alto: evalúa FCL 40' Standard." };
   } else if (totalCBM > 8) {
     suggestion = { mode: "fcl-20", reason: "Volumen medio: evalúa FCL 20' vs LCL según ruta y frecuencia." };
+  } else {
+    suggestion = { mode: "ocean", reason: "Volumen y peso aptos para LCL marítimo." };
   }
 
   return {
@@ -83,9 +168,9 @@ export function calc(
     totalGrossKg,
     volumetricKg,
     chargeableKg,
-    fillPct20,
-    fillPct40,
-    fillPct40HC,
+    containers,
+    oversizedPieces,
+    oversizedAnywhere: oversizedPieces.length > 0,
     suggestion,
   };
 }

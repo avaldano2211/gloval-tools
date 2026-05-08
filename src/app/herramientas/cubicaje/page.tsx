@@ -8,6 +8,7 @@ import {
   WeightUnit,
   calc,
   LATAM_ROUTES,
+  type ContainerKey,
 } from "@/lib/cubicaje";
 import { BrandButton } from "@/components/brand/BrandButton";
 import { H2 } from "@/components/brand/H2";
@@ -20,6 +21,7 @@ import {
   Package,
   Lightbulb,
   Download,
+  AlertTriangle,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -269,14 +271,56 @@ export default function CubicajePage() {
               highlight
             />
 
+            {/* Oversize warning */}
+            {result.oversizedAnywhere && (
+              <div className="mt-6 pt-6 border-t border-gv-border">
+                <div className="p-4 rounded-xl bg-red-50 border border-red-200">
+                  <div className="flex items-start gap-2">
+                    <AlertTriangle className="size-5 text-red-600 shrink-0 mt-0.5" />
+                    <div>
+                      <div className="text-xs font-bold tracking-[0.15em] uppercase text-red-600 mb-1">
+                        Piezas fuera de medida
+                      </div>
+                      <div className="text-sm text-gv-blue font-semibold">
+                        {result.oversizedPieces.length} pieza{result.oversizedPieces.length !== 1 ? "s" : ""} no encaja{result.oversizedPieces.length === 1 ? "" : "n"} en contenedor estándar.
+                      </div>
+                      <ul className="mt-2 space-y-1 text-xs text-gv-muted">
+                        {result.oversizedPieces.map((p) => (
+                          <li key={p.index}>• {p.pieceLabel}</li>
+                        ))}
+                      </ul>
+                      <div className="mt-2 text-xs text-gv-muted leading-relaxed">
+                        Considera <strong className="text-gv-blue">Flat Rack</strong>, <strong className="text-gv-blue">Open Top</strong> o <strong className="text-gv-blue">break-bulk</strong>. Ver dimensiones internas en <Link href="/herramientas/contenedores" className="text-gv-blue underline">Especificaciones de Contenedores</Link>.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
             {/* Container fill bars */}
             <div className="mt-6 pt-6 border-t border-gv-border">
               <div className="text-xs font-bold tracking-[0.15em] uppercase text-gv-blue/60 mb-3">
                 Utilización de contenedor
               </div>
-              <FillBar label="20' Standard" pct={result.fillPct20} />
-              <FillBar label="40' Standard" pct={result.fillPct40} />
-              <FillBar label="40' High Cube" pct={result.fillPct40HC} />
+              <FillBar
+                label="20' Standard"
+                pct={result.containers.c20.fillPct}
+                fits={result.containers.c20.fitsByDimension}
+                exceedsPayload={result.containers.c20.exceedsPayload}
+              />
+              <FillBar
+                label="40' Standard"
+                pct={result.containers.c40.fillPct}
+                fits={result.containers.c40.fitsByDimension}
+                exceedsPayload={result.containers.c40.exceedsPayload}
+              />
+              <FillBar
+                label="40' High Cube"
+                pct={result.containers.c40hc.fillPct}
+                fits={result.containers.c40hc.fitsByDimension}
+                exceedsPayload={result.containers.c40hc.exceedsPayload}
+              />
             </div>
 
             {/* Suggestion */}
@@ -397,24 +441,50 @@ function ResultRow({
   );
 }
 
-function FillBar({ label, pct }: { label: string; pct: number }) {
+function FillBar({
+  label,
+  pct,
+  fits,
+  exceedsPayload,
+}: {
+  label: string;
+  pct: number;
+  fits: boolean;
+  exceedsPayload: boolean;
+}) {
   const clamped = Math.min(100, Math.max(0, pct));
-  const over = pct > 100;
+  const overVolume = pct > 100;
+  const hasIssue = !fits || overVolume || exceedsPayload;
+
+  let badge: string | null = null;
+  if (!fits) badge = "No encaja";
+  else if (overVolume) badge = "Excede volumen";
+  else if (exceedsPayload) badge = "Excede peso";
+
   return (
     <div className="mb-3 last:mb-0">
-      <div className="flex justify-between text-xs mb-1">
-        <span className="text-gv-blue font-semibold">{label}</span>
-        <span className={`font-bold ${over ? "text-red-600" : "text-gv-muted"}`}>
-          {pct.toFixed(0)}%
-          {over && " ⚠"}
+      <div className="flex justify-between items-center text-xs mb-1">
+        <span className={`font-semibold ${!fits ? "text-red-600 line-through" : "text-gv-blue"}`}>
+          {label}
         </span>
+        <div className="flex items-center gap-2">
+          {badge && (
+            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-red-100 text-red-700 text-[10px] font-bold uppercase tracking-wider">
+              <AlertTriangle className="size-3" />
+              {badge}
+            </span>
+          )}
+          <span className={`font-bold ${hasIssue ? "text-red-600" : "text-gv-muted"}`}>
+            {fits ? `${pct.toFixed(0)}%` : "—"}
+          </span>
+        </div>
       </div>
       <div className="h-2 bg-gv-bg-soft rounded-full overflow-hidden">
         <div
           className={`h-full rounded-full transition-all ${
-            over ? "bg-red-500" : "bg-gv-blue"
+            !fits ? "bg-red-300" : overVolume ? "bg-red-500" : "bg-gv-blue"
           }`}
-          style={{ width: `${clamped}%` }}
+          style={{ width: `${fits ? clamped : 100}%` }}
         />
       </div>
     </div>
