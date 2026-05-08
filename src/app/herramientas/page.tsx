@@ -39,9 +39,9 @@ const TOOLS = [
     icon: GitBranch,
     title: "Incoterms 2020",
     description:
-      "Tabla interactiva de los 11 Incoterms con wizard de recomendación y errores comunes específicos del comercio LATAM.",
+      "Las 11 reglas oficiales con desglose de costo y riesgo por fase del viaje. Errores comunes específicos del comercio LATAM.",
     href: "/herramientas/incoterms",
-    comingSoon: true,
+    comingSoon: false,
   },
   {
     icon: MapPin,
