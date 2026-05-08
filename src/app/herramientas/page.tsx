@@ -57,7 +57,7 @@ const TOOLS = [
     description:
       "Las 9 clases de mercancías peligrosas, matriz de segregación y restricciones específicas por país LATAM.",
     href: "/herramientas/imdg",
-    comingSoon: true,
+    comingSoon: false,
   },
 ];
 
