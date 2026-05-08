@@ -31,9 +31,9 @@ const TOOLS = [
     icon: Radar,
     title: "Rastreo de Contenedores",
     description:
-      "Rastrea contenedores, BLs y buques en tiempo real. Eventos completos del recorrido con visualización en mapa.",
+      "Rastrea contenedores, BLs y buques con eventos en tiempo real, ETA y visualización de la ruta. Versión demo con datos simulados.",
     href: "/herramientas/rastreo",
-    comingSoon: true,
+    comingSoon: false,
   },
   {
     icon: GitBranch,

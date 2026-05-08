@@ -17,7 +17,7 @@ const styles: Record<Variant, string> = {
 };
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-pill px-7 py-3.5 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gv-blue focus-visible:ring-offset-2";
+  "inline-flex items-center justify-center gap-2 rounded-pill px-7 py-3.5 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gv-blue focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed";
 
 export function BrandButton({
   variant = "primary",
