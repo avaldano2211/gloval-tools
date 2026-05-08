@@ -47,9 +47,9 @@ const TOOLS = [
     icon: MapPin,
     title: "Códigos UN/LOCODE",
     description:
-      "Búsqueda de códigos de puertos, aeropuertos y terminales. Top 200 LATAM destacados con badge de oficinas Gloval.",
+      "Búsqueda de códigos de puertos, aeropuertos y terminales. Top 90+ LATAM destacados con distancia a la oficina Gloval más cercana.",
     href: "/herramientas/locode",
-    comingSoon: true,
+    comingSoon: false,
   },
   {
     icon: TriangleAlert,
