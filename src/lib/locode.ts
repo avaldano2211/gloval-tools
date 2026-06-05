@@ -201,6 +201,27 @@ export const LOCODES: Locode[] = [
   { code: "USCHS", country: "US", countryName: "USA",       flag: "🇺🇸", city: "Charleston",      type: ["sea"], lat: 32.7765, lon: -79.9311 },
   { code: "USSAV", country: "US", countryName: "USA",       flag: "🇺🇸", city: "Savannah",        type: ["sea"], lat: 32.0809, lon: -81.0912 },
   { code: "USORD", country: "US", countryName: "USA",       flag: "🇺🇸", city: "Chicago (ORD)",   type: ["air"], lat: 41.9742, lon: -87.9073 },
+
+  // CHINA — Asia hubs to LATAM
+  { code: "CNSHA", country: "CN", countryName: "China",     flag: "🇨🇳", city: "Shanghai",         type: ["sea", "air"], lat: 31.2304, lon: 121.4737 },
+  { code: "CNPVG", country: "CN", countryName: "China",     flag: "🇨🇳", city: "Shanghai Pudong (PVG)", type: ["air"], lat: 31.1443, lon: 121.8083 },
+  { code: "CNNGB", country: "CN", countryName: "China",     flag: "🇨🇳", city: "Ningbo",           type: ["sea"], lat: 29.8683, lon: 121.5440 },
+  { code: "CNSZX", country: "CN", countryName: "China",     flag: "🇨🇳", city: "Shenzhen",         type: ["sea", "air"], lat: 22.5429, lon: 114.0596 },
+  { code: "CNYTN", country: "CN", countryName: "China",     flag: "🇨🇳", city: "Yantian",          type: ["sea"], lat: 22.5781, lon: 114.2697 },
+  { code: "CNCAN", country: "CN", countryName: "China",     flag: "🇨🇳", city: "Guangzhou",        type: ["sea", "air"], lat: 23.1291, lon: 113.2644 },
+  { code: "CNQIN", country: "CN", countryName: "China",     flag: "🇨🇳", city: "Qingdao",          type: ["sea"], lat: 36.0671, lon: 120.3826 },
+  { code: "CNTXG", country: "CN", countryName: "China",     flag: "🇨🇳", city: "Tianjin (Xingang)", type: ["sea"], lat: 39.0028, lon: 117.7166 },
+  { code: "CNXMG", country: "CN", countryName: "China",     flag: "🇨🇳", city: "Xiamen",           type: ["sea", "air"], lat: 24.4798, lon: 118.0894 },
+  { code: "CNDLC", country: "CN", countryName: "China",     flag: "🇨🇳", city: "Dalian",           type: ["sea"], lat: 38.9140, lon: 121.6147 },
+  { code: "CNFOC", country: "CN", countryName: "China",     flag: "🇨🇳", city: "Fuzhou",           type: ["sea"], lat: 26.0745, lon: 119.2965 },
+  { code: "CNLYG", country: "CN", countryName: "China",     flag: "🇨🇳", city: "Lianyungang",      type: ["sea"], lat: 34.7330, lon: 119.2185 },
+  { code: "CNPEK", country: "CN", countryName: "China",     flag: "🇨🇳", city: "Beijing (PEK)",    type: ["air"], lat: 40.0801, lon: 116.5846 },
+  { code: "CNCTU", country: "CN", countryName: "China",     flag: "🇨🇳", city: "Chengdu",          type: ["air", "inland"], lat: 30.5728, lon: 104.0668 },
+  { code: "CNHGH", country: "CN", countryName: "China",     flag: "🇨🇳", city: "Hangzhou",         type: ["air", "inland"], lat: 30.2741, lon: 120.1551 },
+  { code: "CNCKG", country: "CN", countryName: "China",     flag: "🇨🇳", city: "Chongqing",        type: ["air", "inland"], lat: 29.5630, lon: 106.5516 },
+
+  // HONG KONG SAR
+  { code: "HKHKG", country: "HK", countryName: "Hong Kong", flag: "🇭🇰", city: "Hong Kong",        type: ["sea", "air"], lat: 22.3193, lon: 114.1694 },
 ];
 
 export const TYPE_LABEL: Record<LocodeType, string> = {
