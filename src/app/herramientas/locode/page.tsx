@@ -54,7 +54,7 @@ export default function LocodePage() {
   }, [query, typeFilter, countryFilter]);
 
   return (
-    <div className="bg-gv-bg-soft min-h-screen">
+    <div className="bg-gv-bg-soft min-h-screen pt-24">
       <div className="max-w-7xl mx-auto px-6 pt-8">
         <Link
           href="/herramientas"

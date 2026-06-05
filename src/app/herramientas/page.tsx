@@ -1,3 +1,4 @@
+import Image from "next/image";
 import {
   Container,
   Calculator,
@@ -82,47 +83,49 @@ const TOOLS = [
 export default function HerramientasHub() {
   return (
     <div className="min-h-screen">
-      {/* Hero */}
-      <section className="relative bg-gv-navy text-white overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          <svg className="w-full h-full" viewBox="0 0 1200 400" preserveAspectRatio="xMidYMid slice">
-            <defs>
-              <pattern id="dots" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
-                <circle cx="2" cy="2" r="1.5" fill="white" opacity="0.3" />
-              </pattern>
-            </defs>
-            <rect width="1200" height="400" fill="url(#dots)" />
-            <path
-              d="M 100 300 Q 400 100 700 200 T 1100 150"
-              stroke="#FF9500"
-              strokeWidth="2"
-              strokeDasharray="6 4"
-              fill="none"
-            />
-            <circle cx="100" cy="300" r="6" fill="#FF9500" />
-            <circle cx="1100" cy="150" r="6" fill="#FF9500" />
-          </svg>
-        </div>
-        <div className="relative max-w-7xl mx-auto px-6 py-24 md:py-32">
-          <span className="inline-block px-4 py-1.5 rounded-pill bg-gv-orange text-white text-xs font-bold tracking-[0.2em] uppercase mb-6">
-            Herramientas
-          </span>
-          <h1 className="text-5xl md:text-7xl font-extrabold leading-[1.05] max-w-4xl">
-            Herramientas gratuitas para tu logística internacional
+      {/* Hero — full-bleed photo + dark overlay, alineado a glovalshipping.com */}
+      <section className="relative h-[88vh] min-h-[640px] flex items-center text-white overflow-hidden">
+        <Image
+          src="/assets/hero-bg.jpg"
+          alt="Buque de carga internacional"
+          fill
+          priority
+          quality={85}
+          sizes="100vw"
+          className="object-cover object-center -z-10"
+        />
+        {/* Overlay para legibilidad */}
+        <div className="absolute inset-0 bg-gradient-to-r from-gv-navy/85 via-gv-navy/55 to-transparent -z-10" />
+
+        <div className="relative max-w-7xl mx-auto px-6 w-full">
+          <h1 className="text-4xl md:text-6xl font-bold leading-[1.1] max-w-2xl !text-white">
+            Free Tools for International Freight
           </h1>
-          <p className="mt-8 text-lg md:text-xl text-white/80 max-w-2xl leading-relaxed">
+          <p className="mt-6 text-base md:text-lg text-white/90 max-w-xl leading-relaxed font-light">
             Calculadoras, referencias y rastreo creados por expertos en carga
             internacional con más de 20 años sirviendo Latinoamérica.
           </p>
+          <div className="mt-10 flex flex-col sm:flex-row gap-4">
+            <BrandButton href="#tools" className="!px-12">
+              Explore Tools
+            </BrandButton>
+            <BrandButton
+              variant="outline"
+              href="https://www.glovalshipping.com/request-a-quote"
+              className="!px-12"
+            >
+              Request Quote
+            </BrandButton>
+          </div>
         </div>
       </section>
 
       {/* Tools grid */}
-      <section className="bg-gv-bg-soft">
+      <section id="tools" className="bg-gv-bg-soft scroll-mt-20">
         <div className="max-w-7xl mx-auto px-6 py-20">
           <H2>Explora las herramientas</H2>
-          <p className="mt-6 text-base text-gv-muted max-w-2xl">
-            Seis herramientas pensadas para importadores, exportadores y agentes
+          <p className="mt-6 text-base text-gv-muted max-w-2xl leading-relaxed">
+            Ocho herramientas pensadas para importadores, exportadores y agentes
             logísticos que operan rutas LATAM.
           </p>
           <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -139,15 +142,15 @@ export default function HerramientasHub() {
           <H2 className="!text-3xl md:!text-4xl mx-auto inline-block">
             ¿No encuentras lo que buscas?
           </H2>
-          <p className="mt-8 text-lg text-gv-muted">
+          <p className="mt-8 text-base md:text-lg text-gv-muted leading-relaxed">
             Cuéntanos qué necesitas. Nuestro equipo en Miami, Panamá, Ecuador y
             Perú puede ayudarte directamente.
           </p>
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <BrandButton href="https://gloval-shipping.example/cotizacion">
-              Solicitar Cotización
+            <BrandButton variant="filled" href="https://www.glovalshipping.com/request-a-quote">
+              Request Quote
             </BrandButton>
-            <BrandButton variant="secondary" href="https://gloval-shipping.example/contacto">
+            <BrandButton variant="orange" href="https://www.glovalshipping.com/contact-us">
               Hablar con un asesor
             </BrandButton>
           </div>

@@ -3,34 +3,32 @@ import { cn } from "@/lib/utils";
 
 interface BrandLogoProps {
   className?: string;
-  variant?: "color" | "light";
+  /**
+   * "color" → logo a color (azul + naranja) sobre fondos claros — el `logo-sticky.svg` del sitio real.
+   * "white" → logo blanco para fondos oscuros — el `logo-menu.svg` del sitio real.
+   */
+  variant?: "color" | "white";
   width?: number;
 }
 
 /**
- * Renders /public/logo.png. The PNG already includes both the mark and the
- * "GLOVAL shipping" wordmark, so this component is just a tuned <Image>.
- *
- * Native asset is 1510×1749 (≈1:1.16). Width prop drives the rendered size;
- * height auto-scales to preserve aspect ratio.
+ * Logo oficial Gloval Shipping. Los SVGs se descargaron directo del sitio público.
+ * Aspect ratio nativo: 106×85 (ratio ≈ 1.247:1).
  */
 export function BrandLogo({
   className,
   variant = "color",
-  width = 96,
+  width = 100,
 }: BrandLogoProps) {
-  const height = Math.round(width * (1749 / 1510));
+  const height = Math.round(width * (85 / 106));
+  const src = variant === "white" ? "/assets/logo-white.svg" : "/assets/logo-color.svg";
   return (
     <div
-      className={cn(
-        "inline-flex items-center justify-center",
-        variant === "light" && "[&>img]:brightness-0 [&>img]:invert",
-        className,
-      )}
+      className={cn("inline-flex items-center justify-center", className)}
       style={{ width, height }}
     >
       <Image
-        src="/logo.png"
+        src={src}
         alt="Gloval Shipping"
         width={width}
         height={height}

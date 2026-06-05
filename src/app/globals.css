@@ -1,42 +1,59 @@
 @import "tailwindcss";
 
+/**
+ * Brand tokens — extraídos de glovalshipping.com (sitio público en producción).
+ * - Tipografía: Poppins (Google Fonts)
+ * - Azul navy: #0046A7 (headings y H3 service cards)
+ * - Azul vivo: #0078FF (CTAs y links)
+ * - Naranja accent: #FF8A33 (Submit button, "Experienced Staff" state)
+ * - Background general: #F3F5F8 (gris muy claro)
+ */
 @theme {
-  --color-gv-blue: #003DA5;
-  --color-gv-blue-dark: #002C7A;
-  --color-gv-orange: #FF9500;
-  --color-gv-orange-dark: #E68500;
-  --color-gv-navy: #061338;
-  --color-gv-bg-soft: #F5F7FB;
-  --color-gv-border: rgba(0, 61, 165, 0.15);
-  --color-gv-muted: #4B5573;
+  --color-gv-blue: #0046A7;
+  --color-gv-blue-dark: #003480;
+  --color-gv-blue-bright: #0078FF;
+  --color-gv-blue-bright-dark: #0064D6;
+  --color-gv-orange: #FF8A33;
+  --color-gv-orange-dark: #E0700F;
+  --color-gv-navy: #0A1F4F;
+  --color-gv-bg-soft: #E5EAF1;
+  --color-gv-border: rgba(0, 70, 167, 0.16);
+  --color-gv-muted: #6B7280;
+  --color-gv-text: #2A2A30;
 
-  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-sans: var(--font-poppins), system-ui, sans-serif;
 
   --radius-pill: 999px;
-  --radius-card: 20px;
+  --radius-card: 16px;
 
-  --shadow-card: 0 4px 24px rgba(0, 61, 165, 0.08);
-  --shadow-card-hover: 0 12px 32px rgba(0, 61, 165, 0.14);
+  --shadow-card: 0 6px 28px rgba(0, 70, 167, 0.12);
+  --shadow-card-hover: 0 16px 40px rgba(0, 70, 167, 0.18);
 }
 
 :root {
   --background: #FFFFFF;
-  --foreground: #003DA5;
+  --foreground: #2A2A30;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
+  font-weight: 400;
   min-height: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-gv-blue);
+  font-weight: 700;
 }
 
 .gv-h2-underline::after {
   content: "";
   display: block;
-  width: 120px;
-  height: 4px;
+  width: 80px;
+  height: 3px;
   background: var(--color-gv-orange);
   border-radius: 2px;
-  margin-top: 16px;
+  margin-top: 14px;
 }

@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.css";
 import { BrandHeader } from "@/components/brand/BrandHeader";
 import { BrandFooter } from "@/components/brand/BrandFooter";
 
-const inter = Inter({
-  variable: "--font-inter",
+const poppins = Poppins({
+  variable: "--font-poppins",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -22,9 +23,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className={`${inter.variable} h-full antialiased`}>
+    <html lang="es" className={`${poppins.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
         <BrandHeader />
+        {/* Header es fixed; el hub mete el hero por debajo (transparent header).
+            Las páginas internas agregan su propio pt-24 en el wrapper raíz. */}
         <main className="flex-1">{children}</main>
         <BrandFooter />
       </body>

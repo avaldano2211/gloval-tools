@@ -25,7 +25,7 @@ export default function ContenedoresPage() {
   ];
 
   return (
-    <div className="bg-gv-bg-soft min-h-screen">
+    <div className="bg-gv-bg-soft min-h-screen pt-24">
       {/* Breadcrumb */}
       <div className="max-w-7xl mx-auto px-6 pt-8">
         <Link
