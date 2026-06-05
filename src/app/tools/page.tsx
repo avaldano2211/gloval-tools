@@ -27,7 +27,7 @@ const TOOLS = [
     title: "Container Specifications",
     description:
       "Dimensions, weight, and capacity for each ISO container type. Includes road weight limits for Ecuador, Peru, Panama, and Colombia.",
-    href: "/herramientas/contenedores",
+    href: "/tools/containers",
     comingSoon: false,
   },
   {
@@ -35,7 +35,7 @@ const TOOLS = [
     title: "Volume & Weight Calculator",
     description:
       "Compute CBM, volumetric weight, and chargeable weight for ocean, air, and courier shipments. Suggests the best mode based on LATAM routes.",
-    href: "/herramientas/cubicaje",
+    href: "/tools/calculator",
     comingSoon: false,
   },
   {
@@ -43,7 +43,7 @@ const TOOLS = [
     title: "Container Tracking",
     description:
       "Track containers, BLs, and vessels with live events, ETA, and route map. Demo version with simulated data.",
-    href: "/herramientas/rastreo",
+    href: "/tools/tracking",
     comingSoon: false,
   },
   {
@@ -51,7 +51,7 @@ const TOOLS = [
     title: "Incoterms 2020",
     description:
       "All 11 official rules with cost-and-risk breakdown per shipment phase. Common pitfalls specific to LATAM trade.",
-    href: "/herramientas/incoterms",
+    href: "/tools/incoterms",
     comingSoon: false,
   },
   {
@@ -59,7 +59,7 @@ const TOOLS = [
     title: "UN/LOCODE Search",
     description:
       "Lookup codes for ports, airports, and terminals. Top 90+ LATAM locations highlighted with distance to nearest Gloval office.",
-    href: "/herramientas/locode",
+    href: "/tools/locode",
     comingSoon: false,
   },
   {
@@ -67,7 +67,7 @@ const TOOLS = [
     title: "IMO/IMDG Table",
     description:
       "The 9 classes of dangerous goods, segregation matrix, and country-specific restrictions across LATAM.",
-    href: "/herramientas/imdg",
+    href: "/tools/imdg",
     comingSoon: false,
   },
   {
@@ -75,7 +75,7 @@ const TOOLS = [
     title: "Document Center",
     description:
       "POA, Shipping Instructions, customs forms, T&C, office directory and more. Ready-to-use templates.",
-    href: "/herramientas/documentos",
+    href: "/tools/documents",
     comingSoon: false,
   },
   {
@@ -83,7 +83,7 @@ const TOOLS = [
     title: "Logistics Glossary",
     description:
       "Dictionary of international trade acronyms and terms with a LATAM focus. BL, AWB, CFS, NANDINA, NCM, ZLC and many more.",
-    href: "/herramientas/glosario",
+    href: "/tools/glossary",
     comingSoon: false,
   },
 ];

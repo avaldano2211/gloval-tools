@@ -41,16 +41,42 @@ export function BrandHeader() {
   }, [isHubPage]);
 
   const isTransparent = !solid;
-  // "Tools" item está active en /tools, /herramientas y cualquier /herramientas/*
+  // "Tools" item está active en cualquier /tools, /tools/*, /herramientas, /herramientas/*
   const isToolsActive =
     pathname === "/tools" ||
+    pathname.startsWith("/tools/") ||
     pathname === "/herramientas" ||
     pathname.startsWith("/herramientas/");
 
   // El switcher refleja el idioma actual. Si estamos en /herramientas o sub-pages → ES, otherwise → EN.
   const currentLang: "EN" | "ES" =
     pathname === "/herramientas" || pathname.startsWith("/herramientas/") ? "ES" : "EN";
-  const otherLangHref = currentLang === "EN" ? "/herramientas" : "/tools";
+
+  // Mapeo de slugs paralelos entre EN y ES — el switcher mantiene la página actual.
+  const SLUG_EN_TO_ES: Record<string, string> = {
+    "containers": "contenedores",
+    "calculator": "cubicaje",
+    "tracking":   "rastreo",
+    "incoterms":  "incoterms",
+    "locode":     "locode",
+    "imdg":       "imdg",
+    "documents":  "documentos",
+    "glossary":   "glosario",
+  };
+  const SLUG_ES_TO_EN: Record<string, string> = Object.fromEntries(
+    Object.entries(SLUG_EN_TO_ES).map(([en, es]) => [es, en]),
+  );
+
+  let otherLangHref = currentLang === "EN" ? "/herramientas" : "/tools";
+  if (currentLang === "EN" && pathname.startsWith("/tools/")) {
+    const slug = pathname.split("/")[2];
+    const mapped = SLUG_EN_TO_ES[slug];
+    if (mapped) otherLangHref = `/herramientas/${mapped}`;
+  } else if (currentLang === "ES" && pathname.startsWith("/herramientas/")) {
+    const slug = pathname.split("/")[2];
+    const mapped = SLUG_ES_TO_EN[slug];
+    if (mapped) otherLangHref = `/tools/${mapped}`;
+  }
   const otherLangLabel = currentLang === "EN" ? "ES" : "EN";
 
   return (
