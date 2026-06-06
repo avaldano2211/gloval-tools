@@ -77,8 +77,8 @@ export default function LocodePage() {
         <H2>UN/LOCODE Search</H2>
         <p className="mt-6 text-base md:text-lg text-gv-muted max-w-3xl leading-relaxed">
           Lookup UN/LOCODE codes for ports, airports, and terminals.
-          Top {LOCODES.length} LATAM locations curated by Gloval — with distance
-          to the nearest office.
+          {" "}{LOCODES.length} global locations curated by Gloval with a LATAM
+          focus — each with distance to the nearest Gloval office.
         </p>
       </header>
 
