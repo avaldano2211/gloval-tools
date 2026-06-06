@@ -71,11 +71,15 @@ const SEG_BADGE_LABEL_EN: Record<SegCode, string> = {
 
 const LATAM_RESTRICTIONS_EN: Record<string, { authority: string; bullets: string[] }> = {
   "Ecuador": {
-    authority: "SENAE / DICAPI / Joint Armed Forces Command",
+    authority: "SENAE / DIRNEA / SPTMF / Joint Armed Forces Command",
     bullets: [
       "Class 1 (explosives): special permit from Joint Armed Forces Command required before shipment.",
       "Class 7 (radioactive): banned without OAEN license; importers must hold prior registration.",
       "Classes 6.1 and 6.2: require ARCSA health registration if for medical or pharmaceutical use.",
+      "Class 5.2 (organic peroxides): declare type P1/P2 and SADT (Self-Accelerating Decomposition Temperature) via ECUAPASS 72h before vessel call at Contecon.",
+      "Class 5.2 P2 (temperature-controlled): reefer container mandatory with continuous monitoring of Control Temperature (CT) and Emergency Temperature (ET) per IMDG Ch. 7.7.",
+      "Class 5.2 Type A and unstable mixtures: banned for transit through Guayaquil — pre-coordinate with Subsecretaría de Puertos (SPTMF) for alternatives (Manta or multimodal routing).",
+      "Yard storage limited: Contecon accepts Class 5.2 P2 for max 72h post-discharge; consignee must withdraw within that window to avoid abandonment and re-export.",
       "Port of Esmeraldas does not accept Class 1; use Manta or Guayaquil instead.",
     ],
   },

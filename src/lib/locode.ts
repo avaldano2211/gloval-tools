@@ -222,6 +222,201 @@ export const LOCODES: Locode[] = [
 
   // HONG KONG SAR
   { code: "HKHKG", country: "HK", countryName: "Hong Kong", flag: "🇭🇰", city: "Hong Kong",        type: ["sea", "air"], lat: 22.3193, lon: 114.1694 },
+
+  // SINGAPORE
+  { code: "SGSIN", country: "SG", countryName: "Singapore", flag: "🇸🇬", city: "Singapore",        type: ["sea", "air"], lat: 1.3521, lon: 103.8198 },
+
+  // SOUTH KOREA
+  { code: "KRPUS", country: "KR", countryName: "South Korea", flag: "🇰🇷", city: "Busan",          type: ["sea", "air"], lat: 35.1796, lon: 129.0756 },
+  { code: "KRICN", country: "KR", countryName: "South Korea", flag: "🇰🇷", city: "Incheon",        type: ["sea", "air"], lat: 37.4602, lon: 126.4407 },
+  { code: "KRSEL", country: "KR", countryName: "South Korea", flag: "🇰🇷", city: "Seoul",          type: ["air"], lat: 37.5665, lon: 126.9780 },
+  { code: "KRGMP", country: "KR", countryName: "South Korea", flag: "🇰🇷", city: "Gwangyang",      type: ["sea"], lat: 34.8997, lon: 127.6951 },
+
+  // JAPAN
+  { code: "JPTYO", country: "JP", countryName: "Japan",     flag: "🇯🇵", city: "Tokyo",            type: ["sea", "air"], lat: 35.6762, lon: 139.6503 },
+  { code: "JPYOK", country: "JP", countryName: "Japan",     flag: "🇯🇵", city: "Yokohama",         type: ["sea"], lat: 35.4437, lon: 139.6380 },
+  { code: "JPNGO", country: "JP", countryName: "Japan",     flag: "🇯🇵", city: "Nagoya",           type: ["sea", "air"], lat: 35.1815, lon: 136.9066 },
+  { code: "JPOSA", country: "JP", countryName: "Japan",     flag: "🇯🇵", city: "Osaka",            type: ["sea", "air"], lat: 34.6937, lon: 135.5023 },
+  { code: "JPUKB", country: "JP", countryName: "Japan",     flag: "🇯🇵", city: "Kobe",             type: ["sea"], lat: 34.6901, lon: 135.1955 },
+  { code: "JPNRT", country: "JP", countryName: "Japan",     flag: "🇯🇵", city: "Narita (NRT)",     type: ["air"], lat: 35.7647, lon: 140.3863 },
+  { code: "JPKIX", country: "JP", countryName: "Japan",     flag: "🇯🇵", city: "Kansai (KIX)",     type: ["air"], lat: 34.4348, lon: 135.2444 },
+
+  // TAIWAN
+  { code: "TWKHH", country: "TW", countryName: "Taiwan",    flag: "🇹🇼", city: "Kaohsiung",        type: ["sea", "air"], lat: 22.6273, lon: 120.3014 },
+  { code: "TWTPE", country: "TW", countryName: "Taiwan",    flag: "🇹🇼", city: "Taipei (Taoyuan)", type: ["air"], lat: 25.0797, lon: 121.2342 },
+  { code: "TWKEL", country: "TW", countryName: "Taiwan",    flag: "🇹🇼", city: "Keelung",          type: ["sea"], lat: 25.1276, lon: 121.7392 },
+  { code: "TWTXG", country: "TW", countryName: "Taiwan",    flag: "🇹🇼", city: "Taichung",         type: ["sea"], lat: 24.2987, lon: 120.5247 },
+
+  // VIETNAM
+  { code: "VNSGN", country: "VN", countryName: "Vietnam",   flag: "🇻🇳", city: "Ho Chi Minh City", type: ["sea", "air"], lat: 10.7626, lon: 106.6602 },
+  { code: "VNHPH", country: "VN", countryName: "Vietnam",   flag: "🇻🇳", city: "Hai Phong",        type: ["sea"], lat: 20.8449, lon: 106.6881 },
+  { code: "VNHAN", country: "VN", countryName: "Vietnam",   flag: "🇻🇳", city: "Hanoi",            type: ["air"], lat: 21.0285, lon: 105.8542 },
+  { code: "VNCMT", country: "VN", countryName: "Vietnam",   flag: "🇻🇳", city: "Cai Mep",          type: ["sea"], lat: 10.5316, lon: 107.0301 },
+
+  // THAILAND
+  { code: "THBKK", country: "TH", countryName: "Thailand",  flag: "🇹🇭", city: "Bangkok",          type: ["sea", "air"], lat: 13.7563, lon: 100.5018 },
+  { code: "THLCH", country: "TH", countryName: "Thailand",  flag: "🇹🇭", city: "Laem Chabang",     type: ["sea"], lat: 13.0816, lon: 100.8826 },
+
+  // MALAYSIA
+  { code: "MYPKG", country: "MY", countryName: "Malaysia",  flag: "🇲🇾", city: "Port Klang",       type: ["sea"], lat: 3.0036, lon: 101.3920 },
+  { code: "MYKUL", country: "MY", countryName: "Malaysia",  flag: "🇲🇾", city: "Kuala Lumpur",     type: ["air"], lat: 3.1390, lon: 101.6869 },
+  { code: "MYPEN", country: "MY", countryName: "Malaysia",  flag: "🇲🇾", city: "Penang",           type: ["sea", "air"], lat: 5.4141, lon: 100.3288 },
+  { code: "MYTPP", country: "MY", countryName: "Malaysia",  flag: "🇲🇾", city: "Tanjung Pelepas",  type: ["sea"], lat: 1.3650, lon: 103.5519 },
+
+  // INDONESIA
+  { code: "IDJKT", country: "ID", countryName: "Indonesia", flag: "🇮🇩", city: "Jakarta",          type: ["sea", "air"], lat: -6.2088, lon: 106.8456 },
+  { code: "IDSUB", country: "ID", countryName: "Indonesia", flag: "🇮🇩", city: "Surabaya",         type: ["sea"], lat: -7.2575, lon: 112.7521 },
+
+  // PHILIPPINES
+  { code: "PHMNL", country: "PH", countryName: "Philippines", flag: "🇵🇭", city: "Manila",         type: ["sea", "air"], lat: 14.5995, lon: 120.9842 },
+  { code: "PHCEB", country: "PH", countryName: "Philippines", flag: "🇵🇭", city: "Cebu",           type: ["sea", "air"], lat: 10.3157, lon: 123.8854 },
+
+  // INDIA
+  { code: "INNSA", country: "IN", countryName: "India",     flag: "🇮🇳", city: "Nhava Sheva (JNPT)", type: ["sea"], lat: 18.9489, lon: 72.9525 },
+  { code: "INBOM", country: "IN", countryName: "India",     flag: "🇮🇳", city: "Mumbai",           type: ["air"], lat: 19.0760, lon: 72.8777 },
+  { code: "INMAA", country: "IN", countryName: "India",     flag: "🇮🇳", city: "Chennai",          type: ["sea", "air"], lat: 13.0827, lon: 80.2707 },
+  { code: "INMUN", country: "IN", countryName: "India",     flag: "🇮🇳", city: "Mundra",           type: ["sea"], lat: 22.8389, lon: 69.7232 },
+  { code: "INDEL", country: "IN", countryName: "India",     flag: "🇮🇳", city: "Delhi",            type: ["air"], lat: 28.6139, lon: 77.2090 },
+  { code: "INCCU", country: "IN", countryName: "India",     flag: "🇮🇳", city: "Kolkata",          type: ["sea", "air"], lat: 22.5726, lon: 88.3639 },
+
+  // BANGLADESH / SRI LANKA / PAKISTAN
+  { code: "BDCGP", country: "BD", countryName: "Bangladesh", flag: "🇧🇩", city: "Chittagong",      type: ["sea"], lat: 22.3569, lon: 91.7832 },
+  { code: "LKCMB", country: "LK", countryName: "Sri Lanka", flag: "🇱🇰", city: "Colombo",          type: ["sea", "air"], lat: 6.9271, lon: 79.8612 },
+  { code: "PKKHI", country: "PK", countryName: "Pakistan",  flag: "🇵🇰", city: "Karachi",          type: ["sea", "air"], lat: 24.8607, lon: 67.0011 },
+
+  // UAE / MIDDLE EAST
+  { code: "AEJEA", country: "AE", countryName: "UAE",       flag: "🇦🇪", city: "Jebel Ali",        type: ["sea"], lat: 24.9857, lon: 55.0590 },
+  { code: "AEDXB", country: "AE", countryName: "UAE",       flag: "🇦🇪", city: "Dubai (DXB)",      type: ["air"], lat: 25.2532, lon: 55.3657 },
+  { code: "AEAUH", country: "AE", countryName: "UAE",       flag: "🇦🇪", city: "Abu Dhabi",        type: ["sea", "air"], lat: 24.4539, lon: 54.3773 },
+  { code: "SAJED", country: "SA", countryName: "Saudi Arabia", flag: "🇸🇦", city: "Jeddah",        type: ["sea", "air"], lat: 21.4858, lon: 39.1925 },
+  { code: "SADMM", country: "SA", countryName: "Saudi Arabia", flag: "🇸🇦", city: "Dammam",        type: ["sea"], lat: 26.4207, lon: 50.0888 },
+  { code: "QADOH", country: "QA", countryName: "Qatar",     flag: "🇶🇦", city: "Doha",             type: ["sea", "air"], lat: 25.2854, lon: 51.5310 },
+  { code: "OMSLL", country: "OM", countryName: "Oman",      flag: "🇴🇲", city: "Salalah",          type: ["sea"], lat: 17.0151, lon: 54.0924 },
+  { code: "IRBND", country: "IR", countryName: "Iran",      flag: "🇮🇷", city: "Bandar Abbas",     type: ["sea"], lat: 27.1865, lon: 56.2808 },
+
+  // TURKEY
+  { code: "TRIST", country: "TR", countryName: "Turkey",    flag: "🇹🇷", city: "Istanbul",         type: ["sea", "air"], lat: 41.0082, lon: 28.9784 },
+  { code: "TRAMB", country: "TR", countryName: "Turkey",    flag: "🇹🇷", city: "Ambarli",          type: ["sea"], lat: 40.9665, lon: 28.6800 },
+  { code: "TRMER", country: "TR", countryName: "Turkey",    flag: "🇹🇷", city: "Mersin",           type: ["sea"], lat: 36.8121, lon: 34.6415 },
+  { code: "TRIZM", country: "TR", countryName: "Turkey",    flag: "🇹🇷", city: "Izmir",            type: ["sea"], lat: 38.4192, lon: 27.1287 },
+
+  // ISRAEL / EGYPT / JORDAN
+  { code: "ILHFA", country: "IL", countryName: "Israel",    flag: "🇮🇱", city: "Haifa",            type: ["sea"], lat: 32.8156, lon: 34.9892 },
+  { code: "ILASH", country: "IL", countryName: "Israel",    flag: "🇮🇱", city: "Ashdod",           type: ["sea"], lat: 31.7949, lon: 34.6411 },
+  { code: "EGALY", country: "EG", countryName: "Egypt",     flag: "🇪🇬", city: "Alexandria",       type: ["sea"], lat: 31.2001, lon: 29.9187 },
+  { code: "EGPSD", country: "EG", countryName: "Egypt",     flag: "🇪🇬", city: "Port Said",        type: ["sea"], lat: 31.2565, lon: 32.2841 },
+  { code: "EGCAI", country: "EG", countryName: "Egypt",     flag: "🇪🇬", city: "Cairo",            type: ["air"], lat: 30.0444, lon: 31.2357 },
+
+  // NETHERLANDS / BELGIUM
+  { code: "NLRTM", country: "NL", countryName: "Netherlands", flag: "🇳🇱", city: "Rotterdam",      type: ["sea"], lat: 51.9244, lon: 4.4777 },
+  { code: "NLAMS", country: "NL", countryName: "Netherlands", flag: "🇳🇱", city: "Amsterdam",      type: ["sea", "air"], lat: 52.3676, lon: 4.9041 },
+  { code: "BEANR", country: "BE", countryName: "Belgium",   flag: "🇧🇪", city: "Antwerp",          type: ["sea"], lat: 51.2194, lon: 4.4025 },
+  { code: "BEZEE", country: "BE", countryName: "Belgium",   flag: "🇧🇪", city: "Zeebrugge",        type: ["sea"], lat: 51.3286, lon: 3.2076 },
+  { code: "BEBRU", country: "BE", countryName: "Belgium",   flag: "🇧🇪", city: "Brussels",         type: ["air"], lat: 50.8503, lon: 4.3517 },
+
+  // GERMANY
+  { code: "DEHAM", country: "DE", countryName: "Germany",   flag: "🇩🇪", city: "Hamburg",          type: ["sea", "air"], lat: 53.5511, lon: 9.9937 },
+  { code: "DEBRV", country: "DE", countryName: "Germany",   flag: "🇩🇪", city: "Bremerhaven",      type: ["sea"], lat: 53.5396, lon: 8.5810 },
+  { code: "DEFRA", country: "DE", countryName: "Germany",   flag: "🇩🇪", city: "Frankfurt (FRA)",  type: ["air"], lat: 50.0379, lon: 8.5622 },
+  { code: "DEMUC", country: "DE", countryName: "Germany",   flag: "🇩🇪", city: "Munich (MUC)",     type: ["air"], lat: 48.3538, lon: 11.7861 },
+
+  // UK / IRELAND
+  { code: "GBFXT", country: "GB", countryName: "UK",        flag: "🇬🇧", city: "Felixstowe",       type: ["sea"], lat: 51.9540, lon: 1.3506 },
+  { code: "GBSOU", country: "GB", countryName: "UK",        flag: "🇬🇧", city: "Southampton",      type: ["sea"], lat: 50.9097, lon: -1.4044 },
+  { code: "GBLGW", country: "GB", countryName: "UK",        flag: "🇬🇧", city: "London Gateway",   type: ["sea"], lat: 51.5117, lon: 0.4889 },
+  { code: "GBLON", country: "GB", countryName: "UK",        flag: "🇬🇧", city: "London Heathrow",  type: ["air"], lat: 51.4700, lon: -0.4543 },
+  { code: "IEDUB", country: "IE", countryName: "Ireland",   flag: "🇮🇪", city: "Dublin",           type: ["sea", "air"], lat: 53.3498, lon: -6.2603 },
+
+  // FRANCE
+  { code: "FRLEH", country: "FR", countryName: "France",    flag: "🇫🇷", city: "Le Havre",         type: ["sea"], lat: 49.4944, lon: 0.1079 },
+  { code: "FRMRS", country: "FR", countryName: "France",    flag: "🇫🇷", city: "Marseille",        type: ["sea", "air"], lat: 43.2965, lon: 5.3698 },
+  { code: "FRCDG", country: "FR", countryName: "France",    flag: "🇫🇷", city: "Paris (CDG)",      type: ["air"], lat: 49.0097, lon: 2.5479 },
+
+  // SPAIN / PORTUGAL
+  { code: "ESVLC", country: "ES", countryName: "Spain",     flag: "🇪🇸", city: "Valencia",         type: ["sea"], lat: 39.4699, lon: -0.3763 },
+  { code: "ESALG", country: "ES", countryName: "Spain",     flag: "🇪🇸", city: "Algeciras",        type: ["sea"], lat: 36.1408, lon: -5.4562 },
+  { code: "ESBCN", country: "ES", countryName: "Spain",     flag: "🇪🇸", city: "Barcelona",        type: ["sea", "air"], lat: 41.3851, lon: 2.1734 },
+  { code: "ESMAD", country: "ES", countryName: "Spain",     flag: "🇪🇸", city: "Madrid",           type: ["air"], lat: 40.4168, lon: -3.7038 },
+  { code: "ESBIO", country: "ES", countryName: "Spain",     flag: "🇪🇸", city: "Bilbao",           type: ["sea"], lat: 43.2630, lon: -2.9350 },
+  { code: "PTSIE", country: "PT", countryName: "Portugal",  flag: "🇵🇹", city: "Sines",            type: ["sea"], lat: 37.9555, lon: -8.8696 },
+  { code: "PTLIS", country: "PT", countryName: "Portugal",  flag: "🇵🇹", city: "Lisbon",           type: ["sea", "air"], lat: 38.7223, lon: -9.1393 },
+
+  // ITALY / GREECE / MEDITERRANEAN
+  { code: "ITGOA", country: "IT", countryName: "Italy",     flag: "🇮🇹", city: "Genoa",            type: ["sea"], lat: 44.4056, lon: 8.9463 },
+  { code: "ITSPE", country: "IT", countryName: "Italy",     flag: "🇮🇹", city: "La Spezia",        type: ["sea"], lat: 44.1023, lon: 9.8243 },
+  { code: "ITTRS", country: "IT", countryName: "Italy",     flag: "🇮🇹", city: "Trieste",          type: ["sea"], lat: 45.6495, lon: 13.7768 },
+  { code: "ITNAP", country: "IT", countryName: "Italy",     flag: "🇮🇹", city: "Naples",           type: ["sea"], lat: 40.8518, lon: 14.2681 },
+  { code: "ITMIL", country: "IT", countryName: "Italy",     flag: "🇮🇹", city: "Milan",            type: ["air"], lat: 45.4642, lon: 9.1900 },
+  { code: "GRPIR", country: "GR", countryName: "Greece",    flag: "🇬🇷", city: "Piraeus",          type: ["sea"], lat: 37.9474, lon: 23.6379 },
+  { code: "MTMAR", country: "MT", countryName: "Malta",     flag: "🇲🇹", city: "Marsaxlokk",       type: ["sea"], lat: 35.8333, lon: 14.5333 },
+  { code: "CYLMS", country: "CY", countryName: "Cyprus",    flag: "🇨🇾", city: "Limassol",         type: ["sea"], lat: 34.6786, lon: 33.0413 },
+
+  // NORDIC / EASTERN EUROPE
+  { code: "DKCPH", country: "DK", countryName: "Denmark",   flag: "🇩🇰", city: "Copenhagen",       type: ["sea", "air"], lat: 55.6761, lon: 12.5683 },
+  { code: "DKAAR", country: "DK", countryName: "Denmark",   flag: "🇩🇰", city: "Aarhus",           type: ["sea"], lat: 56.1629, lon: 10.2039 },
+  { code: "SEGOT", country: "SE", countryName: "Sweden",    flag: "🇸🇪", city: "Gothenburg",       type: ["sea"], lat: 57.7089, lon: 11.9746 },
+  { code: "SESTO", country: "SE", countryName: "Sweden",    flag: "🇸🇪", city: "Stockholm",        type: ["sea", "air"], lat: 59.3293, lon: 18.0686 },
+  { code: "NOOSL", country: "NO", countryName: "Norway",    flag: "🇳🇴", city: "Oslo",             type: ["sea", "air"], lat: 59.9139, lon: 10.7522 },
+  { code: "FIHEL", country: "FI", countryName: "Finland",   flag: "🇫🇮", city: "Helsinki",         type: ["sea", "air"], lat: 60.1699, lon: 24.9384 },
+  { code: "PLGDN", country: "PL", countryName: "Poland",    flag: "🇵🇱", city: "Gdansk",           type: ["sea"], lat: 54.3520, lon: 18.6466 },
+  { code: "PLGDY", country: "PL", countryName: "Poland",    flag: "🇵🇱", city: "Gdynia",           type: ["sea"], lat: 54.5189, lon: 18.5305 },
+  { code: "RULED", country: "RU", countryName: "Russia",    flag: "🇷🇺", city: "St. Petersburg",   type: ["sea"], lat: 59.9311, lon: 30.3609 },
+  { code: "RUVVO", country: "RU", countryName: "Russia",    flag: "🇷🇺", city: "Vladivostok",      type: ["sea"], lat: 43.1056, lon: 131.8735 },
+  { code: "RUMOW", country: "RU", countryName: "Russia",    flag: "🇷🇺", city: "Moscow",           type: ["air"], lat: 55.7558, lon: 37.6173 },
+  { code: "ROCND", country: "RO", countryName: "Romania",   flag: "🇷🇴", city: "Constanta",        type: ["sea"], lat: 44.1598, lon: 28.6348 },
+  { code: "BGVAR", country: "BG", countryName: "Bulgaria",  flag: "🇧🇬", city: "Varna",            type: ["sea"], lat: 43.2141, lon: 27.9147 },
+  { code: "SIKOP", country: "SI", countryName: "Slovenia",  flag: "🇸🇮", city: "Koper",            type: ["sea"], lat: 45.5469, lon: 13.7294 },
+  { code: "HRRJK", country: "HR", countryName: "Croatia",   flag: "🇭🇷", city: "Rijeka",           type: ["sea"], lat: 45.3271, lon: 14.4422 },
+
+  // CANADA
+  { code: "CAVAN", country: "CA", countryName: "Canada",    flag: "🇨🇦", city: "Vancouver",        type: ["sea", "air"], lat: 49.2827, lon: -123.1207 },
+  { code: "CAPRR", country: "CA", countryName: "Canada",    flag: "🇨🇦", city: "Prince Rupert",    type: ["sea"], lat: 54.3150, lon: -130.3209 },
+  { code: "CAMTR", country: "CA", countryName: "Canada",    flag: "🇨🇦", city: "Montreal",         type: ["sea", "air"], lat: 45.5017, lon: -73.5673 },
+  { code: "CATOR", country: "CA", countryName: "Canada",    flag: "🇨🇦", city: "Toronto",          type: ["air"], lat: 43.6532, lon: -79.3832 },
+  { code: "CAHAL", country: "CA", countryName: "Canada",    flag: "🇨🇦", city: "Halifax",          type: ["sea"], lat: 44.6488, lon: -63.5752 },
+
+  // MORE USA
+  { code: "USOAK", country: "US", countryName: "USA",       flag: "🇺🇸", city: "Oakland",          type: ["sea"], lat: 37.8044, lon: -122.2712 },
+  { code: "USSEA", country: "US", countryName: "USA",       flag: "🇺🇸", city: "Seattle / Tacoma", type: ["sea", "air"], lat: 47.6062, lon: -122.3321 },
+  { code: "USBAL", country: "US", countryName: "USA",       flag: "🇺🇸", city: "Baltimore",        type: ["sea"], lat: 39.2904, lon: -76.6122 },
+  { code: "USJAX", country: "US", countryName: "USA",       flag: "🇺🇸", city: "Jacksonville",     type: ["sea"], lat: 30.3322, lon: -81.6557 },
+  { code: "USMSY", country: "US", countryName: "USA",       flag: "🇺🇸", city: "New Orleans",      type: ["sea"], lat: 29.9511, lon: -90.0715 },
+  { code: "USTPA", country: "US", countryName: "USA",       flag: "🇺🇸", city: "Tampa",            type: ["sea", "air"], lat: 27.9506, lon: -82.4572 },
+  { code: "USDFW", country: "US", countryName: "USA",       flag: "🇺🇸", city: "Dallas (DFW)",     type: ["air"], lat: 32.8998, lon: -97.0403 },
+  { code: "USATL", country: "US", countryName: "USA",       flag: "🇺🇸", city: "Atlanta (ATL)",    type: ["air"], lat: 33.6407, lon: -84.4277 },
+
+  // CARIBBEAN
+  { code: "JMKIN", country: "JM", countryName: "Jamaica",   flag: "🇯🇲", city: "Kingston",         type: ["sea", "air"], lat: 17.9712, lon: -76.7920 },
+  { code: "BSFPO", country: "BS", countryName: "Bahamas",   flag: "🇧🇸", city: "Freeport",         type: ["sea"], lat: 26.5333, lon: -78.6951 },
+  { code: "TTPOS", country: "TT", countryName: "Trinidad y Tobago", flag: "🇹🇹", city: "Port of Spain", type: ["sea", "air"], lat: 10.6549, lon: -61.5019 },
+  { code: "AWORJ", country: "AW", countryName: "Aruba",     flag: "🇦🇼", city: "Oranjestad",       type: ["sea", "air"], lat: 12.5186, lon: -70.0359 },
+  { code: "CWWIL", country: "CW", countryName: "Curaçao",   flag: "🇨🇼", city: "Willemstad",       type: ["sea", "air"], lat: 12.1224, lon: -68.8819 },
+  { code: "PRSJU", country: "PR", countryName: "Puerto Rico", flag: "🇵🇷", city: "San Juan",       type: ["sea", "air"], lat: 18.4655, lon: -66.1057 },
+
+  // OCEANIA
+  { code: "AUSYD", country: "AU", countryName: "Australia", flag: "🇦🇺", city: "Sydney",           type: ["sea", "air"], lat: -33.8688, lon: 151.2093 },
+  { code: "AUMEL", country: "AU", countryName: "Australia", flag: "🇦🇺", city: "Melbourne",        type: ["sea", "air"], lat: -37.8136, lon: 144.9631 },
+  { code: "AUBNE", country: "AU", countryName: "Australia", flag: "🇦🇺", city: "Brisbane",         type: ["sea", "air"], lat: -27.4698, lon: 153.0251 },
+  { code: "AUFRE", country: "AU", countryName: "Australia", flag: "🇦🇺", city: "Fremantle / Perth", type: ["sea", "air"], lat: -32.0569, lon: 115.7439 },
+  { code: "NZAKL", country: "NZ", countryName: "New Zealand", flag: "🇳🇿", city: "Auckland",       type: ["sea", "air"], lat: -36.8485, lon: 174.7633 },
+  { code: "NZTAU", country: "NZ", countryName: "New Zealand", flag: "🇳🇿", city: "Tauranga",       type: ["sea"], lat: -37.6878, lon: 176.1651 },
+
+  // AFRICA
+  { code: "ZADUR", country: "ZA", countryName: "South Africa", flag: "🇿🇦", city: "Durban",        type: ["sea"], lat: -29.8587, lon: 31.0218 },
+  { code: "ZACPT", country: "ZA", countryName: "South Africa", flag: "🇿🇦", city: "Cape Town",     type: ["sea", "air"], lat: -33.9249, lon: 18.4241 },
+  { code: "ZAJNB", country: "ZA", countryName: "South Africa", flag: "🇿🇦", city: "Johannesburg",  type: ["air"], lat: -26.2041, lon: 28.0473 },
+  { code: "NGLOS", country: "NG", countryName: "Nigeria",   flag: "🇳🇬", city: "Lagos",            type: ["sea", "air"], lat: 6.5244, lon: 3.3792 },
+  { code: "KEMBA", country: "KE", countryName: "Kenya",     flag: "🇰🇪", city: "Mombasa",          type: ["sea"], lat: -4.0435, lon: 39.6682 },
+  { code: "KENBO", country: "KE", countryName: "Kenya",     flag: "🇰🇪", city: "Nairobi",          type: ["air"], lat: -1.2921, lon: 36.8219 },
+  { code: "MACAS", country: "MA", countryName: "Morocco",   flag: "🇲🇦", city: "Casablanca",       type: ["sea", "air"], lat: 33.5731, lon: -7.5898 },
+  { code: "MATNG", country: "MA", countryName: "Morocco",   flag: "🇲🇦", city: "Tangier Med",      type: ["sea"], lat: 35.8855, lon: -5.5083 },
+  { code: "TZDAR", country: "TZ", countryName: "Tanzania",  flag: "🇹🇿", city: "Dar es Salaam",    type: ["sea"], lat: -6.7924, lon: 39.2083 },
+  { code: "GHTKD", country: "GH", countryName: "Ghana",     flag: "🇬🇭", city: "Tema",             type: ["sea"], lat: 5.6794, lon: 0.0166 },
+  { code: "GHACC", country: "GH", countryName: "Ghana",     flag: "🇬🇭", city: "Accra",            type: ["air"], lat: 5.6037, lon: -0.1870 },
+  { code: "CIABJ", country: "CI", countryName: "Ivory Coast", flag: "🇨🇮", city: "Abidjan",        type: ["sea", "air"], lat: 5.3600, lon: -4.0083 },
+  { code: "AOLAD", country: "AO", countryName: "Angola",    flag: "🇦🇴", city: "Luanda",           type: ["sea", "air"], lat: -8.8390, lon: 13.2894 },
+  { code: "CMDLA", country: "CM", countryName: "Cameroon",  flag: "🇨🇲", city: "Douala",           type: ["sea", "air"], lat: 4.0511, lon: 9.7679 },
+  { code: "SNDKR", country: "SN", countryName: "Senegal",   flag: "🇸🇳", city: "Dakar",            type: ["sea", "air"], lat: 14.7167, lon: -17.4677 },
 ];
 
 export const TYPE_LABEL: Record<LocodeType, string> = {

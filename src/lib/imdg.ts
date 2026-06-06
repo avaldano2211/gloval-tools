@@ -259,11 +259,15 @@ export const LATAM_IMDG_RESTRICTIONS: CountryRestriction[] = [
   {
     country: "Ecuador",
     flag: "🇪🇨",
-    authority: "SENAE / DICAPI / Comando Conjunto FFAA",
+    authority: "SENAE / DIRNEA / SPTMF / Comando Conjunto FFAA",
     bullets: [
       "Clase 1 (explosivos): permiso especial Comando Conjunto FFAA antes de embarque.",
       "Clase 7 (radiactivos): prohibido sin licencia OAEN; importadores deben tener registro previo.",
       "Clase 6.1 y 6.2: requieren registro sanitario ARCSA si tiene uso médico/farmacéutico.",
+      "Clase 5.2 (peróxidos orgánicos): declarar tipo P1/P2 y SADT (Self-Accelerating Decomposition Temperature) en ECUAPASS 72h antes del arribo a Contecon.",
+      "Clase 5.2 P2 (con control de temperatura): obligatorio contenedor reefer con monitoreo continuo de Control Temperature (CT) y Emergency Temperature (ET) según IMDG Cap. 7.7.",
+      "Clase 5.2 tipo A y mezclas inestables: prohibidos en tránsito por Guayaquil — pre-coordinar con la Subsecretaría de Puertos (SPTMF) para rutas alternativas (Manta o multimodal).",
+      "Permanencia limitada en patio: Contecon admite Clase 5.2 P2 máximo 72h post-descarga; el consignatario debe retirar antes para evitar abandono y reexportación.",
       "Puerto Esmeraldas no acepta Clase 1; usar Manta o Guayaquil.",
     ],
   },
