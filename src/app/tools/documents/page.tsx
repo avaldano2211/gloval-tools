@@ -213,9 +213,11 @@ function DocCard({ doc }: { doc: DocResource }) {
         </span>
       </div>
 
-      <h3 className="text-lg font-bold text-gv-blue leading-tight">{doc.title}</h3>
+      <h3 className="text-lg font-bold text-gv-blue leading-tight">
+        {doc.titleEn ?? doc.title}
+      </h3>
       <p className="mt-2 text-sm text-gv-muted leading-relaxed flex-1">
-        {doc.description}
+        {doc.descriptionEn ?? doc.description}
       </p>
 
       <div className="mt-5 flex items-center justify-between gap-3 text-xs">

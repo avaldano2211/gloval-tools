@@ -16,6 +16,9 @@ export interface DocResource {
   id: string;
   title: string;
   description: string;
+  /** Optional EN translations — when missing, EN pages fall back to ES. */
+  titleEn?: string;
+  descriptionEn?: string;
   category: DocCategory;
   language: DocLanguage;
   format: DocFormat;
@@ -46,6 +49,9 @@ export const DOCUMENTS: DocResource[] = [
     title: "POA — Power of Attorney",
     description:
       "Carta poder para que Gloval Shipping actúe como agente del importador / exportador en trámites aduaneros y de transporte.",
+    titleEn: "POA — Power of Attorney",
+    descriptionEn:
+      "Authorizes Gloval Shipping to act as the importer's or exporter's agent for customs and transport processes.",
     category: "operaciones",
     language: "es-en",
     format: "PDF",
@@ -57,6 +63,9 @@ export const DOCUMENTS: DocResource[] = [
     title: "SLI — Shipper's Letter of Instructions",
     description:
       "Instrucciones formales del embarcador: detalles del cargo, consignatario, ruta, modalidad y servicios contratados.",
+    titleEn: "SLI — Shipper's Letter of Instructions",
+    descriptionEn:
+      "Formal shipper instructions: cargo details, consignee, routing, mode, and contracted services.",
     category: "operaciones",
     language: "es-en",
     format: "PDF",
@@ -68,6 +77,9 @@ export const DOCUMENTS: DocResource[] = [
     title: "SI — Shipping Instructions (BL Draft)",
     description:
       "Información para emisión del Bill of Lading: shipper, consignee, notify party, mercancía, marcas y números.",
+    titleEn: "SI — Shipping Instructions (BL Draft)",
+    descriptionEn:
+      "Information to issue the Bill of Lading: shipper, consignee, notify party, cargo description, marks and numbers.",
     category: "operaciones",
     language: "es-en",
     format: "PDF",
@@ -79,6 +91,9 @@ export const DOCUMENTS: DocResource[] = [
     title: "Booking Request",
     description:
       "Solicitud de reserva de espacio: datos del envío, fechas requeridas, modalidad y ruta.",
+    titleEn: "Booking Request",
+    descriptionEn:
+      "Space reservation request: shipment data, required dates, mode, and routing.",
     category: "operaciones",
     language: "es",
     format: "PDF",
@@ -90,6 +105,9 @@ export const DOCUMENTS: DocResource[] = [
     title: "DGD — Dangerous Goods Declaration",
     description:
       "Declaración para envíos de mercancías peligrosas (IMDG / IATA). Requiere validación por consultor certificado.",
+    titleEn: "DGD — Dangerous Goods Declaration",
+    descriptionEn:
+      "Declaration for hazardous shipments (IMDG / IATA). Requires sign-off from a certified consultant.",
     category: "operaciones",
     language: "en",
     format: "PDF",
@@ -101,6 +119,9 @@ export const DOCUMENTS: DocResource[] = [
     title: "Cargo Release Authorization",
     description:
       "Autorización formal para liberar la carga al consignatario o agente designado.",
+    titleEn: "Cargo Release Authorization",
+    descriptionEn:
+      "Formal authorization to release the cargo to the consignee or designated agent.",
     category: "operaciones",
     language: "es-en",
     format: "PDF",
@@ -114,6 +135,9 @@ export const DOCUMENTS: DocResource[] = [
     title: "ISF 10+2 — Importer Security Filing (USA)",
     description:
       "Información requerida por CBP de USA para envíos marítimos con destino EE.UU. — debe presentarse 24h antes del embarque.",
+    titleEn: "ISF 10+2 — Importer Security Filing (USA)",
+    descriptionEn:
+      "Data required by US CBP for ocean shipments to the US — must be filed 24h before vessel loading.",
     category: "aduanas",
     language: "en",
     format: "PDF",
@@ -125,6 +149,9 @@ export const DOCUMENTS: DocResource[] = [
     title: "Customs Broker Authorization",
     description:
       "Autorización para que el agente aduanal Gloval (o su corresponsal) actúe en nombre del importador.",
+    titleEn: "Customs Broker Authorization",
+    descriptionEn:
+      "Authorizes the Gloval customs broker (or its correspondent) to act on behalf of the importer.",
     category: "aduanas",
     language: "es-en",
     format: "PDF",
@@ -136,6 +163,9 @@ export const DOCUMENTS: DocResource[] = [
     title: "Carta de Cesión de Derechos (Ecuador / Perú)",
     description:
       "Documento usado en aduanas LATAM para ceder derechos de importación a un tercero.",
+    titleEn: "Assignment of Rights Letter (Ecuador / Peru)",
+    descriptionEn:
+      "Document used in LATAM customs to assign import rights to a third party.",
     category: "aduanas",
     language: "es",
     format: "DOCX",
@@ -147,6 +177,9 @@ export const DOCUMENTS: DocResource[] = [
     title: "Anexo 24 (México)",
     description:
       "Formato del SAT para empresas IMMEX — control de inventarios de programas de fomento.",
+    titleEn: "Annex 24 (Mexico)",
+    descriptionEn:
+      "Mexican SAT form for IMMEX companies — inventory control for promotion programs.",
     category: "aduanas",
     language: "es",
     format: "XLSX",
@@ -160,6 +193,9 @@ export const DOCUMENTS: DocResource[] = [
     title: "Términos y Condiciones Generales",
     description:
       "T&C generales de los servicios de Gloval Shipping. Aplican a toda contratación.",
+    titleEn: "General Terms & Conditions",
+    descriptionEn:
+      "General T&Cs covering Gloval Shipping services. Apply to every engagement.",
     category: "comercial",
     language: "es-en",
     format: "PDF",
@@ -171,6 +207,9 @@ export const DOCUMENTS: DocResource[] = [
     title: "Solicitud de Línea de Crédito",
     description:
       "Formulario para solicitar términos de pago a crédito — requiere referencias comerciales y bancarias.",
+    titleEn: "Credit Line Application",
+    descriptionEn:
+      "Form to request credit payment terms — requires trade and bank references.",
     category: "comercial",
     language: "es",
     format: "PDF",
@@ -182,6 +221,9 @@ export const DOCUMENTS: DocResource[] = [
     title: "Contrato Marco de Servicios Logísticos",
     description:
       "Plantilla de contrato para clientes recurrentes con volúmenes anuales acordados.",
+    titleEn: "Master Logistics Services Agreement",
+    descriptionEn:
+      "Contract template for recurring clients with agreed annual volumes.",
     category: "comercial",
     language: "es",
     format: "DOCX",
@@ -195,6 +237,9 @@ export const DOCUMENTS: DocResource[] = [
     title: "Directorio de Oficinas Gloval",
     description:
       "Lista completa de oficinas (Miami, Panamá, Guayaquil, Lima) con direcciones, teléfonos, emails y horarios.",
+    titleEn: "Gloval Office Directory",
+    descriptionEn:
+      "Full office list (Miami, Panama, Guayaquil, Lima) with addresses, phones, emails, and hours.",
     category: "contactos",
     language: "es-en",
     format: "PDF",
@@ -206,6 +251,9 @@ export const DOCUMENTS: DocResource[] = [
     title: "Directorio por Departamento",
     description:
       "Contactos directos por área: Pricing, Customer Service, Operaciones, Cobranzas, Aduanas, Compliance.",
+    titleEn: "Department Directory",
+    descriptionEn:
+      "Direct contacts by area: Pricing, Customer Service, Operations, Collections, Customs, Compliance.",
     category: "contactos",
     language: "es",
     format: "PDF",
@@ -217,6 +265,9 @@ export const DOCUMENTS: DocResource[] = [
     title: "Contactos de Emergencia 24/7",
     description:
       "Línea de emergencia operativa fuera de horario y por país (incidentes, demoras críticas, mercancía retenida).",
+    titleEn: "24/7 Emergency Contacts",
+    descriptionEn:
+      "After-hours operations line by country (incidents, critical delays, cargo holds).",
     category: "contactos",
     language: "es-en",
     format: "PDF",
