@@ -703,6 +703,134 @@ export const LOCODES: Locode[] = [
   { code: "NZNPE", country: "NZ", countryName: "New Zealand", flag: "🇳🇿", city: "Napier",         type: ["sea"], lat: -39.4928, lon: 176.9120 },
   { code: "PGPOM", country: "PG", countryName: "Papua New Guinea", flag: "🇵🇬", city: "Port Moresby", type: ["sea", "air"], lat: -9.4438, lon: 147.1803 },
   { code: "FJSUV", country: "FJ", countryName: "Fiji",      flag: "🇫🇯", city: "Suva",             type: ["sea", "air"], lat: -18.1248, lon: 178.4501 },
+
+  // ===== TERTIARY LATAM (fishing, river, regional, border) =====
+  // México tertiary
+  { code: "MXSCX", country: "MX", countryName: "México",    flag: "🇲🇽", city: "Salina Cruz",      type: ["sea"], lat: 16.1730, lon: -95.1972 },
+  { code: "MXCOA", country: "MX", countryName: "México",    flag: "🇲🇽", city: "Coatzacoalcos",    type: ["sea"], lat: 18.1346, lon: -94.4585 },
+  { code: "MXTPB", country: "MX", countryName: "México",    flag: "🇲🇽", city: "Topolobampo",      type: ["sea"], lat: 25.6017, lon: -109.0531 },
+  { code: "MXMAM", country: "MX", countryName: "México",    flag: "🇲🇽", city: "Ciudad Madero",    type: ["sea"], lat: 22.2719, lon: -97.8424 },
+  { code: "MXMZT", country: "MX", countryName: "México",    flag: "🇲🇽", city: "Mazatlán",         type: ["sea", "air"], lat: 23.2494, lon: -106.4111 },
+  { code: "MXCME", country: "MX", countryName: "México",    flag: "🇲🇽", city: "Ciudad del Carmen", type: ["sea", "air"], lat: 18.6500, lon: -91.8233 },
+  { code: "MXCPE", country: "MX", countryName: "México",    flag: "🇲🇽", city: "Campeche",         type: ["air"], lat: 19.8301, lon: -90.5349 },
+  { code: "MXMLM", country: "MX", countryName: "México",    flag: "🇲🇽", city: "Morelia",          type: ["air"], lat: 19.7060, lon: -101.1950 },
+  { code: "MXSLW", country: "MX", countryName: "México",    flag: "🇲🇽", city: "Saltillo",         type: ["air", "inland"], lat: 25.4232, lon: -101.0053 },
+  { code: "MXTRC", country: "MX", countryName: "México",    flag: "🇲🇽", city: "Torreón",          type: ["air", "inland"], lat: 25.5428, lon: -103.4068 },
+  { code: "MXDGO", country: "MX", countryName: "México",    flag: "🇲🇽", city: "Durango",          type: ["air"], lat: 24.0277, lon: -104.6532 },
+  { code: "MXCTM", country: "MX", countryName: "México",    flag: "🇲🇽", city: "Chetumal",         type: ["air", "road"], lat: 18.5036, lon: -88.3056 },
+  { code: "MXTAP", country: "MX", countryName: "México",    flag: "🇲🇽", city: "Tapachula",        type: ["air", "road"], lat: 14.9123, lon: -92.2603 },
+
+  // Brasil tertiary
+  { code: "BRSSB", country: "BR", countryName: "Brasil",    flag: "🇧🇷", city: "São Sebastião",    type: ["sea"], lat: -23.7903, lon: -45.4136 },
+  { code: "BRACU", country: "BR", countryName: "Brasil",    flag: "🇧🇷", city: "Açu",              type: ["sea"], lat: -21.8333, lon: -41.0167 },
+  { code: "BRSTM", country: "BR", countryName: "Brasil",    flag: "🇧🇷", city: "Santarém",         type: ["sea", "air", "inland"], lat: -2.4438, lon: -54.7080 },
+  { code: "BRPVH", country: "BR", countryName: "Brasil",    flag: "🇧🇷", city: "Porto Velho",      type: ["air", "inland"], lat: -8.7619, lon: -63.9039 },
+  { code: "BRRBR", country: "BR", countryName: "Brasil",    flag: "🇧🇷", city: "Rio Branco",       type: ["air"], lat: -9.9747, lon: -67.8243 },
+  { code: "BRMCP", country: "BR", countryName: "Brasil",    flag: "🇧🇷", city: "Macapá",           type: ["sea", "air"], lat: 0.0349, lon: -51.0694 },
+  { code: "BRBVB", country: "BR", countryName: "Brasil",    flag: "🇧🇷", city: "Boa Vista",        type: ["air"], lat: 2.8235, lon: -60.6758 },
+  { code: "BRFLN", country: "BR", countryName: "Brasil",    flag: "🇧🇷", city: "Florianópolis",    type: ["sea", "air"], lat: -27.5954, lon: -48.5480 },
+  { code: "BRIGU", country: "BR", countryName: "Brasil",    flag: "🇧🇷", city: "Foz do Iguaçu",    type: ["air", "road"], lat: -25.5169, lon: -54.5854 },
+  { code: "BRVDC", country: "BR", countryName: "Brasil",    flag: "🇧🇷", city: "Vila do Conde",    type: ["sea"], lat: -1.5447, lon: -48.7517 },
+
+  // Argentina tertiary
+  { code: "ARRGA", country: "AR", countryName: "Argentina", flag: "🇦🇷", city: "Río Grande (TDF)", type: ["air"], lat: -53.7833, lon: -67.7000 },
+  { code: "ARPMY", country: "AR", countryName: "Argentina", flag: "🇦🇷", city: "Puerto Madryn",    type: ["sea", "air"], lat: -42.7692, lon: -65.0385 },
+  { code: "ARPSS", country: "AR", countryName: "Argentina", flag: "🇦🇷", city: "Posadas",          type: ["air"], lat: -27.3621, lon: -55.9008 },
+  { code: "ARRES", country: "AR", countryName: "Argentina", flag: "🇦🇷", city: "Resistencia",      type: ["air"], lat: -27.4515, lon: -58.9867 },
+  { code: "ARNQN", country: "AR", countryName: "Argentina", flag: "🇦🇷", city: "Neuquén",          type: ["air"], lat: -38.9516, lon: -68.0591 },
+  { code: "ARRGL", country: "AR", countryName: "Argentina", flag: "🇦🇷", city: "Río Gallegos",     type: ["air"], lat: -51.6230, lon: -69.2168 },
+  { code: "ARUAQ", country: "AR", countryName: "Argentina", flag: "🇦🇷", city: "San Juan",         type: ["air"], lat: -31.5375, lon: -68.5364 },
+
+  // Chile tertiary
+  { code: "CLMEJ", country: "CL", countryName: "Chile",     flag: "🇨🇱", city: "Mejillones",       type: ["sea"], lat: -23.0992, lon: -70.4519 },
+  { code: "CLCLD", country: "CL", countryName: "Chile",     flag: "🇨🇱", city: "Caldera",          type: ["sea"], lat: -27.0667, lon: -70.8181 },
+  { code: "CLCQQ", country: "CL", countryName: "Chile",     flag: "🇨🇱", city: "Coquimbo",         type: ["sea"], lat: -29.9533, lon: -71.3393 },
+  { code: "CLQTV", country: "CL", countryName: "Chile",     flag: "🇨🇱", city: "Quintero",         type: ["sea"], lat: -32.7833, lon: -71.5500 },
+  { code: "CLTLC", country: "CL", countryName: "Chile",     flag: "🇨🇱", city: "Talcahuano",       type: ["sea"], lat: -36.7167, lon: -73.1167 },
+  { code: "CLCAS", country: "CL", countryName: "Chile",     flag: "🇨🇱", city: "Castro (Chiloé)",  type: ["air"], lat: -42.4825, lon: -73.7625 },
+
+  // Colombia tertiary
+  { code: "CORCH", country: "CO", countryName: "Colombia",  flag: "🇨🇴", city: "Riohacha",         type: ["air"], lat: 11.5444, lon: -72.9072 },
+  { code: "COCVE", country: "CO", countryName: "Colombia",  flag: "🇨🇴", city: "Coveñas",          type: ["sea"], lat: 9.4042, lon: -75.6953 },
+  { code: "COLET", country: "CO", countryName: "Colombia",  flag: "🇨🇴", city: "Leticia",          type: ["air", "inland"], lat: -4.2150, lon: -69.9410 },
+  { code: "COADZ", country: "CO", countryName: "Colombia",  flag: "🇨🇴", city: "San Andrés",       type: ["air"], lat: 12.5847, lon: -81.7000 },
+  { code: "COAXM", country: "CO", countryName: "Colombia",  flag: "🇨🇴", city: "Armenia",          type: ["air"], lat: 4.5339, lon: -75.6811 },
+  { code: "COMZL", country: "CO", countryName: "Colombia",  flag: "🇨🇴", city: "Manizales",        type: ["air"], lat: 5.0703, lon: -75.5138 },
+  { code: "COIPI", country: "CO", countryName: "Colombia",  flag: "🇨🇴", city: "Ipiales",          type: ["road"], lat: 0.8285, lon: -77.6453 },
+
+  // Perú tertiary
+  { code: "PETYL", country: "PE", countryName: "Perú",      flag: "🇵🇪", city: "Talara",           type: ["sea", "air"], lat: -4.5775, lon: -81.2719 },
+  { code: "PEMLQ", country: "PE", countryName: "Perú",      flag: "🇵🇪", city: "Mollendo",         type: ["sea"], lat: -17.0269, lon: -72.0144 },
+  { code: "PEYMS", country: "PE", countryName: "Perú",      flag: "🇵🇪", city: "Yurimaguas",       type: ["air", "inland"], lat: -5.9000, lon: -76.1167 },
+  { code: "PEPUN", country: "PE", countryName: "Perú",      flag: "🇵🇪", city: "Juliaca / Puno",   type: ["air"], lat: -15.4669, lon: -70.1583 },
+  { code: "PECJA", country: "PE", countryName: "Perú",      flag: "🇵🇪", city: "Cajamarca",        type: ["air"], lat: -7.1638, lon: -78.5003 },
+  { code: "PEHUU", country: "PE", countryName: "Perú",      flag: "🇵🇪", city: "Huánuco",          type: ["air"], lat: -9.9306, lon: -76.2422 },
+  { code: "PEPMA", country: "PE", countryName: "Perú",      flag: "🇵🇪", city: "Puerto Maldonado", type: ["air"], lat: -12.5933, lon: -69.1891 },
+  { code: "PEAYP", country: "PE", countryName: "Perú",      flag: "🇵🇪", city: "Ayacucho",         type: ["air"], lat: -13.1588, lon: -74.2236 },
+
+  // Ecuador tertiary
+  { code: "ECMCH", country: "EC", countryName: "Ecuador",   flag: "🇪🇨", city: "Machala",          type: ["air"], lat: -3.2581, lon: -79.9556 },
+  { code: "ECPVO", country: "EC", countryName: "Ecuador",   flag: "🇪🇨", city: "Portoviejo",       type: ["air"], lat: -1.0567, lon: -80.4549 },
+  { code: "ECATF", country: "EC", countryName: "Ecuador",   flag: "🇪🇨", city: "Ambato",           type: ["inland"], lat: -1.2543, lon: -78.6229 },
+  { code: "ECSDO", country: "EC", countryName: "Ecuador",   flag: "🇪🇨", city: "Santo Domingo",    type: ["inland"], lat: -0.2542, lon: -79.1719 },
+  { code: "ECCHE", country: "EC", countryName: "Ecuador",   flag: "🇪🇨", city: "Chone",            type: ["inland"], lat: -0.6951, lon: -80.0934 },
+
+  // Bolivia tertiary
+  { code: "BOPSZ", country: "BO", countryName: "Bolivia",   flag: "🇧🇴", city: "Puerto Suárez",    type: ["road", "inland"], lat: -18.9608, lon: -57.7950 },
+  { code: "BOYAC", country: "BO", countryName: "Bolivia",   flag: "🇧🇴", city: "Yacuiba",          type: ["road"], lat: -22.0167, lon: -63.6833 },
+  { code: "BOPAI", country: "BO", countryName: "Bolivia",   flag: "🇧🇴", city: "Puerto Aguirre (Hidrovía)", type: ["sea", "inland"], lat: -18.9700, lon: -57.8000 },
+
+  // Paraguay tertiary
+  { code: "PYPJC", country: "PY", countryName: "Paraguay",  flag: "🇵🇾", city: "Pedro Juan Caballero", type: ["road"], lat: -22.5500, lon: -55.7333 },
+  { code: "PYCIO", country: "PY", countryName: "Paraguay",  flag: "🇵🇾", city: "Concepción",       type: ["inland"], lat: -23.4087, lon: -57.4344 },
+
+  // Uruguay tertiary
+  { code: "UYFRB", country: "UY", countryName: "Uruguay",   flag: "🇺🇾", city: "Fray Bentos",      type: ["sea"], lat: -33.1278, lon: -58.3097 },
+  { code: "UYMER", country: "UY", countryName: "Uruguay",   flag: "🇺🇾", city: "Mercedes",         type: ["inland"], lat: -33.2575, lon: -58.0306 },
+
+  // Venezuela tertiary
+  { code: "VECUM", country: "VE", countryName: "Venezuela", flag: "🇻🇪", city: "Cumaná",           type: ["sea", "air"], lat: 10.4544, lon: -64.1722 },
+  { code: "VEBLA", country: "VE", countryName: "Venezuela", flag: "🇻🇪", city: "Barcelona",        type: ["air"], lat: 10.1335, lon: -64.6964 },
+  { code: "VEVAL", country: "VE", countryName: "Venezuela", flag: "🇻🇪", city: "Valencia",         type: ["air", "inland"], lat: 10.1620, lon: -68.0077 },
+  { code: "VEBRM", country: "VE", countryName: "Venezuela", flag: "🇻🇪", city: "Barquisimeto",     type: ["air"], lat: 10.0647, lon: -69.3469 },
+  { code: "VESVZ", country: "VE", countryName: "Venezuela", flag: "🇻🇪", city: "San Cristóbal",    type: ["road"], lat: 7.7669, lon: -72.2250 },
+
+  // Central America tertiary
+  { code: "HNLCE", country: "HN", countryName: "Honduras",  flag: "🇭🇳", city: "La Ceiba",         type: ["sea", "air"], lat: 15.7597, lon: -86.7822 },
+  { code: "HNRTB", country: "HN", countryName: "Honduras",  flag: "🇭🇳", city: "Roatán",           type: ["air"], lat: 16.3263, lon: -86.5226 },
+  { code: "GTQTZ", country: "GT", countryName: "Guatemala", flag: "🇬🇹", city: "Quetzaltenango",   type: ["air"], lat: 14.8347, lon: -91.5181 },
+  { code: "SVLUN", country: "SV", countryName: "El Salvador", flag: "🇸🇻", city: "La Unión",       type: ["sea"], lat: 13.3367, lon: -87.8431 },
+  { code: "NIRFS", country: "NI", countryName: "Nicaragua", flag: "🇳🇮", city: "Bluefields",       type: ["sea", "air"], lat: 12.0144, lon: -83.7647 },
+  { code: "NIPCB", country: "NI", countryName: "Nicaragua", flag: "🇳🇮", city: "Puerto Cabezas",   type: ["sea"], lat: 14.0286, lon: -83.3819 },
+  { code: "CRXQP", country: "CR", countryName: "Costa Rica",flag: "🇨🇷", city: "Quepos",           type: ["sea"], lat: 9.4317, lon: -84.1639 },
+  { code: "CRGLF", country: "CR", countryName: "Costa Rica",flag: "🇨🇷", city: "Golfito",          type: ["sea"], lat: 8.6353, lon: -83.1622 },
+  { code: "PAARM", country: "PA", countryName: "Panamá",    flag: "🇵🇦", city: "Puerto Armuelles", type: ["sea"], lat: 8.2792, lon: -82.8625 },
+
+  // Dominican Republic tertiary
+  { code: "DOBCC", country: "DO", countryName: "R. Dominicana", flag: "🇩🇴", city: "Boca Chica",   type: ["sea"], lat: 18.4500, lon: -69.6000 },
+  { code: "DOSNX", country: "DO", countryName: "R. Dominicana", flag: "🇩🇴", city: "Samaná",       type: ["air"], lat: 19.2000, lon: -69.3331 },
+
+  // Cuba tertiary
+  { code: "CUCFG", country: "CU", countryName: "Cuba",      flag: "🇨🇺", city: "Cienfuegos",       type: ["sea"], lat: 22.1500, lon: -80.4333 },
+  { code: "CUHOG", country: "CU", countryName: "Cuba",      flag: "🇨🇺", city: "Holguín",          type: ["air"], lat: 20.8872, lon: -76.2631 },
+  { code: "CUCMW", country: "CU", countryName: "Cuba",      flag: "🇨🇺", city: "Camagüey",         type: ["air"], lat: 21.3811, lon: -77.9092 },
+
+  // Haiti tertiary
+  { code: "HTGOA", country: "HT", countryName: "Haití",     flag: "🇭🇹", city: "Gonaïves",         type: ["sea"], lat: 19.4500, lon: -72.6833 },
+  { code: "HTJAK", country: "HT", countryName: "Haití",     flag: "🇭🇹", city: "Jacmel",           type: ["sea"], lat: 18.2342, lon: -72.5347 },
+
+  // Jamaica tertiary
+  { code: "JMMBJ", country: "JM", countryName: "Jamaica",   flag: "🇯🇲", city: "Montego Bay",      type: ["sea", "air"], lat: 18.4762, lon: -77.8939 },
+
+  // Cayman Islands / Other Caribbean small island nations
+  { code: "KYGCM", country: "KY", countryName: "Cayman Is.", flag: "🇰🇾", city: "George Town",      type: ["sea", "air"], lat: 19.2866, lon: -81.3674 },
+  { code: "AGSJO", country: "AG", countryName: "Antigua",   flag: "🇦🇬", city: "St. John's",       type: ["sea", "air"], lat: 17.1175, lon: -61.8456 },
+  { code: "LCSLU", country: "LC", countryName: "Saint Lucia", flag: "🇱🇨", city: "Castries",       type: ["sea", "air"], lat: 14.0101, lon: -60.9875 },
+  { code: "VCKTN", country: "VC", countryName: "St. Vincent",flag: "🇻🇨", city: "Kingstown",       type: ["sea", "air"], lat: 13.1600, lon: -61.2248 },
+  { code: "GDSGE", country: "GD", countryName: "Grenada",   flag: "🇬🇩", city: "St. George's",     type: ["sea", "air"], lat: 12.0561, lon: -61.7488 },
+  { code: "KNSKB", country: "KN", countryName: "Saint Kitts",flag: "🇰🇳", city: "Basseterre",      type: ["sea", "air"], lat: 17.2955, lon: -62.7261 },
+  { code: "DMRSU", country: "DM", countryName: "Dominica",  flag: "🇩🇲", city: "Roseau",           type: ["sea", "air"], lat: 15.3092, lon: -61.3794 },
+  { code: "VISTT", country: "VI", countryName: "US Virgin Is.", flag: "🇻🇮", city: "St. Thomas",   type: ["sea", "air"], lat: 18.3358, lon: -64.8963 },
 ];
 
 export const TYPE_LABEL: Record<LocodeType, string> = {
