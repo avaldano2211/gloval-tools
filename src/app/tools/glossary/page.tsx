@@ -90,9 +90,6 @@ export default function GlossaryPage() {
               LATAM focus.{" "}
               <span className="font-bold text-gv-blue">{GLOSSARY.length} entries</span> and growing.
             </p>
-            <p className="mt-3 text-xs text-gv-muted italic max-w-2xl">
-              Definitions are currently in Spanish. English translation coming soon.
-            </p>
           </div>
         </div>
       </header>
@@ -270,7 +267,7 @@ function TermCard({
             </span>
           )}
           <h3 className="text-lg font-bold text-gv-blue leading-tight flex-1">
-            {term.term}
+            {term.termEn ?? term.term}
           </h3>
         </div>
         <div className="mt-2 flex flex-wrap gap-1.5">
@@ -291,7 +288,7 @@ function TermCard({
         </div>
       </header>
 
-      <p className="text-sm text-gv-muted leading-relaxed">{term.definition}</p>
+      <p className="text-sm text-gv-muted leading-relaxed">{term.definitionEn ?? term.definition}</p>
 
       {term.relatedSlugs && term.relatedSlugs.length > 0 && (
         <footer className="mt-4 pt-4 border-t border-gv-border/60">
@@ -302,7 +299,7 @@ function TermCard({
           <div className="flex flex-wrap gap-1.5">
             {term.relatedSlugs.map((slug) => {
               const t = GLOSSARY.find((x) => termSlug(x) === slug);
-              const label = t?.acronym ?? t?.term ?? slug;
+              const label = t?.acronym ?? t?.termEn ?? t?.term ?? slug;
               return (
                 <button
                   key={slug}
