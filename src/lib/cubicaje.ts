@@ -37,15 +37,17 @@ export interface ContainerLimits {
   cbm: number;
   /** Internal dimensions in meters: [length, width, height] */
   internal: [number, number, number];
+  /** Door opening in meters: [width, height] — what the cargo must pass through */
+  door: [number, number];
   /** Max payload kg */
   payloadKg: number;
 }
 
-/** Internal dims from src/lib/containers.ts (kept in sync manually). */
+/** Internal + door dims from src/lib/containers.ts (kept in sync manually). */
 export const CONTAINER_LIMITS: Record<ContainerKey, ContainerLimits> = {
-  c20:   { cbm: 33.2, internal: [5.898, 2.352, 2.393], payloadKg: 28250 },
-  c40:   { cbm: 67.7, internal: [12.032, 2.352, 2.393], payloadKg: 28750 },
-  c40hc: { cbm: 76.4, internal: [12.032, 2.352, 2.698], payloadKg: 28600 },
+  c20:   { cbm: 33.2, internal: [5.898, 2.352, 2.393],  door: [2.343, 2.280], payloadKg: 28250 },
+  c40:   { cbm: 67.7, internal: [12.032, 2.352, 2.393], door: [2.343, 2.280], payloadKg: 28750 },
+  c40hc: { cbm: 76.4, internal: [12.032, 2.352, 2.698], door: [2.343, 2.585], payloadKg: 28600 },
 };
 
 export interface ContainerFit {
@@ -60,9 +62,9 @@ export interface PieceIssue {
   oversize: ContainerKey[];   // contenedores donde NO entra esta pieza
   /** Alto de la pieza en metros. */
   heightM: number;
-  /** El alto excede la altura interna del 40' HC (no puede ir parada). */
+  /** El alto excede la altura de la PUERTA del 40' HC (no pasa por la puerta). */
   tooTall: boolean;
-  /** La huella (largo × ancho) no entra ni rotada en el piso del 40'. */
+  /** La huella (largo × ancho) no entra ni rotada por la puerta/piso del 40'. */
   footprintTooBig: boolean;
 }
 
@@ -86,24 +88,31 @@ const VOL_DIVISOR_M3_PER_KG: Record<Mode, number> = {
 };
 
 /**
- * Una pieza encaja en un contenedor asumiendo que la carga viaja PARADA:
- * la altura es fija (no se voltea la pieza sobre su costado) y solo la huella
- * (largo × ancho) puede rotar 90° en el piso. Es el criterio operativo real de
- * un forwarder: una caja de 3 m de alto NO entra en un contenedor de 2.39 m de
- * altura interna aunque su volumen quepa de sobra.
+ * ¿La pieza entra al contenedor? La carga ENTRA POR LA PUERTA y va PARADA, así
+ * que el límite real de altura es la altura de la PUERTA (siempre menor que la
+ * altura interna): lo que no pasa por la puerta no puede ir adentro, aunque su
+ * volumen quepa de sobra. Solo la huella (largo × ancho) puede rotar 90° en el
+ * piso; el lado más angosto entra por el ancho de la puerta y el más largo se
+ * desliza por el largo interno.
  *
- * Ambos arreglos vienen como [largo, ancho, alto] (índice 2 = alto).
+ * pieceDimsM viene como [largo, ancho, alto] (índice 2 = alto).
  */
 function pieceFitsInContainer(
   pieceDimsM: [number, number, number],
-  containerDimsM: [number, number, number],
+  lim: ContainerLimits,
 ): boolean {
   const [pl, pw, ph] = pieceDimsM;
-  const [cl, cw, ch] = containerDimsM;
-  if (ph > ch) return false;               // demasiado alta para ir parada
-  const directo = pl <= cl && pw <= cw;
-  const rotado = pw <= cl && pl <= cw;     // rota la huella 90° en el piso
-  return directo || rotado;
+  const footMin = Math.min(pl, pw);
+  const footMax = Math.max(pl, pw);
+  const [doorW, doorH] = lim.door;
+  const [intL, intW] = lim.internal;
+  // 1) Debe PASAR por la puerta (alto + lado más angosto).
+  if (ph > doorH) return false;
+  if (footMin > doorW) return false;
+  // 2) Debe caber en el piso interno una vez adentro.
+  if (footMax > intL) return false;
+  if (footMin > intW) return false;
+  return true;
 }
 
 export function calc(
@@ -133,20 +142,20 @@ export function calc(
 
     const oversize: ContainerKey[] = [];
     (Object.keys(CONTAINER_LIMITS) as ContainerKey[]).forEach((k) => {
-      if (!pieceFitsInContainer(dims, CONTAINER_LIMITS[k].internal)) {
+      if (!pieceFitsInContainer(dims, CONTAINER_LIMITS[k])) {
         oversize.push(k);
         dimFitByContainer[k] = false;
       }
     });
     if (oversize.length === 3) {
-      const hc = CONTAINER_LIMITS.c40hc.internal; // [largo, ancho, alto] más permisivo
+      const hc = CONTAINER_LIMITS.c40hc; // contenedor más permisivo
       oversizedPieces.push({
         index: idx,
         pieceLabel: `Pieza ${idx + 1}: ${p.length}×${p.width}×${p.height} ${dimUnit}`,
         oversize,
         heightM: H,
-        tooTall: H > hc[2],
-        footprintTooBig: !(Math.min(L, W) <= hc[1] && Math.max(L, W) <= hc[0]),
+        tooTall: H > hc.door[1], // límite real = altura de la puerta
+        footprintTooBig: !(Math.min(L, W) <= hc.door[0] && Math.max(L, W) <= hc.internal[0]),
       });
     }
   });

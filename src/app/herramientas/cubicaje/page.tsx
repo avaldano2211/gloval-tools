@@ -337,7 +337,7 @@ export default function CubicajePage() {
                 Utilización de contenedor
               </div>
               <p className="text-[11px] text-gv-muted mb-3 leading-snug">
-                Asume carga parada (alto fijo); la huella puede rotar 90°.
+                La carga entra parada por la puerta — el alto lo limita la puerta (menor que el alto interno); la huella puede rotar 90°.
               </p>
               <FillBar
                 label="20' Standard"
@@ -407,8 +407,8 @@ export default function CubicajePage() {
 /** Por qué una pieza no entra en ningún contenedor estándar, vs el 40' HC. */
 function oversizeReason(p: PieceIssue): string {
   const partes: string[] = [];
-  if (p.tooTall) partes.push(`alto ${p.heightM.toFixed(2)} m > 2.70 m máx`);
-  if (p.footprintTooBig) partes.push("la base no entra ni rotada en un 40'");
+  if (p.tooTall) partes.push(`alto ${p.heightM.toFixed(2)} m > 2.59 m (puerta)`);
+  if (p.footprintTooBig) partes.push("la base no pasa por la puerta del 40' ni rotada");
   return partes.join(" · ");
 }
 

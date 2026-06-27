@@ -399,7 +399,7 @@ export default function CalculatorPage() {
                 Container utilization
               </div>
               <p className="text-[11px] text-gv-muted mb-3 leading-snug">
-                Assumes cargo ships upright (height fixed); footprint may rotate 90°.
+                Cargo enters upright through the door — height is capped by the door opening (lower than internal); footprint may rotate 90°.
               </p>
               <FillBar
                 label="20' Standard"
@@ -470,8 +470,8 @@ export default function CalculatorPage() {
 /** Why a piece fits no standard container, vs the most permissive 40' HC. */
 function oversizeReason(p: PieceIssue): string {
   const parts: string[] = [];
-  if (p.tooTall) parts.push(`height ${p.heightM.toFixed(2)} m > 2.70 m max`);
-  if (p.footprintTooBig) parts.push("footprint won't fit even rotated in a 40'");
+  if (p.tooTall) parts.push(`height ${p.heightM.toFixed(2)} m > 2.59 m door`);
+  if (p.footprintTooBig) parts.push("footprint won't fit through a 40' door even rotated");
   return parts.join(" · ");
 }
 
