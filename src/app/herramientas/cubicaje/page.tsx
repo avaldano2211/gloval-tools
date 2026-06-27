@@ -8,7 +8,7 @@ import {
   WeightUnit,
   calc,
   LATAM_ROUTES,
-  type ContainerKey,
+  type PieceIssue,
 } from "@/lib/cubicaje";
 import { BrandButton } from "@/components/brand/BrandButton";
 import { H2 } from "@/components/brand/H2";
@@ -285,9 +285,17 @@ export default function CubicajePage() {
                         {result.oversizedPieces.length} pieza{result.oversizedPieces.length !== 1 ? "s" : ""} no encaja{result.oversizedPieces.length === 1 ? "" : "n"} en contenedor estándar.
                       </div>
                       <ul className="mt-2 space-y-1 text-xs text-gv-muted">
-                        {result.oversizedPieces.map((p) => (
-                          <li key={p.index}>• {p.pieceLabel}</li>
-                        ))}
+                        {result.oversizedPieces.map((p) => {
+                          const motivo = oversizeReason(p);
+                          return (
+                            <li key={p.index}>
+                              • {p.pieceLabel}
+                              {motivo && (
+                                <span className="text-red-600 font-semibold"> — {motivo}</span>
+                              )}
+                            </li>
+                          );
+                        })}
                       </ul>
                       <div className="mt-2 text-xs text-gv-muted leading-relaxed">
                         Considera <strong className="text-gv-blue">Flat Rack</strong>, <strong className="text-gv-blue">Open Top</strong> o <strong className="text-gv-blue">break-bulk</strong>. Ver dimensiones internas en <Link href="/herramientas/contenedores" className="text-gv-blue underline">Especificaciones de Contenedores</Link>.
@@ -300,9 +308,12 @@ export default function CubicajePage() {
 
             {/* Container fill bars */}
             <div className="mt-6 pt-6 border-t border-gv-border">
-              <div className="text-xs font-bold tracking-[0.15em] uppercase text-gv-blue/60 mb-3">
+              <div className="text-xs font-bold tracking-[0.15em] uppercase text-gv-blue/60 mb-1">
                 Utilización de contenedor
               </div>
+              <p className="text-[11px] text-gv-muted mb-3 leading-snug">
+                Asume carga parada (alto fijo); la huella puede rotar 90°.
+              </p>
               <FillBar
                 label="20' Standard"
                 pct={result.containers.c20.fillPct}
@@ -366,6 +377,14 @@ export default function CubicajePage() {
       </section>
     </div>
   );
+}
+
+/** Por qué una pieza no entra en ningún contenedor estándar, vs el 40' HC. */
+function oversizeReason(p: PieceIssue): string {
+  const partes: string[] = [];
+  if (p.tooTall) partes.push(`alto ${p.heightM.toFixed(2)} m > 2.70 m máx`);
+  if (p.footprintTooBig) partes.push("la base no entra ni rotada en un 40'");
+  return partes.join(" · ");
 }
 
 function UnitSelect({

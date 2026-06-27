@@ -8,6 +8,7 @@ import {
   WeightUnit,
   calc,
   LATAM_ROUTES,
+  type PieceIssue,
 } from "@/lib/cubicaje";
 import { BrandButton } from "@/components/brand/BrandButton";
 import { H2 } from "@/components/brand/H2";
@@ -346,9 +347,17 @@ export default function CalculatorPage() {
                         {result.oversizedPieces.length} piece{result.oversizedPieces.length !== 1 ? "s" : ""} do{result.oversizedPieces.length === 1 ? "es" : ""} not fit in a standard container.
                       </div>
                       <ul className="mt-2 space-y-1 text-xs text-gv-muted">
-                        {result.oversizedPieces.map((p) => (
-                          <li key={p.index}>• {p.pieceLabel.replace(/^Pieza /, "Piece ")}</li>
-                        ))}
+                        {result.oversizedPieces.map((p) => {
+                          const why = oversizeReason(p);
+                          return (
+                            <li key={p.index}>
+                              • {p.pieceLabel.replace(/^Pieza /, "Piece ")}
+                              {why && (
+                                <span className="text-red-600 font-semibold"> — {why}</span>
+                              )}
+                            </li>
+                          );
+                        })}
                       </ul>
                       <div className="mt-2 text-xs text-gv-muted leading-relaxed">
                         Consider <strong className="text-gv-blue">Flat Rack</strong>, <strong className="text-gv-blue">Open Top</strong> or <strong className="text-gv-blue">break-bulk</strong>. See internal dimensions on <Link href="/tools/containers" className="text-gv-blue underline">Container Specifications</Link>.
@@ -361,9 +370,12 @@ export default function CalculatorPage() {
 
             {/* Container fill bars */}
             <div className="mt-6 pt-6 border-t border-gv-border">
-              <div className="text-xs font-bold tracking-[0.15em] uppercase text-gv-blue/60 mb-3">
+              <div className="text-xs font-bold tracking-[0.15em] uppercase text-gv-blue/60 mb-1">
                 Container utilization
               </div>
+              <p className="text-[11px] text-gv-muted mb-3 leading-snug">
+                Assumes cargo ships upright (height fixed); footprint may rotate 90°.
+              </p>
               <FillBar
                 label="20' Standard"
                 pct={result.containers.c20.fillPct}
@@ -428,6 +440,14 @@ export default function CalculatorPage() {
       </section>
     </div>
   );
+}
+
+/** Why a piece fits no standard container, vs the most permissive 40' HC. */
+function oversizeReason(p: PieceIssue): string {
+  const parts: string[] = [];
+  if (p.tooTall) parts.push(`height ${p.heightM.toFixed(2)} m > 2.70 m max`);
+  if (p.footprintTooBig) parts.push("footprint won't fit even rotated in a 40'");
+  return parts.join(" · ");
 }
 
 function UnitSelect({

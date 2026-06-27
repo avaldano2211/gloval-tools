@@ -41,6 +41,12 @@ export interface PieceIssue {
   index: number;
   pieceLabel: string;
   oversize: ContainerKey[];   // contenedores donde NO entra esta pieza
+  /** Alto de la pieza en metros. */
+  heightM: number;
+  /** El alto excede la altura interna del 40' HC (no puede ir parada). */
+  tooTall: boolean;
+  /** La huella (largo × ancho) no entra ni rotada en el piso del 40'. */
+  footprintTooBig: boolean;
 }
 
 export interface CalcResult {
@@ -63,17 +69,24 @@ const VOL_DIVISOR_M3_PER_KG: Record<Mode, number> = {
 };
 
 /**
- * Una pieza encaja en un contenedor si, ordenadas ambas por dimensión
- * ascendente, cada dim de la pieza ≤ dim correspondiente del contenedor.
- * (Esto cubre cualquier rotación posible.)
+ * Una pieza encaja en un contenedor asumiendo que la carga viaja PARADA:
+ * la altura es fija (no se voltea la pieza sobre su costado) y solo la huella
+ * (largo × ancho) puede rotar 90° en el piso. Es el criterio operativo real de
+ * un forwarder: una caja de 3 m de alto NO entra en un contenedor de 2.39 m de
+ * altura interna aunque su volumen quepa de sobra.
+ *
+ * Ambos arreglos vienen como [largo, ancho, alto] (índice 2 = alto).
  */
 function pieceFitsInContainer(
   pieceDimsM: [number, number, number],
   containerDimsM: [number, number, number],
 ): boolean {
-  const p = [...pieceDimsM].sort((a, b) => a - b);
-  const c = [...containerDimsM].sort((a, b) => a - b);
-  return p[0] <= c[0] && p[1] <= c[1] && p[2] <= c[2];
+  const [pl, pw, ph] = pieceDimsM;
+  const [cl, cw, ch] = containerDimsM;
+  if (ph > ch) return false;               // demasiado alta para ir parada
+  const directo = pl <= cl && pw <= cw;
+  const rotado = pw <= cl && pl <= cw;     // rota la huella 90° en el piso
+  return directo || rotado;
 }
 
 export function calc(
@@ -109,10 +122,14 @@ export function calc(
       }
     });
     if (oversize.length === 3) {
+      const hc = CONTAINER_LIMITS.c40hc.internal; // [largo, ancho, alto] más permisivo
       oversizedPieces.push({
         index: idx,
         pieceLabel: `Pieza ${idx + 1}: ${p.length}×${p.width}×${p.height} ${dimUnit}`,
         oversize,
+        heightM: H,
+        tooTall: H > hc[2],
+        footprintTooBig: !(Math.min(L, W) <= hc[1] && Math.max(L, W) <= hc[0]),
       });
     }
   });
