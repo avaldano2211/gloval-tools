@@ -7,6 +7,8 @@ import {
   DimUnit,
   WeightUnit,
   calc,
+  convertDim,
+  convertWeight,
   LATAM_ROUTES,
   type PieceIssue,
 } from "@/lib/cubicaje";
@@ -144,15 +146,38 @@ export default function CubicajePage() {
                 label="Dimensiones"
                 value={dimUnit}
                 options={["cm", "m", "in"]}
-                onChange={(v) => setDimUnit(v as DimUnit)}
+                onChange={(v) => {
+                  const next = v as DimUnit;
+                  setPieces((ps) =>
+                    ps.map((p) => ({
+                      ...p,
+                      length: convertDim(p.length, dimUnit, next),
+                      width: convertDim(p.width, dimUnit, next),
+                      height: convertDim(p.height, dimUnit, next),
+                    })),
+                  );
+                  setDimUnit(next);
+                }}
               />
               <UnitSelect
                 label="Peso"
                 value={weightUnit}
                 options={["kg", "lb"]}
-                onChange={(v) => setWeightUnit(v as WeightUnit)}
+                onChange={(v) => {
+                  const next = v as WeightUnit;
+                  setPieces((ps) =>
+                    ps.map((p) => ({
+                      ...p,
+                      weight: convertWeight(p.weight, weightUnit, next),
+                    })),
+                  );
+                  setWeightUnit(next);
+                }}
               />
             </div>
+            <p className="text-[11px] text-gv-muted mt-3">
+              Ingresa las medidas en cm, m o pulgadas — los valores se convierten solos al cambiar.
+            </p>
 
             {/* Pieces */}
             <div className="mt-6 overflow-x-auto">

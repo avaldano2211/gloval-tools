@@ -14,6 +14,23 @@ export interface Piece {
 const TO_M: Record<DimUnit, number> = { cm: 0.01, m: 1, in: 0.0254 };
 const TO_KG: Record<WeightUnit, number> = { kg: 1, lb: 0.453592 };
 
+const DIM_DECIMALS: Record<DimUnit, number> = { cm: 1, m: 3, in: 2 };
+
+/** Convierte una dimensión entre cm / m / in conservando el tamaño físico real. */
+export function convertDim(v: number, from: DimUnit, to: DimUnit): number {
+  if (from === to || !Number.isFinite(v)) return v;
+  const out = (v * TO_M[from]) / TO_M[to];
+  const f = 10 ** DIM_DECIMALS[to];
+  return Math.round(out * f) / f;
+}
+
+/** Convierte un peso entre kg / lb conservando el valor físico real. */
+export function convertWeight(v: number, from: WeightUnit, to: WeightUnit): number {
+  if (from === to || !Number.isFinite(v)) return v;
+  const out = (v * TO_KG[from]) / TO_KG[to];
+  return Math.round(out * 100) / 100;
+}
+
 export type ContainerKey = "c20" | "c40" | "c40hc";
 
 export interface ContainerLimits {
