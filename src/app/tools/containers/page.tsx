@@ -100,19 +100,19 @@ export default function ContainersPage() {
             </h4>
             <div className="grid sm:grid-cols-2 gap-6">
               <SpecBlock title="Internal dimensions" rows={[
-                ["Length", `${spec.internal.length_m.toFixed(3)} m / ${(spec.internal.length_m * 3.281).toFixed(2)} ft`],
-                ["Width",  `${spec.internal.width_m.toFixed(3)} m / ${(spec.internal.width_m * 3.281).toFixed(2)} ft`],
-                ["Height", `${spec.internal.height_m.toFixed(3)} m / ${(spec.internal.height_m * 3.281).toFixed(2)} ft`],
+                ["Length", fmtTriple(spec.internal.length_m)],
+                ["Width",  fmtTriple(spec.internal.width_m)],
+                ["Height", fmtTriple(spec.internal.height_m)],
               ]} />
               <SpecBlock title="External dimensions" rows={[
-                ["Length", `${spec.external.length_m.toFixed(3)} m`],
-                ["Width",  `${spec.external.width_m.toFixed(3)} m`],
-                ["Height", `${spec.external.height_m.toFixed(3)} m`],
+                ["Length", fmtTriple(spec.external.length_m)],
+                ["Width",  fmtTriple(spec.external.width_m)],
+                ["Height", fmtTriple(spec.external.height_m)],
               ]} />
               {(spec.door.width_m > 0) && (
                 <SpecBlock title="Door dimensions" rows={[
-                  ["Width",  `${spec.door.width_m.toFixed(3)} m`],
-                  ["Height", `${spec.door.height_m.toFixed(3)} m`],
+                  ["Width",  fmtTriple(spec.door.width_m)],
+                  ["Height", fmtTriple(spec.door.height_m)],
                 ]} />
               )}
               <SpecBlock title="Weights" rows={[
@@ -234,6 +234,18 @@ export default function ContainersPage() {
       </section>
     </div>
   );
+}
+
+const M_TO_IN = 39.3701;
+function mToFtIn(m: number): string {
+  const totalIn = Math.round(m * M_TO_IN);
+  const ft = Math.floor(totalIn / 12);
+  const inches = totalIn - ft * 12;
+  if (inches === 0) return `${ft}' 0"`;
+  return `${ft}' ${inches}"`;
+}
+function fmtTriple(m: number): string {
+  return `${m.toFixed(2)} m  ·  ${mToFtIn(m)}  ·  ${Math.round(m * 100)} cm`;
 }
 
 function SpecBlock({ title, rows }: { title: string; rows: [string, string][] }) {
