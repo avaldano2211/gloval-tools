@@ -1,6 +1,6 @@
 # Inventario de GES (Supabase → Azure SQL)
 
-> Generado el 2026-09-29 desde el catálogo de `wfzdrqfurwnakrfdnbgf` (solo SELECT). Filas = máx(n_live_tup, reltuples): **aproximadas**, no son conteos exactos. El módulo se asigna por prefijo (CLAUDE.md §3.3) y **hay que validarlo**. La columna "¿Migra?" es una **propuesta**; la decisión es de Andrés.
+> Generado el 2026-09-29 desde el catálogo de `wfzdrqfurwnakrfdnbgf` (solo SELECT). Filas = máx(n_live_tup, reltuples), **aproximadas**; para las tablas que las estadísticas daban en 0 se usó count(*) exacto (`source/catalog/exact_counts_2026-09-29.json`). El módulo se asigna por prefijo (CLAUDE.md §3.3) y **hay que validarlo**. "¿Migra?" aplica la decisión del 29-sep: fuera las tablas vacías y las temporales.
 
 ## Resumen
 
@@ -29,19 +29,20 @@
 | Market intelligence | 6 | 0 | 5,099,019 | 7.40 GB |
 | Integración Magaya | 35 | 3 | 2,180,535 | 2.14 GB |
 | Esquema archive | 1 | 0 | 185,502 | 155.1 MB |
-| Operaciones | 25 | 8 | 88,948 | 89.2 MB |
-| Finanzas | 21 | 1 | 168,699 | 84.0 MB |
-| Bodega Miami | 37 | 21 | 28,780 | 46.8 MB |
-| Seguridad y usuarios | 8 | 0 | 125,893 | 43.9 MB |
-| Consolidados | 17 | 2 | 15,527 | 13.8 MB |
-| Tarifas | 29 | 10 | 51,213 | 13.8 MB |
-| Esquema private | 13 | 1 | 7,559 | 13.2 MB |
-| Sin clasificar | 70 | 18 | 31,073 | 11.6 MB |
-| CRM y ventas | 18 | 2 | 25,592 | 10.4 MB |
-| Christmas Palace | 9 | 5 | 4,072 | 4.2 MB |
-| Comisiones | 11 | 5 | 9,614 | 3.4 MB |
-| Otros | 10 | 2 | 277 | 1.3 MB |
-| Temporal / respaldo | 5 | 1 | 6,175 | 1000 KB |
+| Operaciones | 34 | 4 | 89,944 | 90.5 MB |
+| Finanzas | 27 | 3 | 171,791 | 85.5 MB |
+| Bodega Miami | 44 | 4 | 29,171 | 47.3 MB |
+| Seguridad y usuarios | 10 | 0 | 125,898 | 44.0 MB |
+| Tarifas | 32 | 3 | 51,315 | 14.1 MB |
+| Consolidados | 17 | 1 | 15,530 | 13.8 MB |
+| Esquema private | 2 | 0 | 4,520 | 12.0 MB |
+| CRM y ventas | 34 | 6 | 26,287 | 11.7 MB |
+| Christmas Palace | 9 | 2 | 4,082 | 4.2 MB |
+| Catálogos | 20 | 1 | 2,502 | 4.0 MB |
+| Comisiones | 11 | 1 | 9,642 | 3.4 MB |
+| Dashboards y reportes | 7 | 0 | 23,632 | 2.5 MB |
+| Temporal / respaldo | 16 | 0 | 9,242 | 2.1 MB |
+| Otros | 10 | 1 | 280 | 1.3 MB |
 | Esquema timeclock | 4 | 0 | 310 | 384 KB |
 
 ## Alertas para la migración
@@ -49,7 +50,7 @@
 - **Tablas en `public` sin RLS** (2), expuestas a la anon key: `brief_emitido`, `caja_eod`.
 - **RLS activo pero sin políticas** (15); solo las ve service_role: `public._cartera_ecu_20260908`, `public._marcia_retardos_20260904`, `public._q`, `public.arap_live_snapshot`, `public.cierres_liquidacion`, `public.cl_container_types`, `public.market_indices_daily`, `public.pba_authorized_users`, `public.sales_doc_counters`, `public.shipco_settings`, `public.ventas_alertas`, `public.ventas_congelado`, `public.wh_containers_external`, `public.wh_whr_backfill_universo`, `public.wr_backfill_queue`.
 - **Tablas sin PK** (18). Hay que definir la clave antes de cargarlas a SQL Server: `private._audit_billing_ec_2026q1`, `private._audit_billing_ruc`, `private._audit_clients_ec`, `private._audit_clients_ec_ruc`, `private.cifras_sem31`, `private.client_merge_survivor_snapshot`, `private.closings_bak_peru_janfeb_20260804`, `private.consolidado_avisos_bak_27jul`, `private.respaldo_estiba_sem31`, `private.tmp_excel2_diff`, `public._cartera_ecu_20260908`, `public._marcia_retardos_20260904`, `public._q`, `public.dashboard_agents`, `public.dashboard_clients`, `public.dashboard_countries`, `public.dashboard_monthly_client`, `public.dashboard_pnl_flow`.
-- **Tablas vacías** (79). Son candidatas a no migrarse (ver la columna "¿Migra?").
+- **Tablas vacías** (29, count exacto). No se migran.
 - **La anon key está escrita en 23 cron jobs y en 1 función** (`trg_credit_request_approved_notify`). En Azure debe ir en Key Vault o en app settings.
 
 ## Tipos de columna usados (para mapear a T-SQL)
@@ -215,11 +216,11 @@ FK→ = tablas a las que apunta. ←FK = número de tablas que la referencian.
 | `magaya_charge_definitions` | 168 | 104 KB | sí | sí / 1 | 1 | magaya_companies | 0 | Sí |
 | `wr_backfill_queue` | 338 | 88 KB | sí | sí / 0 | 0 |  | 0 | Sí |
 | `magaya_sync_state` | 6 | 80 KB | sí | sí / 1 | 0 | magaya_companies | 0 | Sí |
-| `magaya_cr_items` | 0 | 64 KB | sí | sí / 1 | 1 | magaya_companies, magaya_cargo_releases | 0 | Revisar (vacía) |
+| `magaya_cr_items` | 0 | 64 KB | sí | sí / 1 | 1 | magaya_companies, magaya_cargo_releases | 0 | No (vacía) |
 | `magaya_companies` | 4 | 48 KB | sí | sí / 1 | 1 |  | 23 | Sí |
 | `magaya_currencies` | 2 | 48 KB | sí | sí / 1 | 1 | magaya_companies | 0 | Sí |
-| `magaya_inventory` | 0 | 40 KB | sí | sí / 1 | 0 | magaya_companies | 0 | Revisar (vacía) |
-| `magaya_event_definitions` | 0 | 24 KB | sí | sí / 1 | 0 | magaya_companies | 0 | Revisar (vacía) |
+| `magaya_inventory` | 0 | 40 KB | sí | sí / 1 | 0 | magaya_companies | 0 | No (vacía) |
+| `magaya_event_definitions` | 0 | 24 KB | sí | sí / 1 | 0 | magaya_companies | 0 | No (vacía) |
 
 ### Esquema archive
 
@@ -235,27 +236,36 @@ FK→ = tablas a las que apunta. ←FK = número de tablas que la referencian.
 | `ops_documents` | 7,261 | 3.8 MB | sí | sí / 4 | 0 | users, shipments | 1 | Sí |
 | `shipment_events` | 4,474 | 2.6 MB | sí | sí / 3 | 0 | users, shipments | 0 | Sí |
 | `shipments` | 1,681 | 1.8 MB | sí | sí / 3 | 5 | users, clients, consolidados, magaya_shipments, shipments | 23 | Sí |
+| `shipping_instructions` | 818 | 672 KB | sí | sí / 3 | 1 | clients, users, quotes, shipments | 2 | Sí |
 | `shipment_action_items` | 2,129 | 664 KB | sí | sí / 4 | 0 | users, shipments | 0 | Sí |
 | `ops_hbl` | 227 | 432 KB | sí | sí / 3 | 0 | users, ops_master, shipments | 0 | Sí |
 | `liq_settlement_lines` | 1,058 | 368 KB | sí | sí / 1 | 1 | liq_charge_catalog, liq_settlements | 0 | Sí |
 | `shipment_shippers` | 946 | 272 KB | sí | sí / 1 | 1 | users, shipments | 0 | Sí |
 | `shipment_agents` | 776 | 248 KB | sí | sí / 1 | 1 | users, shipments | 0 | Sí |
 | `liq_settlements` | 100 | 240 KB | sí | sí / 1 | 0 | liq_shipments | 1 | Sí |
+| `coordination_tasks` | 81 | 216 KB | sí | sí / 2 | 1 | users, clients, shipments | 0 | Sí |
 | `shipment_containers` | 562 | 216 KB | sí | sí / 1 | 4 | users, shipments | 1 | Sí |
 | `liq_shipments` | 64 | 192 KB | sí | sí / 1 | 0 |  | 2 | Sí |
+| `carrier_email_log` | 2 | 96 KB | sí | sí / 2 | 0 | shipments | 0 | Sí |
 | `ops_master` | 5 | 96 KB | sí | sí / 3 | 0 | users | 1 | Sí |
+| `container_load_reports` | 2 | 80 KB | sí | sí / 2 | 0 | warehouse_users, loading_tasks, manifest_sources | 0 | Sí |
+| `dispatches` | 0 | 64 KB | sí | sí / 1 | 1 | clients | 0 | No (vacía) |
+| `external_containers` | 0 | 64 KB | sí | sí / 1 | 1 | clients | 0 | No (vacía) |
+| `fcl_semanal` | 1 | 64 KB | sí | sí / 2 | 1 | clients, shipments | 0 | Sí |
 | `ops_devolucion_vacios` | 10 | 64 KB | sí | sí / 2 | 1 | shipment_containers, shipments | 0 | Sí |
 | `ops_transfers` | 24 | 64 KB | sí | sí / 2 | 1 | users, shipments | 0 | Sí |
-| `liq_agent_invoice_lines` | 0 | 48 KB | sí | sí / 1 | 0 | liq_agent_invoices | 0 | Revisar (vacía) |
-| `liq_agent_invoices` | 0 | 48 KB | sí | sí / 1 | 0 |  | 1 | Revisar (vacía) |
-| `liq_tariffs` | 0 | 48 KB | sí | sí / 1 | 0 | liq_charge_catalog | 0 | Revisar (vacía) |
-| `ops_client_notices` | 0 | 48 KB | sí | sí / 1 | 0 | shipments | 0 | Revisar (vacía) |
+| `container_files` | 0 | 56 KB | sí | sí / 1 | 0 | warehouse_containers | 0 | No (vacía) |
+| `fact_orders` | 2 | 48 KB | sí | sí / 2 | 0 | clients, users, shipments, shipping_instructions | 0 | Sí |
+| `liq_agent_invoice_lines` | 9 | 48 KB | sí | sí / 1 | 0 | liq_agent_invoices | 0 | Sí |
+| `liq_agent_invoices` | 4 | 48 KB | sí | sí / 1 | 0 |  | 1 | Sí |
+| `liq_tariffs` | 19 | 48 KB | sí | sí / 1 | 0 | liq_charge_catalog | 0 | Sí |
+| `ops_client_notices` | 2 | 48 KB | sí | sí / 1 | 0 | shipments | 0 | Sí |
 | `ops_release` | 1 | 48 KB | sí | sí / 3 | 0 | users, ops_documents, shipments | 0 | Sí |
 | `cierres_liquidacion` | 13 | 32 KB | sí | sí / 0 | 0 |  | 0 | Sí |
-| `liq_charge_catalog` | 0 | 32 KB | sí | sí / 1 | 0 |  | 2 | Revisar (vacía) |
-| `ops_capture_mailboxes` | 0 | 32 KB | sí | sí / 1 | 0 |  | 0 | Revisar (vacía) |
-| `ops_hbl_sequence` | 0 | 32 KB | sí | sí / 1 | 0 |  | 0 | Revisar (vacía) |
-| `liq_documents` | 0 | 16 KB | sí | sí / 1 | 0 | liq_shipments | 0 | Revisar (vacía) |
+| `liq_charge_catalog` | 40 | 32 KB | sí | sí / 1 | 0 |  | 2 | Sí |
+| `ops_capture_mailboxes` | 15 | 32 KB | sí | sí / 1 | 0 |  | 0 | Sí |
+| `ops_hbl_sequence` | 1 | 32 KB | sí | sí / 1 | 0 |  | 0 | Sí |
+| `liq_documents` | 0 | 16 KB | sí | sí / 1 | 0 | liq_shipments | 0 | No (vacía) |
 
 ### Finanzas
 
@@ -265,23 +275,29 @@ FK→ = tablas a las que apunta. ←FK = número de tablas que la referencian.
 | `bank_transaction` | 8,120 | 3.8 MB | sí | sí / 2 | 0 |  | 1 | Sí |
 | `finanzas_bank_match` | 7,813 | 2.7 MB | sí | sí / 3 | 0 | bank_transaction, offices | 0 | Sí |
 | `arap_live_open` | 5,345 | 1.7 MB | sí | sí / 1 | 0 |  | 0 | Sí |
+| `closings` | 2,943 | 1.2 MB | sí | sí / 4 | 0 | clients, users | 0 | Sí |
 | `fx_rates` | 897 | 384 KB | sí | sí / 1 | 0 |  | 0 | Sí |
 | `scheduled_payment` | 21 | 128 KB | sí | sí / 2 | 0 |  | 0 | Sí |
 | `vendor_profile` | 37 | 120 KB | sí | sí / 2 | 0 |  | 0 | Sí |
 | `nomina_live` | 88 | 112 KB | sí | sí / 1 | 0 |  | 0 | Sí |
+| `pba_payments` | 65 | 112 KB | sí | sí / 2 | 1 | clients, shipments | 0 | Sí |
+| `recurring_movement` | 51 | 112 KB | sí | sí / 2 | 0 |  | 0 | Sí |
 | `finanzas_fx_rate` | 1 | 96 KB | sí | sí / 2 | 0 |  | 0 | Sí |
 | `vendor_flexibility` | 41 | 88 KB | sí | sí / 2 | 0 |  | 0 | Sí |
 | `bank_account` | 10 | 80 KB | sí | sí / 2 | 0 |  | 0 | Sí |
 | `caja_eod` | 39 | 64 KB | sí | **no** / 0 | 0 |  | 0 | Sí |
-| `finanzas_access` | 2 | 48 KB | sí | sí / 2 | 0 | users | 0 | Sí |
 | `finanzas_rc_por_zarpar` | 6 | 48 KB | sí | sí / 2 | 0 | offices | 0 | Sí |
+| `payment_commitment` | 0 | 40 KB | sí | sí / 2 | 0 |  | 0 | No (vacía) |
 | `arap_live_snapshot` | 73 | 32 KB | sí | sí / 0 | 0 |  | 0 | Sí |
 | `finanzas_config_recurrente` | 4 | 32 KB | sí | sí / 1 | 0 | offices | 0 | Sí |
 | `finanzas_eeff_pl` | 8 | 32 KB | sí | sí / 1 | 0 | offices | 0 | Sí |
 | `finanzas_forecast_recurrente` | 5 | 32 KB | sí | sí / 1 | 0 | offices | 0 | Sí |
 | `finanzas_presupuesto` | 4 | 32 KB | sí | sí / 1 | 0 | offices | 0 | Sí |
 | `finanzas_sync_state` | 4 | 32 KB | sí | sí / 2 | 0 |  | 0 | Sí |
-| `finanzas_deuda_externa` | 0 | 24 KB | sí | sí / 1 | 0 | offices | 0 | Revisar (vacía) |
+| `market_indices_daily` | 31 | 32 KB | sí | sí / 0 | 0 |  | 0 | Sí |
+| `pagos_recurrentes_live` | 4 | 32 KB | sí | sí / 1 | 0 |  | 0 | Sí |
+| `finanzas_deuda_externa` | 0 | 24 KB | sí | sí / 1 | 0 | offices | 0 | No (vacía) |
+| `cxc_send_log` | 0 | 16 KB | sí | sí / 2 | 0 |  | 0 | No (vacía) |
 
 ### Bodega Miami
 
@@ -296,34 +312,41 @@ FK→ = tablas a las que apunta. ←FK = número de tablas que la referencian.
 | `wh_report_movement_items` | 1,170 | 280 KB | sí | sí / 1 | 0 | wh_report_movements, wh_report_products | 0 | Sí |
 | `wh_carga_no_identificada` | 409 | 256 KB | sí | sí / 1 | 0 |  | 0 | Sí |
 | `cl_scan_events` | 111 | 216 KB | sí | sí / 2 | 0 | loading_tasks, manifest_items, picking_tasks, warehouse_users, staging_check_tasks | 0 | Sí |
-| `cl_alerts` | 0 | 120 KB | sí | sí / 3 | 0 | warehouse_users, loading_tasks, manifest_sources, picking_tasks, staging_check_tasks, cl_warehouses | 0 | Revisar (vacía) |
-| `manifest_sources` | 0 | 96 KB | sí | sí / 2 | 1 | cl_container_types, cl_warehouses | 6 | Revisar (vacía) |
-| `loading_tasks` | 0 | 80 KB | sí | sí / 3 | 1 | warehouse_users, cl_container_types, manifest_sources | 6 | Revisar (vacía) |
-| `staging_check_tasks` | 0 | 80 KB | sí | sí / 3 | 4 | warehouse_users, manifest_sources | 3 | Revisar (vacía) |
+| `warehouse_containers` | 144 | 200 KB | sí | sí / 1 | 1 | clients | 1 | Sí |
+| `cl_alerts` | 38 | 120 KB | sí | sí / 3 | 0 | warehouse_users, loading_tasks, manifest_sources, picking_tasks, staging_check_tasks, cl_warehouses | 0 | Sí |
+| `warehouse_users` | 1 | 120 KB | sí | sí / 4 | 1 | users, cl_warehouses | 13 | Sí |
+| `manifest_sources` | 20 | 96 KB | sí | sí / 2 | 1 | cl_container_types, cl_warehouses | 6 | Sí |
+| `loading_tasks` | 6 | 80 KB | sí | sí / 3 | 1 | warehouse_users, cl_container_types, manifest_sources | 6 | Sí |
+| `staging_check_tasks` | 11 | 80 KB | sí | sí / 3 | 4 | warehouse_users, manifest_sources | 3 | Sí |
+| `warehouse_tasks` | 0 | 80 KB | sí | sí / 1 | 1 | clients | 0 | No (vacía) |
 | `picking_tasks` | 18 | 72 KB | sí | sí / 3 | 4 | warehouse_users, manifest_sources, picking_tasks | 5 | Sí |
-| `cl_audit_log` | 0 | 64 KB | sí | sí / 2 | 0 | warehouse_users | 0 | Revisar (vacía) |
-| `loading_materials` | 0 | 64 KB | sí | sí / 2 | 1 | cl_warehouses | 1 | Revisar (vacía) |
+| `cl_audit_log` | 11 | 64 KB | sí | sí / 2 | 0 | warehouse_users | 0 | Sí |
+| `loading_materials` | 21 | 64 KB | sí | sí / 2 | 1 | cl_warehouses | 1 | Sí |
 | `wh_report_product_mappings` | 46 | 64 KB | sí | sí / 2 | 0 | wh_report_clients, wh_report_products | 0 | Sí |
 | `bodega_tenants` | 4 | 48 KB | sí | sí / 1 | 0 | users | 0 | Sí |
-| `cl_warehouses` | 0 | 48 KB | sí | sí / 2 | 0 |  | 4 | Revisar (vacía) |
-| `loading_exceptions` | 0 | 48 KB | sí | sí / 3 | 0 | warehouse_users, loading_tasks, manifest_items | 0 | Revisar (vacía) |
-| `loading_task_materials` | 0 | 48 KB | sí | sí / 2 | 0 | loading_tasks, loading_materials, warehouse_users | 0 | Revisar (vacía) |
-| `picking_exceptions` | 0 | 48 KB | sí | sí / 3 | 0 | manifest_items, picking_tasks, warehouse_users | 0 | Revisar (vacía) |
-| `staging_exceptions` | 0 | 48 KB | sí | sí / 3 | 0 | warehouse_users, staging_check_tasks | 0 | Revisar (vacía) |
-| `wh_container_types` | 0 | 48 KB | sí | sí / 1 | 0 |  | 0 | Revisar (vacía) |
-| `wh_country_map` | 0 | 48 KB | sí | sí / 1 | 0 |  | 0 | Revisar (vacía) |
-| `wh_internal_people` | 0 | 48 KB | sí | sí / 1 | 0 |  | 0 | Revisar (vacía) |
-| `wh_loading_rates` | 0 | 48 KB | sí | sí / 1 | 0 |  | 0 | Revisar (vacía) |
+| `cl_warehouses` | 1 | 48 KB | sí | sí / 2 | 0 |  | 4 | Sí |
+| `loading_exceptions` | 3 | 48 KB | sí | sí / 3 | 0 | warehouse_users, loading_tasks, manifest_items | 0 | Sí |
+| `loading_task_materials` | 4 | 48 KB | sí | sí / 2 | 0 | loading_tasks, loading_materials, warehouse_users | 0 | Sí |
+| `picking_exceptions` | 2 | 48 KB | sí | sí / 3 | 0 | manifest_items, picking_tasks, warehouse_users | 0 | Sí |
+| `reception_hosts` | 0 | 48 KB | sí | sí / 1 | 1 |  | 1 | No (vacía) |
+| `staging_exceptions` | 1 | 48 KB | sí | sí / 3 | 0 | warehouse_users, staging_check_tasks | 0 | Sí |
+| `unplanned_additions` | 3 | 48 KB | sí | sí / 2 | 0 | warehouse_users, loading_tasks | 0 | Sí |
+| `warehouse_cogs_monthly` | 48 | 48 KB | sí | sí / 1 | 0 |  | 0 | Sí |
+| `wh_container_types` | 9 | 48 KB | sí | sí / 1 | 0 |  | 0 | Sí |
+| `wh_country_map` | 26 | 48 KB | sí | sí / 1 | 0 |  | 0 | Sí |
+| `wh_internal_people` | 3 | 48 KB | sí | sí / 1 | 0 |  | 0 | Sí |
+| `wh_loading_rates` | 4 | 48 KB | sí | sí / 1 | 0 |  | 0 | Sí |
 | `wh_report_products` | 26 | 48 KB | sí | sí / 1 | 0 | wh_report_clients | 2 | Sí |
-| `wh_stations` | 0 | 48 KB | sí | sí / 1 | 0 |  | 0 | Revisar (vacía) |
+| `wh_stations` | 7 | 48 KB | sí | sí / 1 | 0 |  | 0 | Sí |
 | `wh_storage_terms` | 5 | 48 KB | sí | sí / 1 | 0 |  | 0 | Sí |
 | `wh_unloading_rates` | 5 | 48 KB | sí | sí / 1 | 0 |  | 0 | Sí |
-| `wh_warehouse_costs` | 0 | 48 KB | sí | sí / 1 | 0 |  | 0 | Revisar (vacía) |
-| `cl_container_types` | 0 | 32 KB | sí | sí / 0 | 0 |  | 2 | Revisar (vacía) |
-| `wh_doc_7512` | 0 | 32 KB | sí | sí / 1 | 0 | users | 0 | Revisar (vacía) |
-| `wh_import_clients` | 0 | 32 KB | sí | sí / 1 | 0 |  | 0 | Revisar (vacía) |
+| `wh_warehouse_costs` | 5 | 48 KB | sí | sí / 1 | 0 |  | 0 | Sí |
+| `cl_container_types` | 4 | 32 KB | sí | sí / 0 | 0 |  | 2 | Sí |
+| `warehouse_cogs_manual` | 4 | 32 KB | sí | sí / 1 | 0 |  | 0 | Sí |
+| `wh_doc_7512` | 0 | 32 KB | sí | sí / 1 | 0 | users | 0 | No (vacía) |
+| `wh_import_clients` | 15 | 32 KB | sí | sí / 1 | 0 |  | 0 | Sí |
 | `wh_report_clients` | 3 | 32 KB | sí | sí / 1 | 0 |  | 4 | Sí |
-| `wh_client_pallets` | 0 | 24 KB | sí | sí / 1 | 0 |  | 0 | Revisar (vacía) |
+| `wh_client_pallets` | 0 | 24 KB | sí | sí / 1 | 0 |  | 0 | No (vacía) |
 
 ### Seguridad y usuarios
 
@@ -336,7 +359,46 @@ FK→ = tablas a las que apunta. ←FK = número de tablas que la referencian.
 | `user_permission_overrides` | 106 | 136 KB | sí | sí / 4 | 0 |  | 0 | Sí |
 | `impersonation_log` | 10 | 112 KB | sí | sí / 2 | 0 | users | 0 | Sí |
 | `user_delegations` | 1 | 96 KB | sí | sí / 2 | 0 | users | 0 | Sí |
+| `finanzas_access` | 2 | 48 KB | sí | sí / 2 | 0 | users | 0 | Sí |
 | `roles` | 7 | 48 KB | sí | sí / 5 | 0 |  | 2 | Sí |
+| `pba_authorized_users` | 3 | 32 KB | sí | sí / 0 | 0 |  | 0 | Sí |
+
+### Tarifas
+
+| Tabla | Filas aprox. | Tamaño | PK | RLS / pol. | Trg | FK→ | ←FK | ¿Migra? |
+|---|---|---|---|---|---|---|---|---|
+| `rate_charges` | 32,056 | 5.1 MB | sí | sí / 4 | 0 | rates | 0 | Sí |
+| `rates` | 12,894 | 5.0 MB | sí | sí / 4 | 0 | agents, commodities, contracts, equipment_types, offices, freight_routes, tariff_sheets | 3 | Sí |
+| `shipco_rates` | 4,218 | 1.5 MB | sí | sí / 1 | 0 |  | 0 | Sí |
+| `air_rates` | 282 | 392 KB | sí | sí / 4 | 0 | agents, air_carriers | 1 | Sí |
+| `freight_routes` | 1,009 | 368 KB | sí | sí / 4 | 0 | ports, users | 2 | Sí |
+| `pricing_rules` | 7 | 184 KB | sí | sí / 2 | 1 | agents, auth.users, carriers, clients, commodities, equipment_types, offices | 0 | Sí |
+| `tariff_sheets` | 24 | 176 KB | sí | sí / 2 | 1 | agents, carriers, contracts, offices, auth.users | 1 | Sí |
+| `contracts` | 60 | 128 KB | sí | sí / 4 | 0 | agents, carriers, contracts | 5 | Sí |
+| `contract_updates` | 10 | 112 KB | sí | sí / 3 | 0 | carriers, contracts, users | 1 | Sí |
+| `shipco_destinations` | 296 | 112 KB | sí | sí / 1 | 0 |  | 0 | Sí |
+| `contract_documents` | 10 | 96 KB | sí | sí / 4 | 0 | contracts, users | 0 | Sí |
+| `inland_addons` | 53 | 96 KB | sí | sí / 1 | 0 | carriers, ports | 0 | Sí |
+| `surcharges` | 29 | 96 KB | sí | sí / 4 | 0 | carriers, equipment_types | 0 | Sí |
+| `ec_fcl_local_charges` | 71 | 80 KB | sí | sí / 4 | 1 | carriers | 0 | Sí |
+| `inland_carrier_zips` | 179 | 80 KB | sí | sí / 2 | 0 | inland_carriers | 0 | Sí |
+| `inland_quotes` | 24 | 64 KB | sí | sí / 2 | 0 | inland_carriers, auth.users | 0 | Sí |
+| `ec_fcl_local_charges_history` | 5 | 48 KB | sí | sí / 1 | 0 |  | 0 | Sí |
+| `inland_carrier_area_rates` | 8 | 48 KB | sí | sí / 2 | 0 | inland_carriers | 0 | Sí |
+| `lcl_lanes` | 5 | 48 KB | sí | sí / 2 | 0 |  | 0 | Sí |
+| `rate_notes` | 14 | 48 KB | sí | sí / 4 | 0 | rates | 0 | Sí |
+| `drayage_rates` | 0 | 40 KB | sí | sí / 1 | 0 | points_of_receipt | 0 | No (vacía) |
+| `inland_carrier_rates` | 1 | 40 KB | sí | sí / 2 | 0 | inland_carriers | 0 | Sí |
+| `freight_carrier_aliases` | 2 | 32 KB | sí | sí / 1 | 0 |  | 0 | Sí |
+| `freight_port_aliases` | 12 | 32 KB | sí | sí / 1 | 0 |  | 0 | Sí |
+| `inland_carriers` | 1 | 32 KB | sí | sí / 2 | 0 |  | 4 | Sí |
+| `lcl_admin_emails` | 1 | 32 KB | sí | sí / 1 | 0 |  | 0 | Sí |
+| `lcl_settings` | 1 | 32 KB | sí | sí / 2 | 0 |  | 0 | Sí |
+| `lcl_surcharges` | 2 | 32 KB | sí | sí / 2 | 0 |  | 0 | Sí |
+| `rate_components` | 38 | 32 KB | sí | sí / 4 | 0 |  | 1 | Sí |
+| `shipco_settings` | 3 | 32 KB | sí | sí / 0 | 0 |  | 0 | Sí |
+| `contract_update_lines` | 0 | 24 KB | sí | sí / 3 | 0 | contract_updates | 0 | No (vacía) |
+| `surcharge_adjustments` | 0 | 24 KB | sí | sí / 3 | 0 | carriers | 0 | No (vacía) |
 
 ### Consolidados
 
@@ -354,138 +416,18 @@ FK→ = tablas a las que apunta. ←FK = número de tablas que la referencian.
 | `consolidado_agrupacion_memoria` | 7 | 48 KB | sí | sí / 1 | 0 |  | 0 | Sí |
 | `consolidado_aereo_prefs` | 1 | 32 KB | sí | sí / 1 | 0 | users | 0 | Sí |
 | `consolidado_agentes_destino` | 5 | 32 KB | sí | sí / 1 | 0 |  | 0 | Sí |
-| `consolidado_capacidades` | 0 | 32 KB | sí | sí / 1 | 0 |  | 0 | Revisar (vacía) |
+| `consolidado_capacidades` | 3 | 32 KB | sí | sí / 1 | 0 |  | 0 | Sí |
 | `consolidado_fcl_prefs` | 1 | 32 KB | sí | sí / 1 | 0 |  | 0 | Sí |
 | `consolidado_grupos` | 46 | 32 KB | sí | sí / 1 | 0 | consolidados | 1 | Sí |
 | `consolidado_servicios` | 5 | 32 KB | sí | sí / 1 | 0 |  | 1 | Sí |
-| `consolidado_agente_overrides` | 0 | 24 KB | sí | sí / 1 | 0 |  | 0 | Revisar (vacía) |
-
-### Tarifas
-
-| Tabla | Filas aprox. | Tamaño | PK | RLS / pol. | Trg | FK→ | ←FK | ¿Migra? |
-|---|---|---|---|---|---|---|---|---|
-| `rate_charges` | 32,056 | 5.1 MB | sí | sí / 4 | 0 | rates | 0 | Sí |
-| `rates` | 12,894 | 5.0 MB | sí | sí / 4 | 0 | agents, commodities, contracts, equipment_types, offices, freight_routes, tariff_sheets | 3 | Sí |
-| `shipco_rates` | 4,218 | 1.5 MB | sí | sí / 1 | 0 |  | 0 | Sí |
-| `air_rates` | 282 | 392 KB | sí | sí / 4 | 0 | agents, air_carriers | 1 | Sí |
-| `freight_routes` | 1,009 | 368 KB | sí | sí / 4 | 0 | ports, users | 2 | Sí |
-| `tariff_sheets` | 24 | 176 KB | sí | sí / 2 | 1 | agents, carriers, contracts, offices, auth.users | 1 | Sí |
-| `contracts` | 60 | 128 KB | sí | sí / 4 | 0 | agents, carriers, contracts | 5 | Sí |
-| `contract_updates` | 10 | 112 KB | sí | sí / 3 | 0 | carriers, contracts, users | 1 | Sí |
-| `shipco_destinations` | 296 | 112 KB | sí | sí / 1 | 0 |  | 0 | Sí |
-| `contract_documents` | 10 | 96 KB | sí | sí / 4 | 0 | contracts, users | 0 | Sí |
-| `inland_addons` | 53 | 96 KB | sí | sí / 1 | 0 | carriers, ports | 0 | Sí |
-| `surcharges` | 29 | 96 KB | sí | sí / 4 | 0 | carriers, equipment_types | 0 | Sí |
-| `inland_carrier_zips` | 179 | 80 KB | sí | sí / 2 | 0 | inland_carriers | 0 | Sí |
-| `inland_quotes` | 24 | 64 KB | sí | sí / 2 | 0 | inland_carriers, auth.users | 0 | Sí |
-| `inland_carrier_area_rates` | 0 | 48 KB | sí | sí / 2 | 0 | inland_carriers | 0 | Revisar (vacía) |
-| `lcl_lanes` | 0 | 48 KB | sí | sí / 2 | 0 |  | 0 | Revisar (vacía) |
-| `rate_notes` | 14 | 48 KB | sí | sí / 4 | 0 | rates | 0 | Sí |
-| `drayage_rates` | 0 | 40 KB | sí | sí / 1 | 0 | points_of_receipt | 0 | Revisar (vacía) |
-| `inland_carrier_rates` | 0 | 40 KB | sí | sí / 2 | 0 | inland_carriers | 0 | Revisar (vacía) |
-| `freight_carrier_aliases` | 2 | 32 KB | sí | sí / 1 | 0 |  | 0 | Sí |
-| `freight_port_aliases` | 12 | 32 KB | sí | sí / 1 | 0 |  | 0 | Sí |
-| `inland_carriers` | 0 | 32 KB | sí | sí / 2 | 0 |  | 4 | Revisar (vacía) |
-| `lcl_admin_emails` | 0 | 32 KB | sí | sí / 1 | 0 |  | 0 | Revisar (vacía) |
-| `lcl_settings` | 0 | 32 KB | sí | sí / 2 | 0 |  | 0 | Revisar (vacía) |
-| `lcl_surcharges` | 0 | 32 KB | sí | sí / 2 | 0 |  | 0 | Revisar (vacía) |
-| `rate_components` | 38 | 32 KB | sí | sí / 4 | 0 |  | 1 | Sí |
-| `shipco_settings` | 3 | 32 KB | sí | sí / 0 | 0 |  | 0 | Sí |
-| `contract_update_lines` | 0 | 24 KB | sí | sí / 3 | 0 | contract_updates | 0 | Revisar (vacía) |
-| `surcharge_adjustments` | 0 | 24 KB | sí | sí / 3 | 0 | carriers | 0 | Revisar (vacía) |
+| `consolidado_agente_overrides` | 0 | 24 KB | sí | sí / 1 | 0 |  | 0 | No (vacía) |
 
 ### Esquema private
 
 | Tabla | Filas aprox. | Tamaño | PK | RLS / pol. | Trg | FK→ | ←FK | ¿Migra? |
 |---|---|---|---|---|---|---|---|---|
 | `private.client_merge_audit` | 4,498 | 12.0 MB | sí | **no** / 0 | 0 |  | 0 | Sí |
-| `private.consolidado_avisos_bak_27jul` | 90 | 280 KB | **no** | **no** / 0 | 0 |  | 0 | Sí |
-| `private._audit_clients_ec` | 734 | 232 KB | **no** | **no** / 0 | 0 |  | 0 | Sí |
-| `private._audit_clients_ec_ruc` | 734 | 152 KB | **no** | **no** / 0 | 0 |  | 0 | Sí |
-| `private.client_merge_survivor_snapshot` | 80 | 144 KB | **no** | **no** / 0 | 0 |  | 0 | Sí |
-| `private._audit_billing_ruc` | 434 | 136 KB | **no** | **no** / 0 | 0 |  | 0 | Sí |
-| `private._audit_billing_ec_2026q1` | 434 | 120 KB | **no** | **no** / 0 | 0 |  | 0 | Sí |
-| `private.tmp_excel2_diff` | 117 | 48 KB | **no** | **no** / 0 | 0 |  | 0 | Sí |
-| `private._audit_billing_aliases` | 1 | 32 KB | sí | **no** / 0 | 0 | clients | 0 | Sí |
-| `private.iva_backfill_audit` | 0 | 32 KB | sí | **no** / 0 | 0 |  | 0 | Revisar (vacía) |
-| `private.respaldo_estiba_sem31` | 100 | 24 KB | **no** | **no** / 0 | 0 |  | 0 | Sí |
-| `private.cifras_sem31` | 102 | 16 KB | **no** | **no** / 0 | 0 |  | 0 | Sí |
-| `private.closings_bak_peru_janfeb_20260804` | 235 | 16 KB | **no** | **no** / 0 | 0 |  | 0 | Sí |
-
-### Sin clasificar
-
-| Tabla | Filas aprox. | Tamaño | PK | RLS / pol. | Trg | FK→ | ←FK | ¿Migra? |
-|---|---|---|---|---|---|---|---|---|
-| `brief_assets` | 10 | 1.9 MB | sí | sí / 1 | 0 |  | 0 | Sí |
-| `dashboard_monthly_client` | 16,393 | 1.5 MB | **no** | sí / 1 | 0 |  | 0 | Sí |
-| `closings` | 2,943 | 1.2 MB | sí | sí / 4 | 0 | clients, users | 0 | Sí |
-| `shipping_instructions` | 818 | 672 KB | sí | sí / 3 | 1 | clients, users, quotes, shipments | 2 | Sí |
-| `dashboard_clients` | 3,811 | 448 KB | **no** | sí / 1 | 0 |  | 0 | Sí |
-| `ports_master` | 570 | 392 KB | sí | sí / 2 | 0 |  | 0 | Sí |
-| `carrier_transit_times` | 684 | 344 KB | sí | sí / 4 | 0 | carriers, freight_routes, ports, users | 0 | Sí |
-| `call_logs` | 206 | 288 KB | sí | sí / 4 | 0 |  | 0 | Sí |
-| `coordination_tasks` | 81 | 216 KB | sí | sí / 2 | 1 | users, clients, shipments | 0 | Sí |
-| `phone_numbers` | 635 | 216 KB | sí | sí / 4 | 0 | contacts | 0 | Sí |
-| `credit_documents` | 296 | 208 KB | sí | sí / 3 | 0 | credit_requests, users | 0 | Sí |
-| `warehouse_containers` | 144 | 200 KB | sí | sí / 1 | 1 | clients | 1 | Sí |
-| `pricing_rules` | 7 | 184 KB | sí | sí / 2 | 1 | agents, auth.users, carriers, clients, commodities, equipment_types, offices | 0 | Sí |
-| `dashboard_pnl_monthly` | 782 | 168 KB | sí | sí / 1 | 0 |  | 0 | Sí |
-| `dashboard_pnl_flow` | 1,223 | 160 KB | **no** | sí / 1 | 0 |  | 0 | Sí |
-| `credit_requests` | 112 | 152 KB | sí | sí / 4 | 4 | clients, users | 2 | Sí |
-| `ports` | 279 | 152 KB | sí | sí / 4 | 0 |  | 7 | Sí |
-| `agents` | 74 | 144 KB | sí | sí / 4 | 1 |  | 7 | Sí |
-| `dashboard_agents` | 960 | 136 KB | **no** | sí / 1 | 0 |  | 0 | Sí |
-| `warehouse_users` | 0 | 120 KB | sí | sí / 4 | 1 | users, cl_warehouses | 13 | Revisar (vacía) |
-| `pba_payments` | 65 | 112 KB | sí | sí / 2 | 1 | clients, shipments | 0 | Sí |
-| `recurring_movement` | 51 | 112 KB | sí | sí / 2 | 0 |  | 0 | Sí |
-| `carrier_email_log` | 2 | 96 KB | sí | sí / 2 | 0 | shipments | 0 | Sí |
-| `commodities` | 132 | 96 KB | sí | sí / 4 | 0 |  | 3 | Sí |
-| `points_of_receipt` | 0 | 96 KB | sí | sí / 1 | 0 | ports | 1 | Revisar (vacía) |
-| `routes` | 2 | 96 KB | sí | sí / 4 | 0 | clients, ports | 1 | Sí |
-| `cs_assignments` | 11 | 88 KB | sí | sí / 2 | 0 | users | 0 | Sí |
-| `gloval_assets` | 1 | 88 KB | sí | sí / 2 | 0 |  | 0 | Sí |
-| `activities` | 0 | 80 KB | sí | sí / 7 | 0 | clients, routes | 0 | Revisar (vacía) |
-| `container_load_reports` | 0 | 80 KB | sí | sí / 2 | 0 | warehouse_users, loading_tasks, manifest_sources | 0 | Revisar (vacía) |
-| `ec_fcl_local_charges` | 71 | 80 KB | sí | sí / 4 | 1 | carriers | 0 | Sí |
-| `email_templates` | 4 | 80 KB | sí | sí / 4 | 1 |  | 0 | Sí |
-| `reminders` | 16 | 80 KB | sí | sí / 3 | 0 | shipments, users | 0 | Sí |
-| `time_entries` | 6 | 80 KB | sí | sí / 4 | 2 |  | 1 | Sí |
-| `transit_times` | 11 | 80 KB | sí | sí / 4 | 0 | carriers, ports | 0 | Sí |
-| `warehouse_tasks` | 0 | 80 KB | sí | sí / 1 | 1 | clients | 0 | Revisar (vacía) |
-| `activity_logs` | 18 | 64 KB | sí | sí / 2 | 1 | time_entries | 0 | Sí |
-| `agent_office_mapping` | 8 | 64 KB | sí | sí / 2 | 1 | users | 0 | Sí |
-| `dispatches` | 0 | 64 KB | sí | sí / 1 | 1 | clients | 0 | Revisar (vacía) |
-| `external_containers` | 0 | 64 KB | sí | sí / 1 | 1 | clients | 0 | Revisar (vacía) |
-| `fcl_semanal` | 1 | 64 KB | sí | sí / 2 | 1 | clients, shipments | 0 | Sí |
-| `container_files` | 0 | 56 KB | sí | sí / 1 | 0 | warehouse_containers | 0 | Revisar (vacía) |
-| `agent_files` | 0 | 48 KB | sí | sí / 4 | 0 | agents | 0 | Revisar (vacía) |
-| `carriers` | 17 | 48 KB | sí | sí / 4 | 0 |  | 11 | Sí |
-| `consignee_aliases` | 0 | 48 KB | sí | sí / 2 | 0 | clients, users | 0 | Revisar (vacía) |
-| `container_types` | 7 | 48 KB | sí | sí / 2 | 0 |  | 0 | Sí |
-| `credit_notify_log` | 2 | 48 KB | sí | sí / 1 | 0 | credit_requests | 0 | Sí |
-| `cs_cuentas_habilitadas` | 2 | 48 KB | sí | sí / 2 | 0 | clients, users | 0 | Sí |
-| `ec_fcl_local_charges_history` | 5 | 48 KB | sí | sí / 1 | 0 |  | 0 | Sí |
-| `equipment_types` | 11 | 48 KB | sí | sí / 4 | 0 |  | 4 | Sí |
-| `fact_orders` | 0 | 48 KB | sí | sí / 2 | 0 | clients, users, shipments, shipping_instructions | 0 | Revisar (vacía) |
-| `offices` | 5 | 48 KB | sí | sí / 2 | 0 |  | 11 | Sí |
-| `reception_hosts` | 0 | 48 KB | sí | sí / 1 | 1 |  | 1 | Revisar (vacía) |
-| `rfq_log` | 0 | 48 KB | sí | sí / 2 | 0 | agents, offices | 0 | Revisar (vacía) |
-| `shipping_lines` | 10 | 48 KB | sí | sí / 2 | 0 |  | 0 | Sí |
-| `unplanned_additions` | 0 | 48 KB | sí | sí / 2 | 0 | warehouse_users, loading_tasks | 0 | Revisar (vacía) |
-| `warehouse_cogs_monthly` | 48 | 48 KB | sí | sí / 1 | 0 |  | 0 | Sí |
-| `dashboard_countries` | 452 | 40 KB | **no** | sí / 1 | 0 |  | 0 | Sí |
-| `payment_commitment` | 0 | 40 KB | sí | sí / 2 | 0 |  | 0 | Revisar (vacía) |
-| `air_carriers` | 11 | 32 KB | sí | sí / 4 | 0 |  | 2 | Sí |
-| `birthday_emails_sent` | 0 | 32 KB | sí | sí / 1 | 0 | contacts | 0 | Revisar (vacía) |
-| `brief_emitido` | 11 | 32 KB | sí | **no** / 0 | 0 |  | 0 | Sí |
-| `credit_notify_finance` | 16 | 32 KB | sí | sí / 1 | 0 |  | 0 | Sí |
-| `market_indices_daily` | 31 | 32 KB | sí | sí / 0 | 0 |  | 0 | Sí |
-| `pagos_recurrentes_live` | 4 | 32 KB | sí | sí / 1 | 0 |  | 0 | Sí |
-| `pba_authorized_users` | 0 | 32 KB | sí | sí / 0 | 0 |  | 0 | Revisar (vacía) |
-| `ventas_alertas` | 3 | 32 KB | sí | sí / 0 | 0 |  | 0 | Sí |
-| `ventas_congelado` | 7 | 32 KB | sí | sí / 0 | 0 |  | 0 | Sí |
-| `warehouse_cogs_manual` | 4 | 32 KB | sí | sí / 1 | 0 |  | 0 | Sí |
-| `cxc_send_log` | 0 | 16 KB | sí | sí / 2 | 0 |  | 0 | Revisar (vacía) |
+| `private.iva_backfill_audit` | 22 | 32 KB | sí | **no** / 0 | 0 |  | 0 | Sí |
 
 ### CRM y ventas
 
@@ -499,16 +441,32 @@ FK→ = tablas a las que apunta. ←FK = número de tablas que la referencian.
 | `contacts` | 1,308 | 360 KB | sí | sí / 4 | 0 | clients | 2 | Sí |
 | `sales_activities` | 618 | 352 KB | sí | sí / 4 | 0 |  | 0 | Sí |
 | `client_notify_contacts` | 777 | 328 KB | sí | sí / 1 | 0 | clients | 0 | Sí |
+| `call_logs` | 206 | 288 KB | sí | sí / 4 | 0 |  | 0 | Sí |
 | `client_visits` | 260 | 240 KB | sí | sí / 7 | 2 | clients, users | 0 | Sí |
+| `credit_documents` | 296 | 208 KB | sí | sí / 3 | 0 | credit_requests, users | 0 | Sí |
+| `credit_requests` | 112 | 152 KB | sí | sí / 4 | 4 | clients, users | 2 | Sí |
 | `quote_emails` | 181 | 104 KB | sí | sí / 1 | 0 | quotes | 0 | Sí |
+| `cs_assignments` | 11 | 88 KB | sí | sí / 2 | 0 | users | 0 | Sí |
 | `quote_amendments` | 11 | 88 KB | sí | sí / 3 | 0 | users, quotes | 0 | Sí |
+| `activities` | 0 | 80 KB | sí | sí / 7 | 0 | clients, routes | 0 | No (vacía) |
+| `reminders` | 16 | 80 KB | sí | sí / 3 | 0 | shipments, users | 0 | Sí |
+| `time_entries` | 6 | 80 KB | sí | sí / 4 | 2 |  | 1 | Sí |
 | `quote_pba` | 146 | 72 KB | sí | sí / 1 | 0 | quotes | 0 | Sí |
+| `activity_logs` | 18 | 64 KB | sí | sí / 2 | 1 | time_entries | 0 | Sí |
 | `sales_doc_counters` | 2 | 64 KB | sí | sí / 0 | 0 |  | 0 | Sí |
 | `sales_live_monthly` | 72 | 64 KB | sí | sí / 1 | 0 |  | 0 | Sí |
+| `consignee_aliases` | 0 | 48 KB | sí | sí / 2 | 0 | clients, users | 0 | No (vacía) |
+| `credit_notify_log` | 2 | 48 KB | sí | sí / 1 | 0 | credit_requests | 0 | Sí |
+| `cs_cuentas_habilitadas` | 2 | 48 KB | sí | sí / 2 | 0 | clients, users | 0 | Sí |
 | `quote_followups` | 4 | 48 KB | sí | sí / 1 | 0 | quotes | 0 | Sí |
-| `quote_charges` | 0 | 32 KB | sí | sí / 4 | 0 | quotes, rate_components | 0 | Revisar (vacía) |
+| `rfq_log` | 0 | 48 KB | sí | sí / 2 | 0 | agents, offices | 0 | No (vacía) |
+| `birthday_emails_sent` | 0 | 32 KB | sí | sí / 1 | 0 | contacts | 0 | No (vacía) |
+| `credit_notify_finance` | 16 | 32 KB | sí | sí / 1 | 0 |  | 0 | Sí |
+| `quote_charges` | 0 | 32 KB | sí | sí / 4 | 0 | quotes, rate_components | 0 | No (vacía) |
 | `sales_goals` | 21 | 32 KB | sí | sí / 4 | 0 |  | 0 | Sí |
-| `deal_quotes` | 0 | 24 KB | sí | sí / 4 | 0 |  | 0 | Revisar (vacía) |
+| `ventas_alertas` | 3 | 32 KB | sí | sí / 0 | 0 |  | 0 | Sí |
+| `ventas_congelado` | 7 | 32 KB | sí | sí / 0 | 0 |  | 0 | Sí |
+| `deal_quotes` | 0 | 24 KB | sí | sí / 4 | 0 |  | 0 | No (vacía) |
 
 ### Christmas Palace
 
@@ -517,12 +475,37 @@ FK→ = tablas a las que apunta. ←FK = número de tablas que la referencian.
 | `christmas_products` | 3,695 | 3.6 MB | sí | sí / 2 | 1 | christmas_tenants | 0 | Sí |
 | `christmas_audit_log` | 51 | 192 KB | sí | sí / 1 | 0 |  | 0 | Sí |
 | `christmas_destinations` | 307 | 144 KB | sí | sí / 2 | 1 | auth.users, christmas_tenants | 0 | Sí |
-| `christmas_bookings` | 0 | 64 KB | sí | sí / 4 | 2 | christmas_pallet_presets, auth.users, christmas_tenants | 0 | Revisar (vacía) |
+| `christmas_bookings` | 0 | 64 KB | sí | sí / 4 | 2 | christmas_pallet_presets, auth.users, christmas_tenants | 0 | No (vacía) |
 | `christmas_user_profiles` | 19 | 64 KB | sí | sí / 2 | 2 | christmas_tenants, auth.users | 0 | Sí |
-| `christmas_tenants` | 0 | 48 KB | sí | sí / 2 | 1 |  | 7 | Revisar (vacía) |
-| `christmas_global_settings` | 0 | 32 KB | sí | sí / 2 | 1 | christmas_tenants, auth.users | 0 | Revisar (vacía) |
-| `christmas_pallet_presets` | 0 | 32 KB | sí | sí / 2 | 1 | christmas_tenants | 1 | Revisar (vacía) |
-| `christmas_fee_overrides` | 0 | 16 KB | sí | sí / 2 | 1 | christmas_tenants, auth.users | 0 | Revisar (vacía) |
+| `christmas_tenants` | 1 | 48 KB | sí | sí / 2 | 1 |  | 7 | Sí |
+| `christmas_global_settings` | 1 | 32 KB | sí | sí / 2 | 1 | christmas_tenants, auth.users | 0 | Sí |
+| `christmas_pallet_presets` | 8 | 32 KB | sí | sí / 2 | 1 | christmas_tenants | 1 | Sí |
+| `christmas_fee_overrides` | 0 | 16 KB | sí | sí / 2 | 1 | christmas_tenants, auth.users | 0 | No (vacía) |
+
+### Catálogos
+
+| Tabla | Filas aprox. | Tamaño | PK | RLS / pol. | Trg | FK→ | ←FK | ¿Migra? |
+|---|---|---|---|---|---|---|---|---|
+| `brief_assets` | 10 | 1.9 MB | sí | sí / 1 | 0 |  | 0 | Sí |
+| `ports_master` | 570 | 392 KB | sí | sí / 2 | 0 |  | 0 | Sí |
+| `carrier_transit_times` | 684 | 344 KB | sí | sí / 4 | 0 | carriers, freight_routes, ports, users | 0 | Sí |
+| `phone_numbers` | 635 | 216 KB | sí | sí / 4 | 0 | contacts | 0 | Sí |
+| `ports` | 279 | 152 KB | sí | sí / 4 | 0 |  | 7 | Sí |
+| `agents` | 74 | 144 KB | sí | sí / 4 | 1 |  | 7 | Sí |
+| `commodities` | 132 | 96 KB | sí | sí / 4 | 0 |  | 3 | Sí |
+| `points_of_receipt` | 31 | 96 KB | sí | sí / 1 | 0 | ports | 1 | Sí |
+| `routes` | 2 | 96 KB | sí | sí / 4 | 0 | clients, ports | 1 | Sí |
+| `gloval_assets` | 1 | 88 KB | sí | sí / 2 | 0 |  | 0 | Sí |
+| `email_templates` | 4 | 80 KB | sí | sí / 4 | 1 |  | 0 | Sí |
+| `transit_times` | 11 | 80 KB | sí | sí / 4 | 0 | carriers, ports | 0 | Sí |
+| `agent_office_mapping` | 8 | 64 KB | sí | sí / 2 | 1 | users | 0 | Sí |
+| `agent_files` | 0 | 48 KB | sí | sí / 4 | 0 | agents | 0 | No (vacía) |
+| `carriers` | 17 | 48 KB | sí | sí / 4 | 0 |  | 11 | Sí |
+| `container_types` | 7 | 48 KB | sí | sí / 2 | 0 |  | 0 | Sí |
+| `equipment_types` | 11 | 48 KB | sí | sí / 4 | 0 |  | 4 | Sí |
+| `offices` | 5 | 48 KB | sí | sí / 2 | 0 |  | 11 | Sí |
+| `shipping_lines` | 10 | 48 KB | sí | sí / 2 | 0 |  | 0 | Sí |
+| `air_carriers` | 11 | 32 KB | sí | sí / 4 | 0 |  | 2 | Sí |
 
 ### Comisiones
 
@@ -530,15 +513,48 @@ FK→ = tablas a las que apunta. ←FK = número de tablas que la referencian.
 |---|---|---|---|---|---|---|---|---|
 | `cmm_transactions` | 8,891 | 2.8 MB | sí | sí / 1 | 0 | cmm_sellers, cmm_uploads | 0 | Sí |
 | `cmm_pending` | 704 | 232 KB | sí | sí / 1 | 0 | cmm_sellers, cmm_uploads | 0 | Sí |
-| `cmm_chat_messages` | 0 | 48 KB | sí | sí / 1 | 0 | auth.users | 0 | Revisar (vacía) |
+| `cmm_chat_messages` | 5 | 48 KB | sí | sí / 1 | 0 | auth.users | 0 | Sí |
 | `cmm_client_aliases` | 1 | 48 KB | sí | sí / 1 | 0 | auth.users | 0 | Sí |
 | `cmm_commission_policies` | 1 | 48 KB | sí | sí / 1 | 0 | auth.users | 0 | Sí |
-| `cmm_context_notes` | 0 | 48 KB | sí | sí / 1 | 0 | auth.users | 0 | Revisar (vacía) |
-| `cmm_dismissed_actions` | 0 | 48 KB | sí | sí / 1 | 0 | auth.users, cmm_sellers | 0 | Revisar (vacía) |
+| `cmm_context_notes` | 8 | 48 KB | sí | sí / 1 | 0 | auth.users | 0 | Sí |
+| `cmm_dismissed_actions` | 6 | 48 KB | sí | sí / 1 | 0 | auth.users, cmm_sellers | 0 | Sí |
 | `cmm_sellers` | 8 | 48 KB | sí | sí / 1 | 0 |  | 4 | Sí |
-| `cmm_targets` | 0 | 48 KB | sí | sí / 1 | 0 | cmm_sellers | 0 | Revisar (vacía) |
+| `cmm_targets` | 9 | 48 KB | sí | sí / 1 | 0 | cmm_sellers | 0 | Sí |
 | `cmm_uploads` | 9 | 48 KB | sí | sí / 1 | 0 | auth.users | 2 | Sí |
-| `cmm_insights` | 0 | 24 KB | sí | sí / 1 | 0 | auth.users | 0 | Revisar (vacía) |
+| `cmm_insights` | 0 | 24 KB | sí | sí / 1 | 0 | auth.users | 0 | No (vacía) |
+
+### Dashboards y reportes
+
+| Tabla | Filas aprox. | Tamaño | PK | RLS / pol. | Trg | FK→ | ←FK | ¿Migra? |
+|---|---|---|---|---|---|---|---|---|
+| `dashboard_monthly_client` | 16,393 | 1.5 MB | **no** | sí / 1 | 0 |  | 0 | Sí |
+| `dashboard_clients` | 3,811 | 448 KB | **no** | sí / 1 | 0 |  | 0 | Sí |
+| `dashboard_pnl_monthly` | 782 | 168 KB | sí | sí / 1 | 0 |  | 0 | Sí |
+| `dashboard_pnl_flow` | 1,223 | 160 KB | **no** | sí / 1 | 0 |  | 0 | Sí |
+| `dashboard_agents` | 960 | 136 KB | **no** | sí / 1 | 0 |  | 0 | Sí |
+| `dashboard_countries` | 452 | 40 KB | **no** | sí / 1 | 0 |  | 0 | Sí |
+| `brief_emitido` | 11 | 32 KB | sí | **no** / 0 | 0 |  | 0 | Sí |
+
+### Temporal / respaldo
+
+| Tabla | Filas aprox. | Tamaño | PK | RLS / pol. | Trg | FK→ | ←FK | ¿Migra? |
+|---|---|---|---|---|---|---|---|---|
+| `wh_whr_backfill_universo` | 4,879 | 632 KB | sí | sí / 0 | 0 |  | 0 | No (temporal) |
+| `private.consolidado_avisos_bak_27jul` | 90 | 280 KB | **no** | **no** / 0 | 0 |  | 0 | No (temporal) |
+| `private._audit_clients_ec` | 734 | 232 KB | **no** | **no** / 0 | 0 |  | 0 | No (temporal) |
+| `private._audit_clients_ec_ruc` | 734 | 152 KB | **no** | **no** / 0 | 0 |  | 0 | No (temporal) |
+| `_legacy_agent_rates` | 54 | 152 KB | sí | sí / 1 | 1 |  | 0 | No (temporal) |
+| `private.client_merge_survivor_snapshot` | 80 | 144 KB | **no** | **no** / 0 | 0 |  | 0 | No (temporal) |
+| `private._audit_billing_ruc` | 434 | 136 KB | **no** | **no** / 0 | 0 |  | 0 | No (temporal) |
+| `_cartera_ecu_20260908` | 910 | 128 KB | **no** | sí / 0 | 0 |  | 0 | No (temporal) |
+| `private._audit_billing_ec_2026q1` | 434 | 120 KB | **no** | **no** / 0 | 0 |  | 0 | No (temporal) |
+| `_marcia_retardos_20260904` | 332 | 72 KB | **no** | sí / 0 | 0 |  | 0 | No (temporal) |
+| `private.tmp_excel2_diff` | 117 | 48 KB | **no** | **no** / 0 | 0 |  | 0 | No (temporal) |
+| `private._audit_billing_aliases` | 1 | 32 KB | sí | **no** / 0 | 0 | clients | 0 | No (temporal) |
+| `private.respaldo_estiba_sem31` | 100 | 24 KB | **no** | **no** / 0 | 0 |  | 0 | No (temporal) |
+| `private.cifras_sem31` | 102 | 16 KB | **no** | **no** / 0 | 0 |  | 0 | No (temporal) |
+| `private.closings_bak_peru_janfeb_20260804` | 235 | 16 KB | **no** | **no** / 0 | 0 |  | 0 | No (temporal) |
+| `_q` | 6 | 16 KB | **no** | sí / 0 | 0 |  | 0 | No (temporal) |
 
 ### Otros
 
@@ -546,24 +562,14 @@ FK→ = tablas a las que apunta. ←FK = número de tablas que la referencian.
 |---|---|---|---|---|---|---|---|---|
 | `inhouse_despachos` | 10 | 328 KB | sí | sí / 4 | 0 | clients, users, shipments | 1 | Sí |
 | `carrier_advisories` | 130 | 304 KB | sí | sí / 1 | 0 |  | 0 | Sí |
-| `monday_containers` | 0 | 136 KB | sí | sí / 2 | 0 |  | 0 | Revisar (vacía) |
+| `monday_containers` | 0 | 136 KB | sí | sí / 2 | 0 |  | 0 | No (vacía) |
 | `inhouse_profiles` | 1 | 128 KB | sí | sí / 3 | 0 | clients | 0 | Sí |
 | `visits` | 8 | 112 KB | sí | sí / 1 | 1 | visitor_badges, reception_hosts, users, visitors | 0 | Sí |
 | `inhouse_documentos` | 104 | 104 KB | sí | sí / 2 | 0 | inhouse_despachos, users | 0 | Sí |
-| `job_applicants` | 0 | 80 KB | sí | sí / 1 | 1 |  | 0 | Revisar (vacía) |
+| `job_applicants` | 3 | 80 KB | sí | sí / 1 | 1 |  | 0 | Sí |
 | `visitor_badges` | 20 | 64 KB | sí | sí / 2 | 1 |  | 1 | Sí |
 | `inhouse_dashboards` | 1 | 48 KB | sí | sí / 3 | 0 | clients, users | 0 | Sí |
 | `visitors` | 3 | 48 KB | sí | sí / 1 | 1 |  | 1 | Sí |
-
-### Temporal / respaldo
-
-| Tabla | Filas aprox. | Tamaño | PK | RLS / pol. | Trg | FK→ | ←FK | ¿Migra? |
-|---|---|---|---|---|---|---|---|---|
-| `wh_whr_backfill_universo` | 4,879 | 632 KB | sí | sí / 0 | 0 |  | 0 | No (confirmar) |
-| `_legacy_agent_rates` | 54 | 152 KB | sí | sí / 1 | 1 |  | 0 | No (confirmar) |
-| `_cartera_ecu_20260908` | 910 | 128 KB | **no** | sí / 0 | 0 |  | 0 | No (confirmar) |
-| `_marcia_retardos_20260904` | 332 | 72 KB | **no** | sí / 0 | 0 |  | 0 | No (confirmar) |
-| `_q` | 0 | 16 KB | **no** | sí / 0 | 0 |  | 0 | No (confirmar) |
 
 ### Esquema timeclock
 

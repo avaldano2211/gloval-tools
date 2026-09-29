@@ -1,9 +1,12 @@
 // Genera migration/source/*.sql y migration/inventory.md a partir de los JSON del catálogo.
+// Uso: node migration/tools/gen.mjs migration <dir con los JSON crudos del MCP (functions, columns, ...)>
 import fs from 'node:fs';
 import path from 'node:path';
+import { moduleOf as moduleOfNew } from './modules.mjs';
 
-const S = path.dirname(new URL(import.meta.url).pathname);
 const OUT = process.argv[2];
+const S = process.argv[3];
+const EXACT = JSON.parse(fs.readFileSync(path.join(OUT, 'source', 'catalog', 'exact_counts_2026-09-29.json'), 'utf8'));
 const SNAP = '2026-09-29';
 const load = (n) => JSON.parse(fs.readFileSync(path.join(S, n + '.json'), 'utf8'));
 
@@ -111,22 +114,7 @@ cat('columns.json', columns); cat('constraints.json', constraints); cat('indexes
 cat('relations.json', relations); cat('cron_jobs.json', cron);
 
 // ================= inventory.md =================
-const MODULES = [
-  ['Temporal / respaldo', /^(_|wh_whr_backfill_universo$|.*_backup|.*_bak$|.*_old$|tmp_)/],
-  ['Market intelligence', /^mi_/],
-  ['Integración Magaya', /^(magaya_|wr_|ar_ap_sync_queue$)/],
-  ['Consolidados', /^consolidado/],
-  ['Bodega Miami', /^(wh_|cl_|picking_|loading_|staging_|manifest_|bodega_)/],
-  ['Comisiones', /^cmm_/],
-  ['Finanzas', /^(finanzas_|cash_|bank_|scheduled_payment|vendor_|arap_|fx_|nomina_|caja_)/],
-  ['Operaciones', /^(ops_|shipments?$|shipment_|liq_|cierres_liquidacion)/],
-  ['Tarifas', /^(rates?$|rate_|air_rate|contracts?$|contract_|surcharge|freight_|shipco_|inland_|lcl_|drayage_|tariff_|agent_rate)/],
-  ['CRM y ventas', /^(clients?$|client_|contacts?$|contact_|deals?$|deal_|sales_|quotes?$|quote_|prospect)/],
-  ['Seguridad y usuarios', /^(users?$|user_|roles?$|role_|impersonation_|login_|audit_|permissions?)/],
-  ['Christmas Palace', /^christmas_/],
-  ['Otros', /^(visitors?|visits?|job_applicant|inhouse_|monday_|carrier_advisor)/],
-];
-const moduleOf = (s, n) => (s !== 'public' ? `Esquema ${s}` : (MODULES.find(([, re]) => re.test(n)) || ['Sin clasificar'])[0]);
+const moduleOf = (sch, n) => moduleOfNew(sch, n).title;
 
 const fkOut = {}, fkIn = {};
 for (const c of constraints) if (c.type === 'f') {
@@ -140,9 +128,9 @@ const fmtB = (b) => (b >= 1 << 30 ? (b / (1 << 30)).toFixed(2) + ' GB' : b >= 1 
 
 const tables = relations.filter((r) => ['r', 'p'].includes(r.kind)).map((r) => {
   const k = r.schema + '.' + r.tbl;
-  const rows = Math.max(Number(r.live_rows), Number(r.est_rows));
+  const rows = EXACT[k] ?? Math.max(Number(r.live_rows), Number(r.est_rows));
   const mod = moduleOf(r.schema, r.tbl);
-  const migra = mod === 'Temporal / respaldo' ? 'No (confirmar)' : rows === 0 ? 'Revisar (vacía)' : 'Sí';
+  const migra = mod === 'Temporal / respaldo' ? 'No (temporal)' : rows === 0 ? 'No (vacía)' : 'Sí';
   return { ...r, k, rows, mod, migra, pk: hasPk.has(k), out: [...(fkOut[k] || [])], in: [...(fkIn[k] || [])] };
 });
 const totalBytes = tables.reduce((a, t) => a + Number(t.bytes), 0);
@@ -156,9 +144,9 @@ const enumNames = new Set(enums.map((e) => e.name));
 
 let md = `# Inventario de GES (Supabase → Azure SQL)\n\n`;
 md += `> Generado el ${SNAP} desde el catálogo de \`wfzdrqfurwnakrfdnbgf\` (solo SELECT). ` +
-  `Filas = máx(n_live_tup, reltuples): **aproximadas**, no son conteos exactos. ` +
+  `Filas = máx(n_live_tup, reltuples), **aproximadas**; para las tablas que las estadísticas daban en 0 se usó count(*) exacto (\`source/catalog/exact_counts_2026-09-29.json\`). ` +
   `El módulo se asigna por prefijo (CLAUDE.md §3.3) y **hay que validarlo**. ` +
-  `La columna "¿Migra?" es una **propuesta**; la decisión es de Andrés.\n\n`;
+  `"¿Migra?" aplica la decisión del 29-sep: fuera las tablas vacías y las temporales.\n\n`;
 
 md += `## Resumen\n\n| Objeto | Cantidad |\n|---|---|\n`;
 const cnt = (s, kind) => relations.filter((r) => r.schema === s && kind.includes(r.kind)).length;
@@ -187,7 +175,7 @@ md += `\n## Alertas para la migración\n\n`;
 md += `- **Tablas en \`public\` sin RLS** (${noRls.length}), expuestas a la anon key: ${noRls.map((t) => '`' + t.tbl + '`').join(', ') || 'ninguna'}.\n`;
 md += `- **RLS activo pero sin políticas** (${rlsNoPol.length}); solo las ve service_role: ${rlsNoPol.map((t) => '`' + t.k + '`').join(', ') || 'ninguna'}.\n`;
 md += `- **Tablas sin PK** (${noPk.length}). Hay que definir la clave antes de cargarlas a SQL Server: ${noPk.map((t) => '`' + t.k + '`').join(', ') || 'ninguna'}.\n`;
-md += `- **Tablas vacías** (${tables.filter((t) => !t.rows).length}). Son candidatas a no migrarse (ver la columna "¿Migra?").\n`;
+md += `- **Tablas vacías** (${tables.filter((t) => !t.rows).length}, count exacto). No se migran.\n`;
 md += `- **La anon key está escrita en ${cron.filter((j) => /eyJ/.test(j.command)).length} cron jobs y en 1 función** (\`trg_credit_request_approved_notify\`). En Azure debe ir en Key Vault o en app settings.\n\n`;
 
 // tipos

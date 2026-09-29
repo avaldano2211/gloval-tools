@@ -1,0 +1,14 @@
+{
+  "name": "gloval-one-migration",
+  "private": true,
+  "type": "module",
+  "description": "Herramientas de migración de GES (Supabase) a Azure SQL (Gloval One)",
+  "scripts": {
+    "gen:tsql": "node tools/to_tsql.mjs",
+    "db:plan": "node tools/run_tsql.mjs --dry-run",
+    "db:apply": "node tools/run_tsql.mjs"
+  },
+  "dependencies": {
+    "mssql": "^11.0.1"
+  }
+}

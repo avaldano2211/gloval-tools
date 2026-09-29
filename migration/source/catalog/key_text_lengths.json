@@ -1,0 +1,1606 @@
+[
+ {
+  "t": "archive.magaya_charges",
+  "sampled": false,
+  "m": {
+   "charge_code": 19,
+   "shipment_number": 56,
+   "entity_name": 61,
+   "charge_guid": 36
+  }
+ },
+ {
+  "t": "private._audit_billing_aliases",
+  "sampled": false,
+  "m": {
+   "client_name_billing": 18
+  }
+ },
+ {
+  "t": "private._audit_billing_ec_2026q1",
+  "sampled": false,
+  "m": {
+   "client_name_norm": 72
+  }
+ },
+ {
+  "t": "private._audit_clients_ec",
+  "sampled": false,
+  "m": {
+   "norm": 70,
+   "norm_no_parens": 70
+  }
+ },
+ {
+  "t": "private._audit_clients_ec_ruc",
+  "sampled": false,
+  "m": {
+   "ruc_clean": 13
+  }
+ },
+ {
+  "t": "public.agents",
+  "sampled": false,
+  "m": {
+   "company_name": 33
+  }
+ },
+ {
+  "t": "public.air_rates",
+  "sampled": false,
+  "m": {
+   "service_level": 18,
+   "cargo_type": 6,
+   "destination_code": 3,
+   "origin_code": 3,
+   "scope": 6
+  }
+ },
+ {
+  "t": "public.ar_ap_sync_queue",
+  "sampled": false,
+  "m": {
+   "scope": 14,
+   "status": 4
+  }
+ },
+ {
+  "t": "public.arap_live_open",
+  "sampled": false,
+  "m": {
+   "tipo": 2,
+   "number": 20,
+   "office": 7
+  }
+ },
+ {
+  "t": "public.arap_live_snapshot",
+  "sampled": false,
+  "m": {
+   "tipo": 2,
+   "office": 7
+  }
+ },
+ {
+  "t": "public.bank_transaction",
+  "sampled": false,
+  "m": {
+   "status": 10,
+   "subcategory": 23
+  }
+ },
+ {
+  "t": "public.bodega_tenants",
+  "sampled": false,
+  "m": {
+   "campo": 13,
+   "nombre": 32
+  }
+ },
+ {
+  "t": "public.brief_assets",
+  "sampled": false,
+  "m": {
+   "key": 45
+  }
+ },
+ {
+  "t": "public.brief_emitido",
+  "sampled": false,
+  "m": {
+   "kind": 6
+  }
+ },
+ {
+  "t": "public.caja_eod",
+  "sampled": false,
+  "m": {
+   "office": 7
+  }
+ },
+ {
+  "t": "public.carrier_advisories",
+  "sampled": false,
+  "m": {
+   "url": 180,
+   "carrier_code": 4
+  }
+ },
+ {
+  "t": "public.carrier_email_log",
+  "sampled": false,
+  "m": {
+   "parse_status": 6,
+   "message_id": 19,
+   "carrier_detected": 5
+  }
+ },
+ {
+  "t": "public.carriers",
+  "sampled": false,
+  "m": {
+   "code": 8
+  }
+ },
+ {
+  "t": "public.cash_movement",
+  "sampled": false,
+  "m": {
+   "status": 9,
+   "counterparty_name": 113,
+   "direction": 7,
+   "external_guid": 57
+  }
+ },
+ {
+  "t": "public.christmas_audit_log",
+  "sampled": false,
+  "m": {
+   "table_name": 25
+  }
+ },
+ {
+  "t": "public.christmas_bookings",
+  "sampled": false,
+  "m": {
+   "status": null,
+   "nra_number": null
+  }
+ },
+ {
+  "t": "public.christmas_destinations",
+  "sampled": false,
+  "m": {
+   "port_code": 5
+  }
+ },
+ {
+  "t": "public.christmas_fee_overrides",
+  "sampled": false,
+  "m": {
+   "destination_code": null
+  }
+ },
+ {
+  "t": "public.christmas_global_settings",
+  "sampled": false,
+  "m": {
+   "key": 14
+  }
+ },
+ {
+  "t": "public.christmas_products",
+  "sampled": false,
+  "m": {
+   "handle": 80,
+   "sku": 34
+  }
+ },
+ {
+  "t": "public.christmas_tenants",
+  "sampled": false,
+  "m": {
+   "slug": 16
+  }
+ },
+ {
+  "t": "public.christmas_user_profiles",
+  "sampled": false,
+  "m": {
+   "username": 8
+  }
+ },
+ {
+  "t": "public.cierres_liquidacion",
+  "sampled": false,
+  "m": {
+   "office": 7,
+   "mes": 7
+  }
+ },
+ {
+  "t": "public.cl_audit_log",
+  "sampled": false,
+  "m": {
+   "target_table": 16
+  }
+ },
+ {
+  "t": "public.cl_container_types",
+  "sampled": false,
+  "m": {
+   "code": 4
+  }
+ },
+ {
+  "t": "public.cl_warehouses",
+  "sampled": false,
+  "m": {
+   "code": 3
+  }
+ },
+ {
+  "t": "public.client_notify_contacts",
+  "sampled": false,
+  "m": {
+   "role": 10,
+   "consignee_hint": 65,
+   "email": 40
+  }
+ },
+ {
+  "t": "public.client_visits",
+  "sampled": false,
+  "m": {
+   "office": 7,
+   "status": 9
+  }
+ },
+ {
+  "t": "public.clients",
+  "sampled": false,
+  "m": {
+   "ruc": 23,
+   "office": 7
+  }
+ },
+ {
+  "t": "public.cmm_client_aliases",
+  "sampled": false,
+  "m": {
+   "office": 7,
+   "canonical_name": 21,
+   "alias_name": 33
+  }
+ },
+ {
+  "t": "public.cmm_commission_policies",
+  "sampled": false,
+  "m": {
+   "office": 7
+  }
+ },
+ {
+  "t": "public.cmm_context_notes",
+  "sampled": false,
+  "m": {
+   "office": 7
+  }
+ },
+ {
+  "t": "public.cmm_dismissed_actions",
+  "sampled": false,
+  "m": {
+   "action_id": 56,
+   "office": 7
+  }
+ },
+ {
+  "t": "public.cmm_insights",
+  "sampled": false,
+  "m": {
+   "office": null,
+   "period_label": null,
+   "scope_type": null,
+   "scope_id": null
+  }
+ },
+ {
+  "t": "public.cmm_sellers",
+  "sampled": false,
+  "m": {
+   "office": 7,
+   "nombre": 18
+  }
+ },
+ {
+  "t": "public.cmm_targets",
+  "sampled": false,
+  "m": {
+   "office": 7
+  }
+ },
+ {
+  "t": "public.cmm_transactions",
+  "sampled": false,
+  "m": {
+   "office": 7,
+   "cliente": 100
+  }
+ },
+ {
+  "t": "public.cmm_uploads",
+  "sampled": false,
+  "m": {
+   "office": 7
+  }
+ },
+ {
+  "t": "public.commodities",
+  "sampled": false,
+  "m": {
+   "code": 20
+  }
+ },
+ {
+  "t": "public.consignee_aliases",
+  "sampled": false,
+  "m": {
+   "alias_normalized": null
+  }
+ },
+ {
+  "t": "public.consolidado_aereo_prefs",
+  "sampled": false,
+  "m": {
+   "cliente_key": 39
+  }
+ },
+ {
+  "t": "public.consolidado_agente_exclusiones",
+  "sampled": false,
+  "m": {
+   "agente": 50,
+   "destino": 9
+  }
+ },
+ {
+  "t": "public.consolidado_agente_overrides",
+  "sampled": false,
+  "m": {
+   "consignatario": null
+  }
+ },
+ {
+  "t": "public.consolidado_agentes_destino",
+  "sampled": false,
+  "m": {
+   "agente": 50
+  }
+ },
+ {
+  "t": "public.consolidado_agrupacion_memoria",
+  "sampled": false,
+  "m": {
+   "miembro": 31
+  }
+ },
+ {
+  "t": "public.consolidado_avisos",
+  "sampled": false,
+  "m": {
+   "status": 7,
+   "cs_email": 30,
+   "cliente_key": 61
+  }
+ },
+ {
+  "t": "public.consolidado_capacidades",
+  "sampled": false,
+  "m": {
+   "tipo": 5
+  }
+ },
+ {
+  "t": "public.consolidado_email_bitacora",
+  "sampled": false,
+  "m": {
+   "internet_message_id": 212
+  }
+ },
+ {
+  "t": "public.consolidado_fcl_prefs",
+  "sampled": false,
+  "m": {
+   "cliente_key": 39
+  }
+ },
+ {
+  "t": "public.consolidado_linea_piezas",
+  "sampled": false,
+  "m": {
+   "wr_number": 6,
+   "whr_item_id": 2
+  }
+ },
+ {
+  "t": "public.consolidado_lineas",
+  "sampled": false,
+  "m": {
+   "cs_email": 30,
+   "estado": 12,
+   "wr_number": 28
+  }
+ },
+ {
+  "t": "public.consolidado_servicios",
+  "sampled": false,
+  "m": {
+   "codigo": 11
+  }
+ },
+ {
+  "t": "public.consolidados",
+  "sampled": false,
+  "m": {
+   "estado": 7,
+   "servicio": 11,
+   "modo": 8,
+   "booking": 11
+  }
+ },
+ {
+  "t": "public.container_load_reports",
+  "sampled": false,
+  "m": {
+   "clr_number": 17
+  }
+ },
+ {
+  "t": "public.container_types",
+  "sampled": false,
+  "m": {
+   "name": 6
+  }
+ },
+ {
+  "t": "public.coordination_tasks",
+  "sampled": false,
+  "m": {
+   "status": 11
+  }
+ },
+ {
+  "t": "public.credit_notify_finance",
+  "sampled": false,
+  "m": {
+   "email": 29,
+   "office": 7
+  }
+ },
+ {
+  "t": "public.credit_requests",
+  "sampled": false,
+  "m": {
+   "status": 8
+  }
+ },
+ {
+  "t": "public.dashboard_pnl_monthly",
+  "sampled": false,
+  "m": {
+   "business_line": 23
+  }
+ },
+ {
+  "t": "public.deals",
+  "sampled": false,
+  "m": {
+   "office": 7
+  }
+ },
+ {
+  "t": "public.drayage_rates",
+  "sampled": false,
+  "m": {
+   "origin_kind": null,
+   "origin_value": null,
+   "source": null
+  }
+ },
+ {
+  "t": "public.ec_fcl_local_charges",
+  "sampled": false,
+  "m": {
+   "variant": 8,
+   "concept": 10,
+   "origin": 6
+  }
+ },
+ {
+  "t": "public.email_templates",
+  "sampled": false,
+  "m": {
+   "name": 23
+  }
+ },
+ {
+  "t": "public.equipment_types",
+  "sampled": false,
+  "m": {
+   "code": 7
+  }
+ },
+ {
+  "t": "public.fact_orders",
+  "sampled": false,
+  "m": {
+   "kind": 14
+  }
+ },
+ {
+  "t": "public.fcl_semanal",
+  "sampled": false,
+  "m": {
+   "cliente": 10,
+   "office": 3
+  }
+ },
+ {
+  "t": "public.finanzas_access",
+  "sampled": false,
+  "m": {
+   "office_code": 3
+  }
+ },
+ {
+  "t": "public.finanzas_bank_match",
+  "sampled": false,
+  "m": {
+   "office_id": 36,
+   "estado": 8
+  }
+ },
+ {
+  "t": "public.finanzas_config_recurrente",
+  "sampled": false,
+  "m": {
+   "office_id": 36
+  }
+ },
+ {
+  "t": "public.finanzas_deuda_externa",
+  "sampled": false,
+  "m": {
+   "concepto": null,
+   "office_id": null
+  }
+ },
+ {
+  "t": "public.finanzas_eeff_pl",
+  "sampled": false,
+  "m": {
+   "office_id": 36,
+   "periodo": 7
+  }
+ },
+ {
+  "t": "public.finanzas_forecast_recurrente",
+  "sampled": false,
+  "m": {
+   "office_id": 36
+  }
+ },
+ {
+  "t": "public.finanzas_fx_rate",
+  "sampled": false,
+  "m": {
+   "source": 8,
+   "from_currency": 3,
+   "to_currency": 3
+  }
+ },
+ {
+  "t": "public.finanzas_presupuesto",
+  "sampled": false,
+  "m": {
+   "office_id": 36
+  }
+ },
+ {
+  "t": "public.finanzas_rc_por_zarpar",
+  "sampled": false,
+  "m": {
+   "numero": 12,
+   "office_id": 36
+  }
+ },
+ {
+  "t": "public.finanzas_sync_state",
+  "sampled": false,
+  "m": {
+   "scope": 14
+  }
+ },
+ {
+  "t": "public.freight_carrier_aliases",
+  "sampled": false,
+  "m": {
+   "alias": 4
+  }
+ },
+ {
+  "t": "public.freight_port_aliases",
+  "sampled": false,
+  "m": {
+   "alias": 16
+  }
+ },
+ {
+  "t": "public.fx_rates",
+  "sampled": false,
+  "m": {
+   "currency": 3,
+   "instrument": 14,
+   "source": 14
+  }
+ },
+ {
+  "t": "public.gloval_assets",
+  "sampled": false,
+  "m": {
+   "id": 20
+  }
+ },
+ {
+  "t": "public.inland_addons",
+  "sampled": false,
+  "m": {
+   "origin_city": 14,
+   "pol_city": 30
+  }
+ },
+ {
+  "t": "public.inland_carrier_area_rates",
+  "sampled": false,
+  "m": {
+   "area": 1
+  }
+ },
+ {
+  "t": "public.inland_carrier_zips",
+  "sampled": false,
+  "m": {
+   "zip_code": 5
+  }
+ },
+ {
+  "t": "public.job_applicants",
+  "sampled": false,
+  "m": {
+   "status": 10
+  }
+ },
+ {
+  "t": "public.lcl_admin_emails",
+  "sampled": false,
+  "m": {
+   "email": 24
+  }
+ },
+ {
+  "t": "public.lcl_lanes",
+  "sampled": false,
+  "m": {
+   "dest": 25
+  }
+ },
+ {
+  "t": "public.liq_agent_invoices",
+  "sampled": false,
+  "m": {
+   "master_number": 12
+  }
+ },
+ {
+  "t": "public.liq_charge_catalog",
+  "sampled": false,
+  "m": {
+   "code": 16
+  }
+ },
+ {
+  "t": "public.liq_settlement_lines",
+  "sampled": false,
+  "m": {
+   "charge_code": 16
+  }
+ },
+ {
+  "t": "public.liq_settlements",
+  "sampled": false,
+  "m": {
+   "status": 8
+  }
+ },
+ {
+  "t": "public.liq_shipments",
+  "sampled": false,
+  "m": {
+   "status": 14,
+   "magaya_guid": null,
+   "master_number": 12
+  }
+ },
+ {
+  "t": "public.liq_tariffs",
+  "sampled": false,
+  "m": {
+   "charge_code": 16,
+   "mode": 9,
+   "side": 4
+  }
+ },
+ {
+  "t": "public.loading_materials",
+  "sampled": false,
+  "m": {
+   "category": 9,
+   "code": 13
+  }
+ },
+ {
+  "t": "public.loading_tasks",
+  "sampled": false,
+  "m": {
+   "container_type": 4
+  }
+ },
+ {
+  "t": "public.magaya_accounts",
+  "sampled": false,
+  "m": {
+   "currency_code": 3,
+   "account_type": 21,
+   "account_number": 10
+  }
+ },
+ {
+  "t": "public.magaya_balance_override",
+  "sampled": false,
+  "m": {
+   "entity_name_clean": 78
+  }
+ },
+ {
+  "t": "public.magaya_bills",
+  "sampled": false,
+  "m": {
+   "bill_number": 20,
+   "status": 6,
+   "vendor_name": 55
+  }
+ },
+ {
+  "t": "public.magaya_cargo_releases",
+  "sampled": false,
+  "m": {
+   "cr_number": 26
+  }
+ },
+ {
+  "t": "public.magaya_charge_definitions",
+  "sampled": false,
+  "m": {
+   "code": 24
+  }
+ },
+ {
+  "t": "public.magaya_charges_extracted",
+  "sampled": false,
+  "m": {
+   "txn_type": 2,
+   "txn_billing_client": 100,
+   "txn_guid": 36,
+   "account_type": 15,
+   "charge_guid": 36,
+   "entity_name": 100
+  }
+ },
+ {
+  "t": "public.magaya_clients",
+  "sampled": false,
+  "m": {
+   "name": 92,
+   "magaya_id": 36
+  }
+ },
+ {
+  "t": "public.magaya_companies",
+  "sampled": false,
+  "m": {
+   "code": 2
+  }
+ },
+ {
+  "t": "public.magaya_cr_items",
+  "sampled": false,
+  "m": {
+   "cr_number": null
+  }
+ },
+ {
+  "t": "public.magaya_currencies",
+  "sampled": false,
+  "m": {
+   "currency_code": 3
+  }
+ },
+ {
+  "t": "public.magaya_entities",
+  "sampled": false,
+  "m": {
+   "name": 138,
+   "entity_type": 8,
+   "magaya_guid": 36,
+   "name_normalized": 113
+  }
+ },
+ {
+  "t": "public.magaya_entity_balance",
+  "sampled": false,
+  "m": {
+   "kind": 2
+  }
+ },
+ {
+  "t": "public.magaya_event_definitions",
+  "sampled": false,
+  "m": {
+   "event_code": null
+  }
+ },
+ {
+  "t": "public.magaya_inventory",
+  "sampled": false,
+  "m": {
+   "item_code": null
+  }
+ },
+ {
+  "t": "public.magaya_invoices",
+  "sampled": false,
+  "m": {
+   "guid": 36,
+   "invoice_number": 13,
+   "status": 6
+  }
+ },
+ {
+  "t": "public.magaya_journal_entries",
+  "sampled": false,
+  "m": {
+   "id": 36
+  }
+ },
+ {
+  "t": "public.magaya_journal_entry_lines",
+  "sampled": false,
+  "m": {
+   "account_name": 36,
+   "account_type": 21,
+   "id": 12,
+   "journal_entry_id": 36
+  }
+ },
+ {
+  "t": "public.magaya_pickup_orders",
+  "sampled": false,
+  "m": {
+   "pk_number": 6
+  }
+ },
+ {
+  "t": "public.magaya_shipments",
+  "sampled": false,
+  "m": {
+   "shipment_number": 61,
+   "type": 2,
+   "status": 22
+  }
+ },
+ {
+  "t": "public.magaya_status_overrides",
+  "sampled": false,
+  "m": {
+   "txn_type": 2,
+   "status_from_soap": 4,
+   "txn_guid": 36
+  }
+ },
+ {
+  "t": "public.magaya_sync_log",
+  "sampled": false,
+  "m": {
+   "sync_type": 15
+  }
+ },
+ {
+  "t": "public.magaya_sync_state",
+  "sampled": false,
+  "m": {
+   "sync_type": 18
+  }
+ },
+ {
+  "t": "public.magaya_transactions",
+  "sampled": true,
+  "m": {
+   "status": 22,
+   "transaction_number": 126,
+   "transaction_type": 2,
+   "magaya_guid": 36,
+   "billing_client_name": 100,
+   "reference_number": null
+  }
+ },
+ {
+  "t": "public.magaya_usa_shipments",
+  "sampled": false,
+  "m": {
+   "guid": 36,
+   "consignee": 67,
+   "master_bill": 16
+  }
+ },
+ {
+  "t": "public.magaya_vendor_payments",
+  "sampled": false,
+  "m": {
+   "id": 36,
+   "entity_name": 55,
+   "number": 20
+  }
+ },
+ {
+  "t": "public.magaya_warehouse_receipts",
+  "sampled": false,
+  "m": {
+   "consignee": 93,
+   "bonded_entry": 23,
+   "consignee_normalized": 90,
+   "status": 13,
+   "wr_number": 22
+  }
+ },
+ {
+  "t": "public.magaya_wr_attachments",
+  "sampled": false,
+  "m": {
+   "magaya_doc_id": 9
+  }
+ },
+ {
+  "t": "public.magaya_wr_items",
+  "sampled": false,
+  "m": {
+   "status": 9,
+   "wr_number": 6
+  }
+ },
+ {
+  "t": "public.manifest_items",
+  "sampled": false,
+  "m": {
+   "barcode": 20,
+   "shipper_name": 20,
+   "wr_number": 6,
+   "location": 9
+  }
+ },
+ {
+  "t": "public.manifest_sources",
+  "sampled": false,
+  "m": {
+   "container_type": 4,
+   "workflow_status": 19,
+   "magaya_guid": null,
+   "external_number": 21
+  }
+ },
+ {
+  "t": "public.market_indices_daily",
+  "sampled": false,
+  "m": {
+   "indice": 7
+  }
+ },
+ {
+  "t": "public.mi_actor_alias",
+  "sampled": false,
+  "m": {
+   "alias_normalized": 165
+  }
+ },
+ {
+  "t": "public.mi_canonical_actor",
+  "sampled": false,
+  "m": {
+   "canonical_name": 174
+  }
+ },
+ {
+  "t": "public.mi_courier_shipment",
+  "sampled": true,
+  "m": {
+   "ec_company_id_norm": 13,
+   "country_arrival_dep": 24,
+   "doc_transporte_final_norm": 18,
+   "modality": 2,
+   "liberador_raw_norm": 70
+  }
+ },
+ {
+  "t": "public.mi_etl_run",
+  "sampled": false,
+  "m": {
+   "source_file_hash": 64
+  }
+ },
+ {
+  "t": "public.mi_match_review_queue",
+  "sampled": false,
+  "m": {
+   "ec_company_id": 13
+  }
+ },
+ {
+  "t": "public.mi_shipment_intel",
+  "sampled": true,
+  "m": {
+   "port_origin_destination": 60,
+   "ec_company_id_norm": 13,
+   "doc_transporte_final_norm": 23,
+   "country_arrival_dep": 24,
+   "ec_company_name_norm": 110,
+   "ec_vertical": 44,
+   "origin_partner_office": 7,
+   "port_ec": 5
+  }
+ },
+ {
+  "t": "public.nomina_live",
+  "sampled": false,
+  "m": {
+   "je_number": 9,
+   "office": 7,
+   "periodo": 7
+  }
+ },
+ {
+  "t": "public.offices",
+  "sampled": false,
+  "m": {
+   "code": 7,
+   "id": 36
+  }
+ },
+ {
+  "t": "public.ops_capture_mailboxes",
+  "sampled": false,
+  "m": {
+   "email": 30
+  }
+ },
+ {
+  "t": "public.ops_client_notices",
+  "sampled": false,
+  "m": {
+   "notice_type": 14
+  }
+ },
+ {
+  "t": "public.ops_devolucion_vacios",
+  "sampled": false,
+  "m": {
+   "office": 7
+  }
+ },
+ {
+  "t": "public.ops_hbl",
+  "sampled": false,
+  "m": {
+   "hbl_number": 22
+  }
+ },
+ {
+  "t": "public.ops_hbl_sequence",
+  "sampled": false,
+  "m": {
+   "office_code": 3
+  }
+ },
+ {
+  "t": "public.ops_inbound_emails",
+  "sampled": false,
+  "m": {
+   "si_estado": 10,
+   "status": 12,
+   "mailbox": 30,
+   "message_id": 212
+  }
+ },
+ {
+  "t": "public.ops_master",
+  "sampled": false,
+  "m": {
+   "mbl": 14
+  }
+ },
+ {
+  "t": "public.pagos_recurrentes_live",
+  "sampled": false,
+  "m": {
+   "office": 3,
+   "concepto": 40,
+   "periodo": 7
+  }
+ },
+ {
+  "t": "public.payment_commitment",
+  "sampled": false,
+  "m": {
+   "status": null,
+   "external_guid": null
+  }
+ },
+ {
+  "t": "public.pba_authorized_users",
+  "sampled": false,
+  "m": {
+   "email": 24
+  }
+ },
+ {
+  "t": "public.points_of_receipt",
+  "sampled": false,
+  "m": {
+   "name": 20,
+   "source": 11,
+   "country_code": 2,
+   "receipt_type": 4,
+   "catalog_code": 5
+  }
+ },
+ {
+  "t": "public.ports",
+  "sampled": false,
+  "m": {
+   "code": 7
+  }
+ },
+ {
+  "t": "public.ports_master",
+  "sampled": false,
+  "m": {
+   "code": 10,
+   "type": 7
+  }
+ },
+ {
+  "t": "public.pricing_rules",
+  "sampled": false,
+  "m": {
+   "office_id": null
+  }
+ },
+ {
+  "t": "public.prospect_enrichment_ec",
+  "sampled": false,
+  "m": {
+   "ruc": 13
+  }
+ },
+ {
+  "t": "public.quotes",
+  "sampled": false,
+  "m": {
+   "quote_number": 12
+  }
+ },
+ {
+  "t": "public.rates",
+  "sampled": false,
+  "m": {
+   "inland_mode": 10,
+   "office_id": null,
+   "scope": 6
+  }
+ },
+ {
+  "t": "public.reception_hosts",
+  "sampled": false,
+  "m": {
+   "office": null
+  }
+ },
+ {
+  "t": "public.reminders",
+  "sampled": false,
+  "m": {
+   "status": 7
+  }
+ },
+ {
+  "t": "public.rfq_log",
+  "sampled": false,
+  "m": {
+   "office_id": null,
+   "sender_email": null,
+   "status": null
+  }
+ },
+ {
+  "t": "public.role_permissions",
+  "sampled": false,
+  "m": {
+   "page": 31
+  }
+ },
+ {
+  "t": "public.roles",
+  "sampled": false,
+  "m": {
+   "name": 16
+  }
+ },
+ {
+  "t": "public.sales_doc_counters",
+  "sampled": false,
+  "m": {
+   "doc_type": 2
+  }
+ },
+ {
+  "t": "public.sales_live_monthly",
+  "sampled": false,
+  "m": {
+   "office": 7,
+   "ym": 7
+  }
+ },
+ {
+  "t": "public.scheduled_payment",
+  "sampled": false,
+  "m": {
+   "status": 9,
+   "external_guid": 36
+  }
+ },
+ {
+  "t": "public.shipco_destinations",
+  "sampled": false,
+  "m": {
+   "destination_code": 5
+  }
+ },
+ {
+  "t": "public.shipco_rates",
+  "sampled": false,
+  "m": {
+   "destination_code": 5,
+   "charge_code": 4
+  }
+ },
+ {
+  "t": "public.shipco_settings",
+  "sampled": false,
+  "m": {
+   "key": 18
+  }
+ },
+ {
+  "t": "public.shipment_action_items",
+  "sampled": false,
+  "m": {
+   "status": 4
+  }
+ },
+ {
+  "t": "public.shipment_containers",
+  "sampled": false,
+  "m": {
+   "container_number": 16
+  }
+ },
+ {
+  "t": "public.shipment_events",
+  "sampled": false,
+  "m": {
+   "event_type": 121
+  }
+ },
+ {
+  "t": "public.shipments",
+  "sampled": false,
+  "m": {
+   "office": 7,
+   "shipment_code": 19
+  }
+ },
+ {
+  "t": "public.shipping_instructions",
+  "sampled": false,
+  "m": {
+   "status": 9,
+   "si_number": 12
+  }
+ },
+ {
+  "t": "public.shipping_lines",
+  "sampled": false,
+  "m": {
+   "name": 30
+  }
+ },
+ {
+  "t": "public.surcharge_adjustments",
+  "sampled": false,
+  "m": {
+   "charge_code": null
+  }
+ },
+ {
+  "t": "public.tariff_sheets",
+  "sampled": false,
+  "m": {
+   "status": 7,
+   "office_id": null
+  }
+ },
+ {
+  "t": "public.user_permission_overrides",
+  "sampled": false,
+  "m": {
+   "page": 31
+  }
+ },
+ {
+  "t": "public.users",
+  "sampled": false,
+  "m": {
+   "email": 35
+  }
+ },
+ {
+  "t": "public.vendor_flexibility",
+  "sampled": false,
+  "m": {
+   "tier": 9,
+   "counterparty_key": 49
+  }
+ },
+ {
+  "t": "public.vendor_profile",
+  "sampled": false,
+  "m": {
+   "vendor_name": 34
+  }
+ },
+ {
+  "t": "public.ventas_congelado",
+  "sampled": false,
+  "m": {
+   "office": 7,
+   "ym": 7
+  }
+ },
+ {
+  "t": "public.visitor_badges",
+  "sampled": false,
+  "m": {
+   "office": 3,
+   "label": 10,
+   "status": 9
+  }
+ },
+ {
+  "t": "public.visitors",
+  "sampled": false,
+  "m": {
+   "document_number": null
+  }
+ },
+ {
+  "t": "public.visits",
+  "sampled": false,
+  "m": {
+   "status": 11
+  }
+ },
+ {
+  "t": "public.warehouse_cogs_monthly",
+  "sampled": false,
+  "m": {
+   "category": 24
+  }
+ },
+ {
+  "t": "public.warehouse_containers",
+  "sampled": false,
+  "m": {
+   "week": 5,
+   "office": 3
+  }
+ },
+ {
+  "t": "public.warehouse_users",
+  "sampled": false,
+  "m": {
+   "employee_code": 7
+  }
+ },
+ {
+  "t": "public.wh_carga_no_identificada",
+  "sampled": false,
+  "m": {
+   "wr_number": 6,
+   "estado": 15
+  }
+ },
+ {
+  "t": "public.wh_client_pallets",
+  "sampled": false,
+  "m": {
+   "client_group": null
+  }
+ },
+ {
+  "t": "public.wh_container_types",
+  "sampled": false,
+  "m": {
+   "match_pattern": 8
+  }
+ },
+ {
+  "t": "public.wh_containers",
+  "sampled": false,
+  "m": {
+   "loader": 28,
+   "status": 26
+  }
+ },
+ {
+  "t": "public.wh_country_map",
+  "sampled": false,
+  "m": {
+   "match_field": 17,
+   "match_pattern": 18
+  }
+ },
+ {
+  "t": "public.wh_doc_7512",
+  "sampled": false,
+  "m": {
+   "wr_number": null
+  }
+ },
+ {
+  "t": "public.wh_internal_people",
+  "sampled": false,
+  "m": {
+   "name_pattern": 15
+  }
+ },
+ {
+  "t": "public.wh_loading_rates",
+  "sampled": false,
+  "m": {
+   "container_type": 5,
+   "client_group": 3
+  }
+ },
+ {
+  "t": "public.wh_notices",
+  "sampled": false,
+  "m": {
+   "wr_number": 6,
+   "status": 7
+  }
+ },
+ {
+  "t": "public.wh_report_product_mappings",
+  "sampled": false,
+  "m": {
+   "magaya_pattern": 19
+  }
+ },
+ {
+  "t": "public.wh_report_sync_log",
+  "sampled": false,
+  "m": {
+   "status": 8
+  }
+ },
+ {
+  "t": "public.wh_stations",
+  "sampled": false,
+  "m": {
+   "person_pattern": 14
+  }
+ },
+ {
+  "t": "public.wh_storage_terms",
+  "sampled": false,
+  "m": {
+   "patron": 14
+  }
+ },
+ {
+  "t": "public.wh_unloading_rates",
+  "sampled": false,
+  "m": {
+   "client_group": 12,
+   "container_type": 5
+  }
+ },
+ {
+  "t": "public.wh_warehouse_costs",
+  "sampled": false,
+  "m": {
+   "warehouse": 6,
+   "cost_type": 9
+  }
+ },
+ {
+  "t": "public.wh_whr_backfill_universo",
+  "sampled": false,
+  "m": {
+   "wr_number": 6
+  }
+ },
+ {
+  "t": "public.wr_att_backfill_queue",
+  "sampled": false,
+  "m": {
+   "status": 7,
+   "wr_number": 6
+  }
+ },
+ {
+  "t": "public.wr_match_results",
+  "sampled": false,
+  "m": {
+   "office": 7
+  }
+ },
+ {
+  "t": "public.wr_saldo_queue",
+  "sampled": false,
+  "m": {
+   "wr_number": 28
+  }
+ },
+ {
+  "t": "timeclock.employees",
+  "sampled": false,
+  "m": {
+   "site_id": 3,
+   "badge": 10
+  }
+ },
+ {
+  "t": "timeclock.punches",
+  "sampled": false,
+  "m": {
+   "ts": 19
+  }
+ },
+ {
+  "t": "timeclock.sites",
+  "sampled": false,
+  "m": {
+   "id": 3
+  }
+ }
+]

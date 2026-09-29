@@ -1,0 +1,16 @@
+{
+ "_nota": "count(*) exacto de las 79 tablas que las estadísticas daban en 0. Solo se listan las que tienen filas; las demás tienen 0.",
+ "public.liq_charge_catalog": 40, "public.cl_alerts": 38, "public.points_of_receipt": 31, "public.wh_country_map": 26,
+ "private.iva_backfill_audit": 22, "public.loading_materials": 21, "public.manifest_sources": 20, "public.liq_tariffs": 19,
+ "public.ops_capture_mailboxes": 15, "public.wh_import_clients": 15, "public.cl_audit_log": 11, "public.staging_check_tasks": 11,
+ "public.cmm_targets": 9, "public.liq_agent_invoice_lines": 9, "public.wh_container_types": 9, "public.christmas_pallet_presets": 8,
+ "public.cmm_context_notes": 8, "public.inland_carrier_area_rates": 8, "public.wh_stations": 7, "public._q": 6,
+ "public.cmm_dismissed_actions": 6, "public.loading_tasks": 6, "public.cmm_chat_messages": 5, "public.lcl_lanes": 5,
+ "public.wh_warehouse_costs": 5, "public.cl_container_types": 4, "public.liq_agent_invoices": 4, "public.loading_task_materials": 4,
+ "public.wh_loading_rates": 4, "public.consolidado_capacidades": 3, "public.job_applicants": 3, "public.loading_exceptions": 3,
+ "public.pba_authorized_users": 3, "public.unplanned_additions": 3, "public.wh_internal_people": 3, "public.container_load_reports": 2,
+ "public.fact_orders": 2, "public.lcl_surcharges": 2, "public.ops_client_notices": 2, "public.picking_exceptions": 2,
+ "public.christmas_global_settings": 1, "public.christmas_tenants": 1, "public.cl_warehouses": 1, "public.inland_carrier_rates": 1,
+ "public.inland_carriers": 1, "public.lcl_admin_emails": 1, "public.lcl_settings": 1, "public.ops_hbl_sequence": 1,
+ "public.staging_exceptions": 1, "public.warehouse_users": 1
+}

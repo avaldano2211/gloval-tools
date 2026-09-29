@@ -44,3 +44,6 @@ next-env.d.ts
 .env
 .env.*
 !.env.example
+
+# dependencias de migration/
+/migration/node_modules
