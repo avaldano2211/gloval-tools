@@ -1,0 +1,3746 @@
+[
+ {
+  "schema": "archive",
+  "tbl": "magaya_charges",
+  "name": "idx_charges_company_id",
+  "def": "CREATE INDEX idx_charges_company_id ON archive.magaya_charges USING btree (company_id)"
+ },
+ {
+  "schema": "archive",
+  "tbl": "magaya_charges",
+  "name": "idx_magaya_charges_code",
+  "def": "CREATE INDEX idx_magaya_charges_code ON archive.magaya_charges USING btree (charge_code)"
+ },
+ {
+  "schema": "archive",
+  "tbl": "magaya_charges",
+  "name": "idx_magaya_charges_entity",
+  "def": "CREATE INDEX idx_magaya_charges_entity ON archive.magaya_charges USING btree (entity_name)"
+ },
+ {
+  "schema": "archive",
+  "tbl": "magaya_charges",
+  "name": "idx_magaya_charges_shipment",
+  "def": "CREATE INDEX idx_magaya_charges_shipment ON archive.magaya_charges USING btree (shipment_number)"
+ },
+ {
+  "schema": "archive",
+  "tbl": "magaya_charges",
+  "name": "ux_magaya_charges_charge_guid",
+  "def": "CREATE UNIQUE INDEX ux_magaya_charges_charge_guid ON archive.magaya_charges USING btree (charge_guid)"
+ },
+ {
+  "schema": "private",
+  "tbl": "_audit_billing_ec_2026q1",
+  "name": "_audit_billing_ec_2026q1_client_name_norm_idx",
+  "def": "CREATE INDEX _audit_billing_ec_2026q1_client_name_norm_idx ON private._audit_billing_ec_2026q1 USING btree (client_name_norm)"
+ },
+ {
+  "schema": "private",
+  "tbl": "_audit_clients_ec",
+  "name": "_audit_clients_ec_norm_idx",
+  "def": "CREATE INDEX _audit_clients_ec_norm_idx ON private._audit_clients_ec USING btree (norm)"
+ },
+ {
+  "schema": "private",
+  "tbl": "_audit_clients_ec",
+  "name": "_audit_clients_ec_norm_no_parens_idx",
+  "def": "CREATE INDEX _audit_clients_ec_norm_no_parens_idx ON private._audit_clients_ec USING btree (norm_no_parens)"
+ },
+ {
+  "schema": "private",
+  "tbl": "_audit_clients_ec_ruc",
+  "name": "_audit_clients_ec_ruc_ruc_clean_idx",
+  "def": "CREATE INDEX _audit_clients_ec_ruc_ruc_clean_idx ON private._audit_clients_ec_ruc USING btree (ruc_clean) WHERE (ruc_clean <> ''::text)"
+ },
+ {
+  "schema": "public",
+  "tbl": "activities",
+  "name": "idx_activities_client_id",
+  "def": "CREATE INDEX idx_activities_client_id ON public.activities USING btree (client_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "activities",
+  "name": "idx_activities_route_id",
+  "def": "CREATE INDEX idx_activities_route_id ON public.activities USING btree (route_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "activities",
+  "name": "idx_activities_user_id",
+  "def": "CREATE INDEX idx_activities_user_id ON public.activities USING btree (user_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "activity_logs",
+  "name": "idx_activity_logs_time_entry_id",
+  "def": "CREATE INDEX idx_activity_logs_time_entry_id ON public.activity_logs USING btree (time_entry_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "activity_logs",
+  "name": "idx_activity_logs_user_id",
+  "def": "CREATE INDEX idx_activity_logs_user_id ON public.activity_logs USING btree (user_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "agent_files",
+  "name": "idx_agent_files_agent_id",
+  "def": "CREATE INDEX idx_agent_files_agent_id ON public.agent_files USING btree (agent_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "agent_office_mapping",
+  "name": "agent_office_active_idx",
+  "def": "CREATE INDEX agent_office_active_idx ON public.agent_office_mapping USING btree (active)"
+ },
+ {
+  "schema": "public",
+  "tbl": "agent_office_mapping",
+  "name": "idx_agent_office_mapping_created_by",
+  "def": "CREATE INDEX idx_agent_office_mapping_created_by ON public.agent_office_mapping USING btree (created_by)"
+ },
+ {
+  "schema": "public",
+  "tbl": "agents",
+  "name": "idx_agents_company_name",
+  "def": "CREATE INDEX idx_agents_company_name ON public.agents USING btree (company_name)"
+ },
+ {
+  "schema": "public",
+  "tbl": "agents",
+  "name": "idx_agents_created_by",
+  "def": "CREATE INDEX idx_agents_created_by ON public.agents USING btree (created_by)"
+ },
+ {
+  "schema": "public",
+  "tbl": "air_rates",
+  "name": "air_rates_activa_unica",
+  "def": "CREATE UNIQUE INDEX air_rates_activa_unica ON public.air_rates USING btree (air_carrier_id, agent_id, origin_code, destination_code, cargo_type, service_level) NULLS NOT DISTINCT WHERE active"
+ },
+ {
+  "schema": "public",
+  "tbl": "air_rates",
+  "name": "idx_air_rates_agent_id",
+  "def": "CREATE INDEX idx_air_rates_agent_id ON public.air_rates USING btree (agent_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "air_rates",
+  "name": "idx_air_rates_air_carrier_id",
+  "def": "CREATE INDEX idx_air_rates_air_carrier_id ON public.air_rates USING btree (air_carrier_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "air_rates",
+  "name": "idx_air_rates_scope",
+  "def": "CREATE INDEX idx_air_rates_scope ON public.air_rates USING btree (scope, active, expiry_date)"
+ },
+ {
+  "schema": "public",
+  "tbl": "ar_ap_sync_queue",
+  "name": "ar_ap_sync_queue_dispatch_idx",
+  "def": "CREATE INDEX ar_ap_sync_queue_dispatch_idx ON public.ar_ap_sync_queue USING btree (scope, status, last_run_at)"
+ },
+ {
+  "schema": "public",
+  "tbl": "arap_live_open",
+  "name": "arap_live_open_idx",
+  "def": "CREATE INDEX arap_live_open_idx ON public.arap_live_open USING btree (office, tipo)"
+ },
+ {
+  "schema": "public",
+  "tbl": "audit_log",
+  "name": "idx_audit_log_date",
+  "def": "CREATE INDEX idx_audit_log_date ON public.audit_log USING btree (created_at)"
+ },
+ {
+  "schema": "public",
+  "tbl": "audit_log",
+  "name": "idx_audit_log_user",
+  "def": "CREATE INDEX idx_audit_log_user ON public.audit_log USING btree (user_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "bank_account",
+  "name": "idx_bank_account_tenant_office",
+  "def": "CREATE INDEX idx_bank_account_tenant_office ON public.bank_account USING btree (tenant_id, office_id) WHERE (active = true)"
+ },
+ {
+  "schema": "public",
+  "tbl": "bank_transaction",
+  "name": "bank_transaction_subcategory_idx",
+  "def": "CREATE INDEX bank_transaction_subcategory_idx ON public.bank_transaction USING btree (tenant_id, subcategory)"
+ },
+ {
+  "schema": "public",
+  "tbl": "bank_transaction",
+  "name": "idx_bank_transaction_account_date_amount",
+  "def": "CREATE INDEX idx_bank_transaction_account_date_amount ON public.bank_transaction USING btree (bank_account_id, transaction_date, round((amount)::numeric, 2))"
+ },
+ {
+  "schema": "public",
+  "tbl": "bank_transaction",
+  "name": "idx_bank_txn_account_date",
+  "def": "CREATE INDEX idx_bank_txn_account_date ON public.bank_transaction USING btree (bank_account_id, transaction_date DESC)"
+ },
+ {
+  "schema": "public",
+  "tbl": "bank_transaction",
+  "name": "idx_bank_txn_status",
+  "def": "CREATE INDEX idx_bank_txn_status ON public.bank_transaction USING btree (tenant_id, status)"
+ },
+ {
+  "schema": "public",
+  "tbl": "bank_transaction",
+  "name": "idx_bank_txn_unreconciled",
+  "def": "CREATE INDEX idx_bank_txn_unreconciled ON public.bank_transaction USING btree (tenant_id, transaction_date DESC) WHERE (status = ANY (ARRAY['imported'::text, 'matched'::text]))"
+ },
+ {
+  "schema": "public",
+  "tbl": "birthday_emails_sent",
+  "name": "idx_birthday_emails_sent_at",
+  "def": "CREATE INDEX idx_birthday_emails_sent_at ON public.birthday_emails_sent USING btree (sent_at DESC)"
+ },
+ {
+  "schema": "public",
+  "tbl": "birthday_emails_sent",
+  "name": "idx_birthday_emails_sent_contact_id",
+  "def": "CREATE INDEX idx_birthday_emails_sent_contact_id ON public.birthday_emails_sent USING btree (contact_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "bodega_tenants",
+  "name": "bodega_tenants_uq",
+  "def": "CREATE UNIQUE INDEX bodega_tenants_uq ON public.bodega_tenants USING btree (upper(nombre), campo)"
+ },
+ {
+  "schema": "public",
+  "tbl": "carrier_advisories",
+  "name": "carrier_advisories_pendientes",
+  "def": "CREATE INDEX carrier_advisories_pendientes ON public.carrier_advisories USING btree (carrier_code, published_on DESC) WHERE (notified_at IS NULL)"
+ },
+ {
+  "schema": "public",
+  "tbl": "carrier_email_log",
+  "name": "carrier_email_carrier_idx",
+  "def": "CREATE INDEX carrier_email_carrier_idx ON public.carrier_email_log USING btree (carrier_detected)"
+ },
+ {
+  "schema": "public",
+  "tbl": "carrier_email_log",
+  "name": "carrier_email_shipment_idx",
+  "def": "CREATE INDEX carrier_email_shipment_idx ON public.carrier_email_log USING btree (matched_shipment_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "carrier_email_log",
+  "name": "carrier_email_status_idx",
+  "def": "CREATE INDEX carrier_email_status_idx ON public.carrier_email_log USING btree (parse_status)"
+ },
+ {
+  "schema": "public",
+  "tbl": "carrier_transit_times",
+  "name": "idx_carrier_transit_times_route_id",
+  "def": "CREATE INDEX idx_carrier_transit_times_route_id ON public.carrier_transit_times USING btree (route_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "carrier_transit_times",
+  "name": "idx_carrier_transit_times_transshipment_port_id",
+  "def": "CREATE INDEX idx_carrier_transit_times_transshipment_port_id ON public.carrier_transit_times USING btree (transshipment_port_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "carrier_transit_times",
+  "name": "idx_carrier_transit_times_verified_by",
+  "def": "CREATE INDEX idx_carrier_transit_times_verified_by ON public.carrier_transit_times USING btree (verified_by)"
+ },
+ {
+  "schema": "public",
+  "tbl": "cash_movement",
+  "name": "cash_movement_counterparty_idx",
+  "def": "CREATE INDEX cash_movement_counterparty_idx ON public.cash_movement USING btree (tenant_id, counterparty_name)"
+ },
+ {
+  "schema": "public",
+  "tbl": "cash_movement",
+  "name": "idx_cash_movement_forecast",
+  "def": "CREATE INDEX idx_cash_movement_forecast ON public.cash_movement USING btree (tenant_id, expected_date) WHERE (status = ANY (ARRAY['forecast'::text, 'committed'::text, 'scheduled'::text, 'overdue'::text]))"
+ },
+ {
+  "schema": "public",
+  "tbl": "cash_movement",
+  "name": "idx_cash_movement_match",
+  "def": "CREATE INDEX idx_cash_movement_match ON public.cash_movement USING btree (office_id, direction, status, round((amount_in_usd)::numeric, 2))"
+ },
+ {
+  "schema": "public",
+  "tbl": "cash_movement",
+  "name": "idx_cash_movement_office",
+  "def": "CREATE INDEX idx_cash_movement_office ON public.cash_movement USING btree (office_id, expected_date DESC)"
+ },
+ {
+  "schema": "public",
+  "tbl": "cash_movement",
+  "name": "idx_cash_movement_party",
+  "def": "CREATE INDEX idx_cash_movement_party ON public.cash_movement USING btree (party_id) WHERE (party_id IS NOT NULL)"
+ },
+ {
+  "schema": "public",
+  "tbl": "christmas_audit_log",
+  "name": "christmas_audit_log_actor_idx",
+  "def": "CREATE INDEX christmas_audit_log_actor_idx ON public.christmas_audit_log USING btree (actor_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "christmas_audit_log",
+  "name": "christmas_audit_log_occurred_idx",
+  "def": "CREATE INDEX christmas_audit_log_occurred_idx ON public.christmas_audit_log USING btree (occurred_at DESC)"
+ },
+ {
+  "schema": "public",
+  "tbl": "christmas_audit_log",
+  "name": "christmas_audit_log_table_idx",
+  "def": "CREATE INDEX christmas_audit_log_table_idx ON public.christmas_audit_log USING btree (table_name, occurred_at DESC)"
+ },
+ {
+  "schema": "public",
+  "tbl": "christmas_bookings",
+  "name": "bookings_tenant_status_idx",
+  "def": "CREATE INDEX bookings_tenant_status_idx ON public.christmas_bookings USING btree (tenant_id, status, created_at DESC)"
+ },
+ {
+  "schema": "public",
+  "tbl": "christmas_products",
+  "name": "products_active_idx",
+  "def": "CREATE INDEX products_active_idx ON public.christmas_products USING btree (tenant_id, active)"
+ },
+ {
+  "schema": "public",
+  "tbl": "christmas_products",
+  "name": "products_tenant_handle_uidx",
+  "def": "CREATE UNIQUE INDEX products_tenant_handle_uidx ON public.christmas_products USING btree (tenant_id, handle) WHERE (handle IS NOT NULL)"
+ },
+ {
+  "schema": "public",
+  "tbl": "christmas_products",
+  "name": "products_tenant_popular_idx",
+  "def": "CREATE INDEX products_tenant_popular_idx ON public.christmas_products USING btree (tenant_id, is_popular, display_order) WHERE (is_popular = true)"
+ },
+ {
+  "schema": "public",
+  "tbl": "christmas_user_profiles",
+  "name": "christmas_user_profiles_username_uniq",
+  "def": "CREATE UNIQUE INDEX christmas_user_profiles_username_uniq ON public.christmas_user_profiles USING btree (lower(username)) WHERE (username IS NOT NULL)"
+ },
+ {
+  "schema": "public",
+  "tbl": "christmas_user_profiles",
+  "name": "user_profiles_tenant_idx",
+  "def": "CREATE INDEX user_profiles_tenant_idx ON public.christmas_user_profiles USING btree (tenant_id, active)"
+ },
+ {
+  "schema": "public",
+  "tbl": "cl_alerts",
+  "name": "idx_cl_alerts_due",
+  "def": "CREATE INDEX idx_cl_alerts_due ON public.cl_alerts USING btree (due_at) WHERE ((status = 'unread'::cl_alert_status) AND (due_at IS NOT NULL))"
+ },
+ {
+  "schema": "public",
+  "tbl": "cl_alerts",
+  "name": "idx_cl_alerts_recipient",
+  "def": "CREATE INDEX idx_cl_alerts_recipient ON public.cl_alerts USING btree (recipient_user_id, created_at DESC) WHERE (status = 'unread'::cl_alert_status)"
+ },
+ {
+  "schema": "public",
+  "tbl": "cl_alerts",
+  "name": "idx_cl_alerts_warehouse_unread",
+  "def": "CREATE INDEX idx_cl_alerts_warehouse_unread ON public.cl_alerts USING btree (warehouse_id, created_at DESC) WHERE (status = 'unread'::cl_alert_status)"
+ },
+ {
+  "schema": "public",
+  "tbl": "cl_audit_log",
+  "name": "idx_cl_audit_actor",
+  "def": "CREATE INDEX idx_cl_audit_actor ON public.cl_audit_log USING btree (performed_by, performed_at DESC)"
+ },
+ {
+  "schema": "public",
+  "tbl": "cl_audit_log",
+  "name": "idx_cl_audit_target",
+  "def": "CREATE INDEX idx_cl_audit_target ON public.cl_audit_log USING btree (target_table, target_id, performed_at DESC)"
+ },
+ {
+  "schema": "public",
+  "tbl": "cl_scan_events",
+  "name": "idx_scan_events_errors",
+  "def": "CREATE INDEX idx_scan_events_errors ON public.cl_scan_events USING btree (result) WHERE (result <> 'ok'::scan_result)"
+ },
+ {
+  "schema": "public",
+  "tbl": "cl_scan_events",
+  "name": "idx_scan_events_loading",
+  "def": "CREATE INDEX idx_scan_events_loading ON public.cl_scan_events USING btree (loading_task_id, scanned_at DESC)"
+ },
+ {
+  "schema": "public",
+  "tbl": "cl_scan_events",
+  "name": "idx_scan_events_picking",
+  "def": "CREATE INDEX idx_scan_events_picking ON public.cl_scan_events USING btree (picking_task_id, scanned_at DESC)"
+ },
+ {
+  "schema": "public",
+  "tbl": "cl_scan_events",
+  "name": "idx_scan_events_staging",
+  "def": "CREATE INDEX idx_scan_events_staging ON public.cl_scan_events USING btree (staging_task_id, scanned_at DESC)"
+ },
+ {
+  "schema": "public",
+  "tbl": "cl_scan_events",
+  "name": "idx_scan_events_user",
+  "def": "CREATE INDEX idx_scan_events_user ON public.cl_scan_events USING btree (scanned_by, scanned_at DESC)"
+ },
+ {
+  "schema": "public",
+  "tbl": "client_notify_contacts",
+  "name": "client_notify_contacts_uniq",
+  "def": "CREATE UNIQUE INDEX client_notify_contacts_uniq ON public.client_notify_contacts USING btree (COALESCE((client_id)::text, ''::text), COALESCE(consignee_hint, ''::text), lower(email), role)"
+ },
+ {
+  "schema": "public",
+  "tbl": "client_visits",
+  "name": "idx_client_visits_client",
+  "def": "CREATE INDEX idx_client_visits_client ON public.client_visits USING btree (client_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "client_visits",
+  "name": "idx_client_visits_exec",
+  "def": "CREATE INDEX idx_client_visits_exec ON public.client_visits USING btree (executive_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "client_visits",
+  "name": "idx_client_visits_office",
+  "def": "CREATE INDEX idx_client_visits_office ON public.client_visits USING btree (office)"
+ },
+ {
+  "schema": "public",
+  "tbl": "client_visits",
+  "name": "idx_client_visits_sched",
+  "def": "CREATE INDEX idx_client_visits_sched ON public.client_visits USING btree (scheduled_at)"
+ },
+ {
+  "schema": "public",
+  "tbl": "client_visits",
+  "name": "idx_client_visits_status",
+  "def": "CREATE INDEX idx_client_visits_status ON public.client_visits USING btree (status)"
+ },
+ {
+  "schema": "public",
+  "tbl": "clients",
+  "name": "clients_company_name_norm_trgm_idx",
+  "def": "CREATE INDEX clients_company_name_norm_trgm_idx ON public.clients USING gin (company_name_normalized gin_trgm_ops)"
+ },
+ {
+  "schema": "public",
+  "tbl": "clients",
+  "name": "clients_customer_service_id_idx",
+  "def": "CREATE INDEX clients_customer_service_id_idx ON public.clients USING btree (customer_service_id) WHERE (customer_service_id IS NOT NULL)"
+ },
+ {
+  "schema": "public",
+  "tbl": "clients",
+  "name": "clients_deleted_at_idx",
+  "def": "CREATE INDEX clients_deleted_at_idx ON public.clients USING btree (deleted_at) WHERE (deleted_at IS NOT NULL)"
+ },
+ {
+  "schema": "public",
+  "tbl": "clients",
+  "name": "clients_ruc_idx",
+  "def": "CREATE INDEX clients_ruc_idx ON public.clients USING btree (regexp_replace(COALESCE(ruc, ''::text), '\\D'::text, ''::text, 'g'::text)) WHERE (ruc IS NOT NULL)"
+ },
+ {
+  "schema": "public",
+  "tbl": "clients",
+  "name": "clients_ruc_unique",
+  "def": "CREATE UNIQUE INDEX clients_ruc_unique ON public.clients USING btree (ruc) WHERE ((ruc IS NOT NULL) AND (ruc <> ''::text) AND (deleted_at IS NULL))"
+ },
+ {
+  "schema": "public",
+  "tbl": "clients",
+  "name": "idx_clients_account_manager_id",
+  "def": "CREATE INDEX idx_clients_account_manager_id ON public.clients USING btree (account_manager_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "clients",
+  "name": "idx_clients_assigned_to",
+  "def": "CREATE INDEX idx_clients_assigned_to ON public.clients USING btree (assigned_to)"
+ },
+ {
+  "schema": "public",
+  "tbl": "clients",
+  "name": "idx_clients_created_by",
+  "def": "CREATE INDEX idx_clients_created_by ON public.clients USING btree (created_by)"
+ },
+ {
+  "schema": "public",
+  "tbl": "clients",
+  "name": "idx_clients_is_direct",
+  "def": "CREATE INDEX idx_clients_is_direct ON public.clients USING btree (is_direct) WHERE (is_direct = true)"
+ },
+ {
+  "schema": "public",
+  "tbl": "clients",
+  "name": "idx_clients_office",
+  "def": "CREATE INDEX idx_clients_office ON public.clients USING btree (office)"
+ },
+ {
+  "schema": "public",
+  "tbl": "clients",
+  "name": "idx_clients_parent_ff_id",
+  "def": "CREATE INDEX idx_clients_parent_ff_id ON public.clients USING btree (parent_ff_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "closings",
+  "name": "idx_closings_client_id",
+  "def": "CREATE INDEX idx_closings_client_id ON public.closings USING btree (client_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "closings",
+  "name": "idx_closings_closing_date",
+  "def": "CREATE INDEX idx_closings_closing_date ON public.closings USING btree (closing_date)"
+ },
+ {
+  "schema": "public",
+  "tbl": "closings",
+  "name": "idx_closings_executive_id",
+  "def": "CREATE INDEX idx_closings_executive_id ON public.closings USING btree (executive_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "closings",
+  "name": "idx_closings_year_week",
+  "def": "CREATE INDEX idx_closings_year_week ON public.closings USING btree (year, week)"
+ },
+ {
+  "schema": "public",
+  "tbl": "cmm_chat_messages",
+  "name": "cmm_chat_conv_idx",
+  "def": "CREATE INDEX cmm_chat_conv_idx ON public.cmm_chat_messages USING btree (conversation_id, created_at)"
+ },
+ {
+  "schema": "public",
+  "tbl": "cmm_client_aliases",
+  "name": "cmm_client_aliases_unique",
+  "def": "CREATE UNIQUE INDEX cmm_client_aliases_unique ON public.cmm_client_aliases USING btree (office, lower(canonical_name), lower(alias_name))"
+ },
+ {
+  "schema": "public",
+  "tbl": "cmm_commission_policies",
+  "name": "cmm_policy_active_unique",
+  "def": "CREATE UNIQUE INDEX cmm_policy_active_unique ON public.cmm_commission_policies USING btree (office) WHERE (active = true)"
+ },
+ {
+  "schema": "public",
+  "tbl": "cmm_context_notes",
+  "name": "cmm_context_notes_office_idx",
+  "def": "CREATE INDEX cmm_context_notes_office_idx ON public.cmm_context_notes USING btree (office, active)"
+ },
+ {
+  "schema": "public",
+  "tbl": "cmm_dismissed_actions",
+  "name": "cmm_dismissed_actions_uk",
+  "def": "CREATE UNIQUE INDEX cmm_dismissed_actions_uk ON public.cmm_dismissed_actions USING btree (office, seller_id, action_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "cmm_insights",
+  "name": "cmm_insights_scope_uk",
+  "def": "CREATE UNIQUE INDEX cmm_insights_scope_uk ON public.cmm_insights USING btree (scope_type, COALESCE(scope_id, ''::text), office, period_label)"
+ },
+ {
+  "schema": "public",
+  "tbl": "cmm_pending",
+  "name": "cmm_pending_seller_idx",
+  "def": "CREATE INDEX cmm_pending_seller_idx ON public.cmm_pending USING btree (seller_id, period_year, period_month)"
+ },
+ {
+  "schema": "public",
+  "tbl": "cmm_sellers",
+  "name": "cmm_sellers_nombre_office_uk",
+  "def": "CREATE UNIQUE INDEX cmm_sellers_nombre_office_uk ON public.cmm_sellers USING btree (lower(nombre), office)"
+ },
+ {
+  "schema": "public",
+  "tbl": "cmm_targets",
+  "name": "cmm_targets_unique",
+  "def": "CREATE UNIQUE INDEX cmm_targets_unique ON public.cmm_targets USING btree (seller_id, office, period_year, period_month)"
+ },
+ {
+  "schema": "public",
+  "tbl": "cmm_transactions",
+  "name": "cmm_txn_cliente_idx",
+  "def": "CREATE INDEX cmm_txn_cliente_idx ON public.cmm_transactions USING btree (cliente)"
+ },
+ {
+  "schema": "public",
+  "tbl": "cmm_transactions",
+  "name": "cmm_txn_office_period_idx",
+  "def": "CREATE INDEX cmm_txn_office_period_idx ON public.cmm_transactions USING btree (office, period_year, period_month)"
+ },
+ {
+  "schema": "public",
+  "tbl": "cmm_transactions",
+  "name": "cmm_txn_seller_period_idx",
+  "def": "CREATE INDEX cmm_txn_seller_period_idx ON public.cmm_transactions USING btree (seller_id, period_year, period_month)"
+ },
+ {
+  "schema": "public",
+  "tbl": "cmm_uploads",
+  "name": "cmm_uploads_period_idx",
+  "def": "CREATE INDEX cmm_uploads_period_idx ON public.cmm_uploads USING btree (office, period_year, period_month)"
+ },
+ {
+  "schema": "public",
+  "tbl": "consignee_aliases",
+  "name": "aliases_norm_idx",
+  "def": "CREATE INDEX aliases_norm_idx ON public.consignee_aliases USING btree (alias_normalized)"
+ },
+ {
+  "schema": "public",
+  "tbl": "consignee_aliases",
+  "name": "idx_consignee_aliases_client_id",
+  "def": "CREATE INDEX idx_consignee_aliases_client_id ON public.consignee_aliases USING btree (client_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "consignee_aliases",
+  "name": "idx_consignee_aliases_created_by",
+  "def": "CREATE INDEX idx_consignee_aliases_created_by ON public.consignee_aliases USING btree (created_by)"
+ },
+ {
+  "schema": "public",
+  "tbl": "consolidado_agente_exclusiones",
+  "name": "consolidado_agente_excl_semana_uq",
+  "def": "CREATE UNIQUE INDEX consolidado_agente_excl_semana_uq ON public.consolidado_agente_exclusiones USING btree (upper(agente), upper(destino), consolidado_id) WHERE (consolidado_id IS NOT NULL)"
+ },
+ {
+  "schema": "public",
+  "tbl": "consolidado_agente_exclusiones",
+  "name": "consolidado_agente_excl_siempre_uq",
+  "def": "CREATE UNIQUE INDEX consolidado_agente_excl_siempre_uq ON public.consolidado_agente_exclusiones USING btree (upper(agente), upper(destino)) WHERE (consolidado_id IS NULL)"
+ },
+ {
+  "schema": "public",
+  "tbl": "consolidado_avisos",
+  "name": "idx_consolidado_avisos_cs",
+  "def": "CREATE INDEX idx_consolidado_avisos_cs ON public.consolidado_avisos USING btree (consolidado_id, cs_email, status)"
+ },
+ {
+  "schema": "public",
+  "tbl": "consolidado_linea_hazmat",
+  "name": "idx_clh_consolidado",
+  "def": "CREATE INDEX idx_clh_consolidado ON public.consolidado_linea_hazmat USING btree (consolidado_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "consolidado_linea_hazmat",
+  "name": "idx_clh_linea",
+  "def": "CREATE INDEX idx_clh_linea ON public.consolidado_linea_hazmat USING btree (linea_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "consolidado_linea_movimientos",
+  "name": "consolidado_linea_mov_cons_idx",
+  "def": "CREATE INDEX consolidado_linea_mov_cons_idx ON public.consolidado_linea_movimientos USING btree (consolidado_id, created_at DESC)"
+ },
+ {
+  "schema": "public",
+  "tbl": "consolidado_linea_movimientos",
+  "name": "consolidado_linea_mov_linea_idx",
+  "def": "CREATE INDEX consolidado_linea_mov_linea_idx ON public.consolidado_linea_movimientos USING btree (linea_id, created_at DESC)"
+ },
+ {
+  "schema": "public",
+  "tbl": "consolidado_linea_piezas",
+  "name": "consolidado_linea_piezas_linea_idx",
+  "def": "CREATE INDEX consolidado_linea_piezas_linea_idx ON public.consolidado_linea_piezas USING btree (linea_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "consolidado_linea_piezas",
+  "name": "consolidado_linea_piezas_uq",
+  "def": "CREATE UNIQUE INDEX consolidado_linea_piezas_uq ON public.consolidado_linea_piezas USING btree (linea_id, wr_item_id) WHERE (wr_item_id IS NOT NULL)"
+ },
+ {
+  "schema": "public",
+  "tbl": "consolidado_linea_piezas",
+  "name": "consolidado_linea_piezas_wr_idx",
+  "def": "CREATE INDEX consolidado_linea_piezas_wr_idx ON public.consolidado_linea_piezas USING btree (wr_number, whr_item_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "consolidado_lineas",
+  "name": "consolidado_lineas_cons_idx",
+  "def": "CREATE INDEX consolidado_lineas_cons_idx ON public.consolidado_lineas USING btree (consolidado_id, estado)"
+ },
+ {
+  "schema": "public",
+  "tbl": "consolidado_lineas",
+  "name": "consolidado_lineas_cs_idx",
+  "def": "CREATE INDEX consolidado_lineas_cs_idx ON public.consolidado_lineas USING btree (cs_email, estado)"
+ },
+ {
+  "schema": "public",
+  "tbl": "consolidado_lineas",
+  "name": "consolidado_lineas_shipment_idx",
+  "def": "CREATE INDEX consolidado_lineas_shipment_idx ON public.consolidado_lineas USING btree (shipment_id) WHERE (shipment_id IS NOT NULL)"
+ },
+ {
+  "schema": "public",
+  "tbl": "consolidado_lineas",
+  "name": "consolidado_lineas_shipper_trgm",
+  "def": "CREATE INDEX consolidado_lineas_shipper_trgm ON public.consolidado_lineas USING gin (lower(shipper) gin_trgm_ops)"
+ },
+ {
+  "schema": "public",
+  "tbl": "consolidado_lineas",
+  "name": "consolidado_lineas_wr_cont_uq",
+  "def": "CREATE UNIQUE INDEX consolidado_lineas_wr_cont_uq ON public.consolidado_lineas USING btree (consolidado_id, wr_number, contenedor_id) WHERE (contenedor_id IS NOT NULL)"
+ },
+ {
+  "schema": "public",
+  "tbl": "consolidado_lineas",
+  "name": "consolidado_lineas_wr_sin_cont_uq",
+  "def": "CREATE UNIQUE INDEX consolidado_lineas_wr_sin_cont_uq ON public.consolidado_lineas USING btree (consolidado_id, wr_number) WHERE (contenedor_id IS NULL)"
+ },
+ {
+  "schema": "public",
+  "tbl": "consolidados",
+  "name": "consolidados_estado_idx",
+  "def": "CREATE INDEX consolidados_estado_idx ON public.consolidados USING btree (estado, etd DESC)"
+ },
+ {
+  "schema": "public",
+  "tbl": "consolidados",
+  "name": "consolidados_semana_uq",
+  "def": "CREATE UNIQUE INDEX consolidados_semana_uq ON public.consolidados USING btree (modo, anio, semana, COALESCE(booking, ''::text))"
+ },
+ {
+  "schema": "public",
+  "tbl": "contacts",
+  "name": "idx_contacts_client_id",
+  "def": "CREATE INDEX idx_contacts_client_id ON public.contacts USING btree (client_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "container_files",
+  "name": "idx_container_files_container_id",
+  "def": "CREATE INDEX idx_container_files_container_id ON public.container_files USING btree (container_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "container_files",
+  "name": "idx_container_files_uploaded_by",
+  "def": "CREATE INDEX idx_container_files_uploaded_by ON public.container_files USING btree (uploaded_by)"
+ },
+ {
+  "schema": "public",
+  "tbl": "container_load_reports",
+  "name": "idx_clr_source",
+  "def": "CREATE INDEX idx_clr_source ON public.container_load_reports USING btree (manifest_source_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "contract_documents",
+  "name": "idx_contract_docs_contract",
+  "def": "CREATE INDEX idx_contract_docs_contract ON public.contract_documents USING btree (contract_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "contract_documents",
+  "name": "idx_contract_documents_uploaded_by",
+  "def": "CREATE INDEX idx_contract_documents_uploaded_by ON public.contract_documents USING btree (uploaded_by)"
+ },
+ {
+  "schema": "public",
+  "tbl": "contract_update_lines",
+  "name": "idx_contract_update_lines_update_id",
+  "def": "CREATE INDEX idx_contract_update_lines_update_id ON public.contract_update_lines USING btree (update_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "contract_updates",
+  "name": "idx_contract_updates_carrier_id",
+  "def": "CREATE INDEX idx_contract_updates_carrier_id ON public.contract_updates USING btree (carrier_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "contract_updates",
+  "name": "idx_contract_updates_contract_id",
+  "def": "CREATE INDEX idx_contract_updates_contract_id ON public.contract_updates USING btree (contract_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "contract_updates",
+  "name": "idx_contract_updates_uploaded_by",
+  "def": "CREATE INDEX idx_contract_updates_uploaded_by ON public.contract_updates USING btree (uploaded_by)"
+ },
+ {
+  "schema": "public",
+  "tbl": "contracts",
+  "name": "idx_contracts_agent_id",
+  "def": "CREATE INDEX idx_contracts_agent_id ON public.contracts USING btree (agent_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "contracts",
+  "name": "idx_contracts_carrier",
+  "def": "CREATE INDEX idx_contracts_carrier ON public.contracts USING btree (carrier_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "contracts",
+  "name": "idx_contracts_parent_contract_id",
+  "def": "CREATE INDEX idx_contracts_parent_contract_id ON public.contracts USING btree (parent_contract_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "coordination_tasks",
+  "name": "coordination_tasks_cs_idx",
+  "def": "CREATE INDEX coordination_tasks_cs_idx ON public.coordination_tasks USING btree (cs_assigned_to)"
+ },
+ {
+  "schema": "public",
+  "tbl": "coordination_tasks",
+  "name": "coordination_tasks_scheduled_idx",
+  "def": "CREATE INDEX coordination_tasks_scheduled_idx ON public.coordination_tasks USING btree (scheduled_date) WHERE (status = ANY (ARRAY['OPEN'::text, 'IN_PROGRESS'::text]))"
+ },
+ {
+  "schema": "public",
+  "tbl": "coordination_tasks",
+  "name": "coordination_tasks_search_idx",
+  "def": "CREATE INDEX coordination_tasks_search_idx ON public.coordination_tasks USING gin (to_tsvector('simple'::regconfig, ((((((((((COALESCE(description, ''::text) || ' '::text) || COALESCE(reference_code, ''::text)) || ' '::text) || COALESCE(po_reference, ''::text)) || ' '::text) || COALESCE(pickup_number, ''::text)) || ' '::text) || COALESCE(order_number, ''::text)) || ' '::text) || COALESCE(supplier_name, ''::text))))"
+ },
+ {
+  "schema": "public",
+  "tbl": "coordination_tasks",
+  "name": "coordination_tasks_shipment_idx",
+  "def": "CREATE INDEX coordination_tasks_shipment_idx ON public.coordination_tasks USING btree (shipment_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "coordination_tasks",
+  "name": "coordination_tasks_status_idx",
+  "def": "CREATE INDEX coordination_tasks_status_idx ON public.coordination_tasks USING btree (status) WHERE (archived_at IS NULL)"
+ },
+ {
+  "schema": "public",
+  "tbl": "credit_documents",
+  "name": "idx_credit_documents_credit_request_id",
+  "def": "CREATE INDEX idx_credit_documents_credit_request_id ON public.credit_documents USING btree (credit_request_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "credit_documents",
+  "name": "idx_credit_documents_uploaded_by",
+  "def": "CREATE INDEX idx_credit_documents_uploaded_by ON public.credit_documents USING btree (uploaded_by)"
+ },
+ {
+  "schema": "public",
+  "tbl": "credit_notify_log",
+  "name": "credit_notify_log_request_idx",
+  "def": "CREATE INDEX credit_notify_log_request_idx ON public.credit_notify_log USING btree (credit_request_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "credit_requests",
+  "name": "idx_credit_requests_client_id",
+  "def": "CREATE INDEX idx_credit_requests_client_id ON public.credit_requests USING btree (client_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "credit_requests",
+  "name": "idx_credit_requests_requested_by",
+  "def": "CREATE INDEX idx_credit_requests_requested_by ON public.credit_requests USING btree (requested_by)"
+ },
+ {
+  "schema": "public",
+  "tbl": "credit_requests",
+  "name": "idx_credit_requests_reviewed_by",
+  "def": "CREATE INDEX idx_credit_requests_reviewed_by ON public.credit_requests USING btree (reviewed_by)"
+ },
+ {
+  "schema": "public",
+  "tbl": "credit_requests",
+  "name": "idx_credit_requests_status",
+  "def": "CREATE INDEX idx_credit_requests_status ON public.credit_requests USING btree (status)"
+ },
+ {
+  "schema": "public",
+  "tbl": "cs_assignments",
+  "name": "cs_assign_cs_idx",
+  "def": "CREATE INDEX cs_assign_cs_idx ON public.cs_assignments USING btree (cs_user_id) WHERE active"
+ },
+ {
+  "schema": "public",
+  "tbl": "cs_assignments",
+  "name": "cs_assign_exec_idx",
+  "def": "CREATE INDEX cs_assign_exec_idx ON public.cs_assignments USING btree (sales_executive_id) WHERE active"
+ },
+ {
+  "schema": "public",
+  "tbl": "cs_assignments",
+  "name": "idx_cs_assignments_created_by",
+  "def": "CREATE INDEX idx_cs_assignments_created_by ON public.cs_assignments USING btree (created_by)"
+ },
+ {
+  "schema": "public",
+  "tbl": "deal_quotes",
+  "name": "idx_deal_quotes_deal_id",
+  "def": "CREATE INDEX idx_deal_quotes_deal_id ON public.deal_quotes USING btree (deal_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "deals",
+  "name": "idx_deals_created_at",
+  "def": "CREATE INDEX idx_deals_created_at ON public.deals USING btree (created_at)"
+ },
+ {
+  "schema": "public",
+  "tbl": "deals",
+  "name": "idx_deals_office",
+  "def": "CREATE INDEX idx_deals_office ON public.deals USING btree (office)"
+ },
+ {
+  "schema": "public",
+  "tbl": "dispatches",
+  "name": "idx_dispatches_created_by",
+  "def": "CREATE INDEX idx_dispatches_created_by ON public.dispatches USING btree (created_by)"
+ },
+ {
+  "schema": "public",
+  "tbl": "dispatches",
+  "name": "idx_dispatches_owner_id",
+  "def": "CREATE INDEX idx_dispatches_owner_id ON public.dispatches USING btree (owner_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "drayage_rates",
+  "name": "idx_dray_dest",
+  "def": "CREATE INDEX idx_dray_dest ON public.drayage_rates USING btree (destination_por_id) WHERE active"
+ },
+ {
+  "schema": "public",
+  "tbl": "drayage_rates",
+  "name": "idx_dray_origin",
+  "def": "CREATE INDEX idx_dray_origin ON public.drayage_rates USING btree (origin_kind, origin_value) WHERE active"
+ },
+ {
+  "schema": "public",
+  "tbl": "ec_fcl_local_charges",
+  "name": "ec_fcl_charges_carrier_concept_variant_origin_key",
+  "def": "CREATE UNIQUE INDEX ec_fcl_charges_carrier_concept_variant_origin_key ON public.ec_fcl_local_charges USING btree (carrier_id, concept, variant, COALESCE(origin, ''::text))"
+ },
+ {
+  "schema": "public",
+  "tbl": "ec_fcl_local_charges_history",
+  "name": "ec_fcl_local_charges_history_charge_idx",
+  "def": "CREATE INDEX ec_fcl_local_charges_history_charge_idx ON public.ec_fcl_local_charges_history USING btree (carrier_id, changed_at DESC)"
+ },
+ {
+  "schema": "public",
+  "tbl": "external_containers",
+  "name": "idx_external_containers_created_by",
+  "def": "CREATE INDEX idx_external_containers_created_by ON public.external_containers USING btree (created_by)"
+ },
+ {
+  "schema": "public",
+  "tbl": "external_containers",
+  "name": "idx_external_containers_owner_id",
+  "def": "CREATE INDEX idx_external_containers_owner_id ON public.external_containers USING btree (owner_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "fact_orders",
+  "name": "fact_orders_ship_idx",
+  "def": "CREATE INDEX fact_orders_ship_idx ON public.fact_orders USING btree (shipment_id, kind)"
+ },
+ {
+  "schema": "public",
+  "tbl": "fcl_semanal",
+  "name": "fcl_semanal_cliente_idx",
+  "def": "CREATE INDEX fcl_semanal_cliente_idx ON public.fcl_semanal USING btree (cliente)"
+ },
+ {
+  "schema": "public",
+  "tbl": "fcl_semanal",
+  "name": "fcl_semanal_semana_idx",
+  "def": "CREATE INDEX fcl_semanal_semana_idx ON public.fcl_semanal USING btree (anio, semana, office)"
+ },
+ {
+  "schema": "public",
+  "tbl": "finanzas_bank_match",
+  "name": "idx_fbm_office_estado",
+  "def": "CREATE INDEX idx_fbm_office_estado ON public.finanzas_bank_match USING btree (office_id, estado)"
+ },
+ {
+  "schema": "public",
+  "tbl": "finanzas_fx_rate",
+  "name": "idx_finanzas_fx_rate_lookup",
+  "def": "CREATE INDEX idx_finanzas_fx_rate_lookup ON public.finanzas_fx_rate USING btree (tenant_id, from_currency, to_currency, rate_date DESC)"
+ },
+ {
+  "schema": "public",
+  "tbl": "freight_routes",
+  "name": "idx_freight_routes_dest",
+  "def": "CREATE INDEX idx_freight_routes_dest ON public.freight_routes USING btree (destination_port_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "freight_routes",
+  "name": "idx_freight_routes_origin",
+  "def": "CREATE INDEX idx_freight_routes_origin ON public.freight_routes USING btree (origin_port_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "freight_routes",
+  "name": "idx_freight_routes_transit_verified_by",
+  "def": "CREATE INDEX idx_freight_routes_transit_verified_by ON public.freight_routes USING btree (transit_verified_by)"
+ },
+ {
+  "schema": "public",
+  "tbl": "freight_routes",
+  "name": "idx_freight_routes_transshipment_port_id",
+  "def": "CREATE INDEX idx_freight_routes_transshipment_port_id ON public.freight_routes USING btree (transshipment_port_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "fx_rates",
+  "name": "fx_rates_lookup_idx",
+  "def": "CREATE INDEX fx_rates_lookup_idx ON public.fx_rates USING btree (currency, quoted_on DESC)"
+ },
+ {
+  "schema": "public",
+  "tbl": "impersonation_log",
+  "name": "impersonation_log_active_idx",
+  "def": "CREATE INDEX impersonation_log_active_idx ON public.impersonation_log USING btree (id) WHERE (ended_at IS NULL)"
+ },
+ {
+  "schema": "public",
+  "tbl": "impersonation_log",
+  "name": "impersonation_log_admin_idx",
+  "def": "CREATE INDEX impersonation_log_admin_idx ON public.impersonation_log USING btree (admin_user_id, started_at DESC)"
+ },
+ {
+  "schema": "public",
+  "tbl": "impersonation_log",
+  "name": "impersonation_log_target_idx",
+  "def": "CREATE INDEX impersonation_log_target_idx ON public.impersonation_log USING btree (target_user_id, started_at DESC)"
+ },
+ {
+  "schema": "public",
+  "tbl": "inhouse_despachos",
+  "name": "inhouse_despachos_client_idx",
+  "def": "CREATE INDEX inhouse_despachos_client_idx ON public.inhouse_despachos USING btree (client_id, created_at DESC)"
+ },
+ {
+  "schema": "public",
+  "tbl": "inhouse_documentos",
+  "name": "inhouse_documentos_despacho_idx",
+  "def": "CREATE INDEX inhouse_documentos_despacho_idx ON public.inhouse_documentos USING btree (despacho_id, created_at DESC)"
+ },
+ {
+  "schema": "public",
+  "tbl": "inland_addons",
+  "name": "inland_addons_origin_idx",
+  "def": "CREATE INDEX inland_addons_origin_idx ON public.inland_addons USING btree (origin_city) WHERE active"
+ },
+ {
+  "schema": "public",
+  "tbl": "inland_addons",
+  "name": "inland_addons_pol_idx",
+  "def": "CREATE INDEX inland_addons_pol_idx ON public.inland_addons USING btree (pol_city) WHERE active"
+ },
+ {
+  "schema": "public",
+  "tbl": "inland_carrier_rates",
+  "name": "inland_carrier_rates_active_idx",
+  "def": "CREATE INDEX inland_carrier_rates_active_idx ON public.inland_carrier_rates USING btree (carrier_id, active, effective_from DESC)"
+ },
+ {
+  "schema": "public",
+  "tbl": "inland_carrier_zips",
+  "name": "inland_carrier_zips_zip_idx",
+  "def": "CREATE INDEX inland_carrier_zips_zip_idx ON public.inland_carrier_zips USING btree (zip_code)"
+ },
+ {
+  "schema": "public",
+  "tbl": "inland_quotes",
+  "name": "inland_quotes_created_idx",
+  "def": "CREATE INDEX inland_quotes_created_idx ON public.inland_quotes USING btree (created_at DESC)"
+ },
+ {
+  "schema": "public",
+  "tbl": "inland_quotes",
+  "name": "inland_quotes_user_idx",
+  "def": "CREATE INDEX inland_quotes_user_idx ON public.inland_quotes USING btree (created_by, created_at DESC)"
+ },
+ {
+  "schema": "public",
+  "tbl": "job_applicants",
+  "name": "idx_job_applicants_created",
+  "def": "CREATE INDEX idx_job_applicants_created ON public.job_applicants USING btree (created_at DESC)"
+ },
+ {
+  "schema": "public",
+  "tbl": "job_applicants",
+  "name": "idx_job_applicants_status",
+  "def": "CREATE INDEX idx_job_applicants_status ON public.job_applicants USING btree (status)"
+ },
+ {
+  "schema": "public",
+  "tbl": "job_applicants",
+  "name": "idx_job_applicants_token",
+  "def": "CREATE INDEX idx_job_applicants_token ON public.job_applicants USING btree (access_token)"
+ },
+ {
+  "schema": "public",
+  "tbl": "liq_agent_invoice_lines",
+  "name": "idx_liq_agent_inv_lines",
+  "def": "CREATE INDEX idx_liq_agent_inv_lines ON public.liq_agent_invoice_lines USING btree (invoice_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "liq_agent_invoices",
+  "name": "idx_liq_agent_inv_master",
+  "def": "CREATE INDEX idx_liq_agent_inv_master ON public.liq_agent_invoices USING btree (master_number)"
+ },
+ {
+  "schema": "public",
+  "tbl": "liq_settlement_lines",
+  "name": "idx_liq_lines_settlement",
+  "def": "CREATE INDEX idx_liq_lines_settlement ON public.liq_settlement_lines USING btree (settlement_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "liq_settlements",
+  "name": "idx_liq_settlements_status",
+  "def": "CREATE INDEX idx_liq_settlements_status ON public.liq_settlements USING btree (status)"
+ },
+ {
+  "schema": "public",
+  "tbl": "liq_settlements",
+  "name": "idx_liq_settlements_week",
+  "def": "CREATE INDEX idx_liq_settlements_week ON public.liq_settlements USING btree (week_of)"
+ },
+ {
+  "schema": "public",
+  "tbl": "liq_shipments",
+  "name": "idx_liq_shipments_master",
+  "def": "CREATE INDEX idx_liq_shipments_master ON public.liq_shipments USING btree (master_number)"
+ },
+ {
+  "schema": "public",
+  "tbl": "liq_shipments",
+  "name": "idx_liq_shipments_status",
+  "def": "CREATE INDEX idx_liq_shipments_status ON public.liq_shipments USING btree (status)"
+ },
+ {
+  "schema": "public",
+  "tbl": "liq_shipments",
+  "name": "idx_liq_shipments_week",
+  "def": "CREATE INDEX idx_liq_shipments_week ON public.liq_shipments USING btree (week_of)"
+ },
+ {
+  "schema": "public",
+  "tbl": "liq_tariffs",
+  "name": "idx_liq_tariffs_lookup",
+  "def": "CREATE INDEX idx_liq_tariffs_lookup ON public.liq_tariffs USING btree (charge_code, mode, side, valid_from)"
+ },
+ {
+  "schema": "public",
+  "tbl": "loading_exceptions",
+  "name": "idx_loading_exc_task",
+  "def": "CREATE INDEX idx_loading_exc_task ON public.loading_exceptions USING btree (loading_task_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "loading_materials",
+  "name": "idx_loading_materials_active",
+  "def": "CREATE INDEX idx_loading_materials_active ON public.loading_materials USING btree (warehouse_id, category, sort_order) WHERE (active = true)"
+ },
+ {
+  "schema": "public",
+  "tbl": "loading_task_materials",
+  "name": "idx_loading_task_materials_task",
+  "def": "CREATE INDEX idx_loading_task_materials_task ON public.loading_task_materials USING btree (loading_task_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "loading_tasks",
+  "name": "idx_loading_tasks_assigned",
+  "def": "CREATE INDEX idx_loading_tasks_assigned ON public.loading_tasks USING btree (assigned_to)"
+ },
+ {
+  "schema": "public",
+  "tbl": "loading_tasks",
+  "name": "idx_loading_tasks_status",
+  "def": "CREATE INDEX idx_loading_tasks_status ON public.loading_tasks USING btree (status)"
+ },
+ {
+  "schema": "public",
+  "tbl": "login_history",
+  "name": "idx_login_history_date",
+  "def": "CREATE INDEX idx_login_history_date ON public.login_history USING btree (login_at)"
+ },
+ {
+  "schema": "public",
+  "tbl": "login_history",
+  "name": "idx_login_history_is_active",
+  "def": "CREATE INDEX idx_login_history_is_active ON public.login_history USING btree (is_active) WHERE (is_active = true)"
+ },
+ {
+  "schema": "public",
+  "tbl": "login_history",
+  "name": "idx_login_history_user",
+  "def": "CREATE INDEX idx_login_history_user ON public.login_history USING btree (user_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_accounts",
+  "name": "idx_magaya_accounts_company",
+  "def": "CREATE INDEX idx_magaya_accounts_company ON public.magaya_accounts USING btree (company_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_accounts",
+  "name": "idx_magaya_accounts_number",
+  "def": "CREATE INDEX idx_magaya_accounts_number ON public.magaya_accounts USING btree (account_number)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_accounts",
+  "name": "idx_magaya_accounts_type",
+  "def": "CREATE INDEX idx_magaya_accounts_type ON public.magaya_accounts USING btree (company_id, account_type)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_bills",
+  "name": "idx_bills_company_id",
+  "def": "CREATE INDEX idx_bills_company_id ON public.magaya_bills USING btree (company_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_bills",
+  "name": "idx_magaya_bills_issue_date",
+  "def": "CREATE INDEX idx_magaya_bills_issue_date ON public.magaya_bills USING btree (issue_date)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_bills",
+  "name": "idx_magaya_bills_status",
+  "def": "CREATE INDEX idx_magaya_bills_status ON public.magaya_bills USING btree (status)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_bills",
+  "name": "idx_magaya_bills_vendor",
+  "def": "CREATE INDEX idx_magaya_bills_vendor ON public.magaya_bills USING btree (vendor_name)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_cargo_releases",
+  "name": "idx_cargo_releases_company_id",
+  "def": "CREATE INDEX idx_cargo_releases_company_id ON public.magaya_cargo_releases USING btree (company_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_charge_definitions",
+  "name": "idx_magaya_charges_company",
+  "def": "CREATE INDEX idx_magaya_charges_company ON public.magaya_charge_definitions USING btree (company_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_charges_extracted",
+  "name": "idx_ce_account_type",
+  "def": "CREATE INDEX idx_ce_account_type ON public.magaya_charges_extracted USING btree (account_type)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_charges_extracted",
+  "name": "idx_ce_billing_client",
+  "def": "CREATE INDEX idx_ce_billing_client ON public.magaya_charges_extracted USING btree (txn_billing_client)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_charges_extracted",
+  "name": "idx_ce_entity_name",
+  "def": "CREATE INDEX idx_ce_entity_name ON public.magaya_charges_extracted USING btree (entity_name)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_charges_extracted",
+  "name": "idx_ce_office_date",
+  "def": "CREATE INDEX idx_ce_office_date ON public.magaya_charges_extracted USING btree (office_id, txn_date)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_charges_extracted",
+  "name": "idx_ce_txn_type",
+  "def": "CREATE INDEX idx_ce_txn_type ON public.magaya_charges_extracted USING btree (txn_type)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_clients",
+  "name": "idx_clients_company_id",
+  "def": "CREATE INDEX idx_clients_company_id ON public.magaya_clients USING btree (company_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_clients",
+  "name": "idx_magaya_clients_name",
+  "def": "CREATE INDEX idx_magaya_clients_name ON public.magaya_clients USING btree (name)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_clients",
+  "name": "idx_magaya_clients_synced_at",
+  "def": "CREATE INDEX idx_magaya_clients_synced_at ON public.magaya_clients USING btree (synced_at DESC)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_cr_items",
+  "name": "idx_cr_items_company_id",
+  "def": "CREATE INDEX idx_cr_items_company_id ON public.magaya_cr_items USING btree (company_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_cr_items",
+  "name": "idx_magaya_cr_items_cr_id",
+  "def": "CREATE INDEX idx_magaya_cr_items_cr_id ON public.magaya_cr_items USING btree (cr_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_cr_items",
+  "name": "idx_magaya_cr_items_cr_number",
+  "def": "CREATE INDEX idx_magaya_cr_items_cr_number ON public.magaya_cr_items USING btree (cr_number)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_entities",
+  "name": "idx_magaya_entities_company",
+  "def": "CREATE INDEX idx_magaya_entities_company ON public.magaya_entities USING btree (company_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_entities",
+  "name": "idx_magaya_entities_name",
+  "def": "CREATE INDEX idx_magaya_entities_name ON public.magaya_entities USING btree (company_id, name)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_entities",
+  "name": "idx_magaya_entities_type",
+  "def": "CREATE INDEX idx_magaya_entities_type ON public.magaya_entities USING btree (company_id, entity_type)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_entities",
+  "name": "magaya_entities_name_norm_idx",
+  "def": "CREATE INDEX magaya_entities_name_norm_idx ON public.magaya_entities USING btree (name_normalized) WHERE (tax_id IS NOT NULL)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_entities",
+  "name": "magaya_entities_name_trgm_idx",
+  "def": "CREATE INDEX magaya_entities_name_trgm_idx ON public.magaya_entities USING gin (normalize_company_name(name) gin_trgm_ops)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_entities",
+  "name": "magaya_entities_tax_id_idx",
+  "def": "CREATE INDEX magaya_entities_tax_id_idx ON public.magaya_entities USING btree (regexp_replace(COALESCE(tax_id, ''::text), '\\D'::text, ''::text, 'g'::text)) WHERE (tax_id IS NOT NULL)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_entity_balance",
+  "name": "idx_meb_office_kind",
+  "def": "CREATE INDEX idx_meb_office_kind ON public.magaya_entity_balance USING btree (tenant_id, office_id, kind)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_inventory",
+  "name": "idx_inventory_company_id",
+  "def": "CREATE INDEX idx_inventory_company_id ON public.magaya_inventory USING btree (company_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_inventory",
+  "name": "idx_magaya_inventory_synced_at",
+  "def": "CREATE INDEX idx_magaya_inventory_synced_at ON public.magaya_inventory USING btree (synced_at DESC)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_invoices",
+  "name": "idx_invoices_company_id",
+  "def": "CREATE INDEX idx_invoices_company_id ON public.magaya_invoices USING btree (company_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_invoices",
+  "name": "idx_magaya_invoices_status",
+  "def": "CREATE INDEX idx_magaya_invoices_status ON public.magaya_invoices USING btree (status)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_invoices",
+  "name": "idx_magaya_invoices_synced_at",
+  "def": "CREATE INDEX idx_magaya_invoices_synced_at ON public.magaya_invoices USING btree (synced_at DESC)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_journal_entries",
+  "name": "idx_je_created_on",
+  "def": "CREATE INDEX idx_je_created_on ON public.magaya_journal_entries USING btree (created_on)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_journal_entries",
+  "name": "idx_journal_entries_company_id",
+  "def": "CREATE INDEX idx_journal_entries_company_id ON public.magaya_journal_entries USING btree (company_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_journal_entry_lines",
+  "name": "idx_jel_account_name",
+  "def": "CREATE INDEX idx_jel_account_name ON public.magaya_journal_entry_lines USING btree (account_name)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_journal_entry_lines",
+  "name": "idx_jel_account_type",
+  "def": "CREATE INDEX idx_jel_account_type ON public.magaya_journal_entry_lines USING btree (account_type)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_journal_entry_lines",
+  "name": "idx_jel_je_id",
+  "def": "CREATE INDEX idx_jel_je_id ON public.magaya_journal_entry_lines USING btree (journal_entry_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_journal_entry_lines",
+  "name": "idx_journal_entry_lines_company_id",
+  "def": "CREATE INDEX idx_journal_entry_lines_company_id ON public.magaya_journal_entry_lines USING btree (company_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_payment_application",
+  "name": "idx_mpa_date",
+  "def": "CREATE INDEX idx_mpa_date ON public.magaya_payment_application USING btree (company_id, payment_date DESC)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_payment_application",
+  "name": "idx_mpa_item",
+  "def": "CREATE INDEX idx_mpa_item ON public.magaya_payment_application USING btree (company_id, item_paid_guid)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_pickup_orders",
+  "name": "idx_pickup_orders_company_id",
+  "def": "CREATE INDEX idx_pickup_orders_company_id ON public.magaya_pickup_orders USING btree (company_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_shipments",
+  "name": "idx_magaya_shipments_revenue",
+  "def": "CREATE INDEX idx_magaya_shipments_revenue ON public.magaya_shipments USING btree (total_revenue) WHERE (total_revenue > (0)::numeric)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_shipments",
+  "name": "idx_magaya_shipments_status",
+  "def": "CREATE INDEX idx_magaya_shipments_status ON public.magaya_shipments USING btree (status)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_shipments",
+  "name": "idx_magaya_shipments_synced_at",
+  "def": "CREATE INDEX idx_magaya_shipments_synced_at ON public.magaya_shipments USING btree (synced_at DESC)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_shipments",
+  "name": "idx_magaya_shipments_type_revenue",
+  "def": "CREATE INDEX idx_magaya_shipments_type_revenue ON public.magaya_shipments USING btree (type, total_revenue)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_shipments",
+  "name": "idx_shipments_company_id",
+  "def": "CREATE INDEX idx_shipments_company_id ON public.magaya_shipments USING btree (company_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_status_overrides",
+  "name": "idx_overrides_type_status",
+  "def": "CREATE INDEX idx_overrides_type_status ON public.magaya_status_overrides USING btree (txn_type, status_from_soap)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_sync_log",
+  "name": "idx_magaya_sync_company",
+  "def": "CREATE INDEX idx_magaya_sync_company ON public.magaya_sync_log USING btree (company_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_sync_log",
+  "name": "idx_magaya_sync_type",
+  "def": "CREATE INDEX idx_magaya_sync_type ON public.magaya_sync_log USING btree (company_id, sync_type)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_sync_log",
+  "name": "idx_magaya_synclog_company_started",
+  "def": "CREATE INDEX idx_magaya_synclog_company_started ON public.magaya_sync_log USING btree (company_id, started_at DESC)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_sync_state",
+  "name": "idx_sync_state_company_id",
+  "def": "CREATE INDEX idx_sync_state_company_id ON public.magaya_sync_state USING btree (company_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_transaction_charges",
+  "name": "idx_magaya_tx_charges_company",
+  "def": "CREATE INDEX idx_magaya_tx_charges_company ON public.magaya_transaction_charges USING btree (company_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_transaction_charges",
+  "name": "idx_magaya_tx_charges_trans",
+  "def": "CREATE INDEX idx_magaya_tx_charges_trans ON public.magaya_transaction_charges USING btree (transaction_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_transactions",
+  "name": "idx_magaya_trans_billing",
+  "def": "CREATE INDEX idx_magaya_trans_billing ON public.magaya_transactions USING btree (company_id, billing_client_name)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_transactions",
+  "name": "idx_magaya_trans_company",
+  "def": "CREATE INDEX idx_magaya_trans_company ON public.magaya_transactions USING btree (company_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_transactions",
+  "name": "idx_magaya_trans_date",
+  "def": "CREATE INDEX idx_magaya_trans_date ON public.magaya_transactions USING btree (company_id, created_on)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_transactions",
+  "name": "idx_magaya_trans_number",
+  "def": "CREATE INDEX idx_magaya_trans_number ON public.magaya_transactions USING btree (company_id, transaction_number)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_transactions",
+  "name": "idx_magaya_trans_ref",
+  "def": "CREATE INDEX idx_magaya_trans_ref ON public.magaya_transactions USING btree (company_id, reference_number)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_transactions",
+  "name": "idx_magaya_trans_status",
+  "def": "CREATE INDEX idx_magaya_trans_status ON public.magaya_transactions USING btree (company_id, status)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_transactions",
+  "name": "idx_magaya_trans_type",
+  "def": "CREATE INDEX idx_magaya_trans_type ON public.magaya_transactions USING btree (company_id, transaction_type)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_transactions",
+  "name": "idx_magaya_tx_company_synced",
+  "def": "CREATE INDEX idx_magaya_tx_company_synced ON public.magaya_transactions USING btree (company_id, synced_at DESC)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_transactions",
+  "name": "idx_magaya_tx_is_credit",
+  "def": "CREATE INDEX idx_magaya_tx_is_credit ON public.magaya_transactions USING btree (company_id, transaction_type, is_credit)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_transactions",
+  "name": "idx_magaya_tx_status_type",
+  "def": "CREATE INDEX idx_magaya_tx_status_type ON public.magaya_transactions USING btree (company_id, transaction_type, status)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_transactions",
+  "name": "idx_magaya_tx_total_amount_usd",
+  "def": "CREATE INDEX idx_magaya_tx_total_amount_usd ON public.magaya_transactions USING btree (total_amount_usd) WHERE (total_amount_usd IS NOT NULL)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_usa_shipments",
+  "name": "idx_musa_consignee",
+  "def": "CREATE INDEX idx_musa_consignee ON public.magaya_usa_shipments USING btree (consignee)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_usa_shipments",
+  "name": "idx_musa_etd",
+  "def": "CREATE INDEX idx_musa_etd ON public.magaya_usa_shipments USING btree (etd DESC)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_usa_shipments",
+  "name": "idx_musa_master",
+  "def": "CREATE INDEX idx_musa_master ON public.magaya_usa_shipments USING btree (master_bill)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_usa_shipments",
+  "name": "magaya_usa_shipments_manual_master_idx",
+  "def": "CREATE INDEX magaya_usa_shipments_manual_master_idx ON public.magaya_usa_shipments USING btree (manual_master_id) WHERE (manual_master_id IS NOT NULL)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_vendor_payments",
+  "name": "idx_vendor_payments_company_id",
+  "def": "CREATE INDEX idx_vendor_payments_company_id ON public.magaya_vendor_payments USING btree (company_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_vendor_payments",
+  "name": "idx_vendor_payments_date",
+  "def": "CREATE INDEX idx_vendor_payments_date ON public.magaya_vendor_payments USING btree (payment_date)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_vendor_payments",
+  "name": "idx_vendor_payments_entity",
+  "def": "CREATE INDEX idx_vendor_payments_entity ON public.magaya_vendor_payments USING btree (entity_name)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_vendor_payments",
+  "name": "idx_vendor_payments_number",
+  "def": "CREATE INDEX idx_vendor_payments_number ON public.magaya_vendor_payments USING btree (number)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_warehouse_receipts",
+  "name": "idx_mwr_bonded_entry",
+  "def": "CREATE INDEX idx_mwr_bonded_entry ON public.magaya_warehouse_receipts USING btree (bonded_entry) WHERE ((bonded_entry IS NOT NULL) AND (bonded_entry <> 'None'::text))"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_warehouse_receipts",
+  "name": "idx_mwr_bonded_pendientes",
+  "def": "CREATE INDEX idx_mwr_bonded_pendientes ON public.magaya_warehouse_receipts USING btree (created_on DESC) WHERE ((bonded_checked_at IS NULL) AND (out_date IS NULL))"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_warehouse_receipts",
+  "name": "idx_mwr_consignee",
+  "def": "CREATE INDEX idx_mwr_consignee ON public.magaya_warehouse_receipts USING btree (consignee)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_warehouse_receipts",
+  "name": "idx_mwr_status",
+  "def": "CREATE INDEX idx_mwr_status ON public.magaya_warehouse_receipts USING btree (status)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_warehouse_receipts",
+  "name": "idx_mwr_synced_at",
+  "def": "CREATE INDEX idx_mwr_synced_at ON public.magaya_warehouse_receipts USING btree (synced_at)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_warehouse_receipts",
+  "name": "idx_mwr_wr_number",
+  "def": "CREATE INDEX idx_mwr_wr_number ON public.magaya_warehouse_receipts USING btree (wr_number)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_warehouse_receipts",
+  "name": "idx_warehouse_receipts_company_id",
+  "def": "CREATE INDEX idx_warehouse_receipts_company_id ON public.magaya_warehouse_receipts USING btree (company_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_warehouse_receipts",
+  "name": "magaya_wr_shipper_trgm",
+  "def": "CREATE INDEX magaya_wr_shipper_trgm ON public.magaya_warehouse_receipts USING gin (lower(shipper) gin_trgm_ops)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_warehouse_receipts",
+  "name": "mwr_onhand_aging_idx",
+  "def": "CREATE INDEX mwr_onhand_aging_idx ON public.magaya_warehouse_receipts USING btree (last_full_fetch_at) WHERE ((out_date IS NULL) AND (status = 'OnHand'::text))"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_warehouse_receipts",
+  "name": "mwr_synced_consignee_idx",
+  "def": "CREATE INDEX mwr_synced_consignee_idx ON public.magaya_warehouse_receipts USING btree (synced_at DESC)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_warehouse_receipts",
+  "name": "mwr_verify_queue_idx",
+  "def": "CREATE INDEX mwr_verify_queue_idx ON public.magaya_warehouse_receipts USING btree (status, out_date, last_verify_attempt_at) WHERE ((status = 'OnHand'::text) AND (out_date IS NULL))"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_warehouse_receipts",
+  "name": "wr_consignee_norm_idx",
+  "def": "CREATE INDEX wr_consignee_norm_idx ON public.magaya_warehouse_receipts USING btree (consignee_normalized)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_wr_attachments",
+  "name": "idx_magaya_wr_attachments_uploaded_by",
+  "def": "CREATE INDEX idx_magaya_wr_attachments_uploaded_by ON public.magaya_wr_attachments USING btree (uploaded_by)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_wr_attachments",
+  "name": "magaya_wr_attachments_wr_doc_uidx",
+  "def": "CREATE UNIQUE INDEX magaya_wr_attachments_wr_doc_uidx ON public.magaya_wr_attachments USING btree (wr_id, magaya_doc_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_wr_attachments",
+  "name": "wr_attachments_photo_idx",
+  "def": "CREATE INDEX wr_attachments_photo_idx ON public.magaya_wr_attachments USING btree (is_photo) WHERE (is_photo = true)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_wr_attachments",
+  "name": "wr_attachments_wr_idx",
+  "def": "CREATE INDEX wr_attachments_wr_idx ON public.magaya_wr_attachments USING btree (wr_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_wr_items",
+  "name": "idx_magaya_wr_items_wr_id",
+  "def": "CREATE INDEX idx_magaya_wr_items_wr_id ON public.magaya_wr_items USING btree (wr_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_wr_items",
+  "name": "idx_magaya_wr_items_wr_number",
+  "def": "CREATE INDEX idx_magaya_wr_items_wr_number ON public.magaya_wr_items USING btree (wr_number)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_wr_items",
+  "name": "idx_wr_items_company_id",
+  "def": "CREATE INDEX idx_wr_items_company_id ON public.magaya_wr_items USING btree (company_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "magaya_wr_items",
+  "name": "magaya_wr_items_wr_status_idx",
+  "def": "CREATE INDEX magaya_wr_items_wr_status_idx ON public.magaya_wr_items USING btree (wr_number, status)"
+ },
+ {
+  "schema": "public",
+  "tbl": "manifest_items",
+  "name": "idx_manifest_items_barcode",
+  "def": "CREATE INDEX idx_manifest_items_barcode ON public.manifest_items USING btree (barcode)"
+ },
+ {
+  "schema": "public",
+  "tbl": "manifest_items",
+  "name": "idx_manifest_items_location",
+  "def": "CREATE INDEX idx_manifest_items_location ON public.manifest_items USING btree (location)"
+ },
+ {
+  "schema": "public",
+  "tbl": "manifest_items",
+  "name": "idx_manifest_items_pick_task",
+  "def": "CREATE INDEX idx_manifest_items_pick_task ON public.manifest_items USING btree (assigned_picking_task_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "manifest_items",
+  "name": "idx_manifest_items_priority",
+  "def": "CREATE INDEX idx_manifest_items_priority ON public.manifest_items USING btree (manifest_source_id, loading_priority) WHERE (loading_priority IS NOT NULL)"
+ },
+ {
+  "schema": "public",
+  "tbl": "manifest_items",
+  "name": "idx_manifest_items_shipper",
+  "def": "CREATE INDEX idx_manifest_items_shipper ON public.manifest_items USING btree (shipper_name)"
+ },
+ {
+  "schema": "public",
+  "tbl": "manifest_items",
+  "name": "idx_manifest_items_source",
+  "def": "CREATE INDEX idx_manifest_items_source ON public.manifest_items USING btree (manifest_source_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "manifest_items",
+  "name": "idx_manifest_items_wr",
+  "def": "CREATE INDEX idx_manifest_items_wr ON public.manifest_items USING btree (wr_number)"
+ },
+ {
+  "schema": "public",
+  "tbl": "manifest_items",
+  "name": "idx_manifest_items_wr_piece",
+  "def": "CREATE INDEX idx_manifest_items_wr_piece ON public.manifest_items USING btree (wr_number, piece_index) WHERE (wr_number IS NOT NULL)"
+ },
+ {
+  "schema": "public",
+  "tbl": "manifest_sources",
+  "name": "idx_manifest_sources_external",
+  "def": "CREATE INDEX idx_manifest_sources_external ON public.manifest_sources USING btree (external_number)"
+ },
+ {
+  "schema": "public",
+  "tbl": "manifest_sources",
+  "name": "idx_manifest_sources_status",
+  "def": "CREATE INDEX idx_manifest_sources_status ON public.manifest_sources USING btree (workflow_status)"
+ },
+ {
+  "schema": "public",
+  "tbl": "manifest_sources",
+  "name": "idx_manifest_sources_warehouse",
+  "def": "CREATE INDEX idx_manifest_sources_warehouse ON public.manifest_sources USING btree (warehouse_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_actor_alias",
+  "name": "mi_actor_alias_canonical_idx",
+  "def": "CREATE INDEX mi_actor_alias_canonical_idx ON public.mi_actor_alias USING btree (canonical_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_actor_alias",
+  "name": "mi_actor_alias_normalized_idx",
+  "def": "CREATE INDEX mi_actor_alias_normalized_idx ON public.mi_actor_alias USING btree (alias_normalized)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_actor_alias",
+  "name": "mi_actor_alias_normalized_trgm_idx",
+  "def": "CREATE INDEX mi_actor_alias_normalized_trgm_idx ON public.mi_actor_alias USING gin (alias_normalized gin_trgm_ops)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_canonical_actor",
+  "name": "mi_canonical_actor_auto_idx",
+  "def": "CREATE INDEX mi_canonical_actor_auto_idx ON public.mi_canonical_actor USING btree (auto_created) WHERE auto_created"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_canonical_actor",
+  "name": "mi_canonical_actor_gloval_idx",
+  "def": "CREATE INDEX mi_canonical_actor_gloval_idx ON public.mi_canonical_actor USING btree (is_gloval) WHERE is_gloval"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_canonical_actor",
+  "name": "mi_canonical_actor_type_idx",
+  "def": "CREATE INDEX mi_canonical_actor_type_idx ON public.mi_canonical_actor USING btree (actor_type)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_courier_shipment",
+  "name": "mi_courier_shipment_country_idx",
+  "def": "CREATE INDEX mi_courier_shipment_country_idx ON public.mi_courier_shipment USING btree (country_arrival_dep)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_courier_shipment",
+  "name": "mi_courier_shipment_ec_company_idx",
+  "def": "CREATE INDEX mi_courier_shipment_ec_company_idx ON public.mi_courier_shipment USING btree (ec_company_id_norm)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_courier_shipment",
+  "name": "mi_courier_shipment_liberador_idx",
+  "def": "CREATE INDEX mi_courier_shipment_liberador_idx ON public.mi_courier_shipment USING btree (liberador_raw_norm)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_courier_shipment",
+  "name": "mi_courier_shipment_period_idx",
+  "def": "CREATE INDEX mi_courier_shipment_period_idx ON public.mi_courier_shipment USING btree (period_year, period_month, modality)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_etl_run",
+  "name": "idx_mi_etl_run_triggered_by",
+  "def": "CREATE INDEX idx_mi_etl_run_triggered_by ON public.mi_etl_run USING btree (triggered_by)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_etl_run",
+  "name": "mi_etl_run_period_idx",
+  "def": "CREATE INDEX mi_etl_run_period_idx ON public.mi_etl_run USING btree (period_year, period_month_from, modality)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_etl_run",
+  "name": "mi_etl_run_status_idx",
+  "def": "CREATE INDEX mi_etl_run_status_idx ON public.mi_etl_run USING btree (status)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_match_review_queue",
+  "name": "idx_mi_match_review_queue_reviewed_by",
+  "def": "CREATE INDEX idx_mi_match_review_queue_reviewed_by ON public.mi_match_review_queue USING btree (reviewed_by)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_match_review_queue",
+  "name": "idx_mi_match_review_queue_suggested_client_id",
+  "def": "CREATE INDEX idx_mi_match_review_queue_suggested_client_id ON public.mi_match_review_queue USING btree (suggested_client_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_match_review_queue",
+  "name": "mi_match_review_company_id_idx",
+  "def": "CREATE INDEX mi_match_review_company_id_idx ON public.mi_match_review_queue USING btree (ec_company_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_match_review_queue",
+  "name": "mi_match_review_status_idx",
+  "def": "CREATE INDEX mi_match_review_status_idx ON public.mi_match_review_queue USING btree (status, total_teus_fcl DESC)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_mv_carrier_share",
+  "name": "mi_mv_carrier_share_carrier_idx",
+  "def": "CREATE INDEX mi_mv_carrier_share_carrier_idx ON public.mi_mv_carrier_share USING btree (carrier_canonical_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_mv_carrier_share",
+  "name": "mi_mv_carrier_share_uidx",
+  "def": "CREATE UNIQUE INDEX mi_mv_carrier_share_uidx ON public.mi_mv_carrier_share USING btree (period_year, period_quarter, modality, carrier_canonical_id, COALESCE(origin_country, ''::text), COALESCE(final_origin_country, ''::text))"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_mv_client_period_summary",
+  "name": "mi_mv_client_period_summary_uidx",
+  "def": "CREATE UNIQUE INDEX mi_mv_client_period_summary_uidx ON public.mi_mv_client_period_summary USING btree (period_year, period_month, modality, COALESCE(port_ec, ''::text), COALESCE(incoterm, ''::text), COALESCE(client_id, '00000000-0000-0000-0000-000000000000'::uuid), ec_company_id, COALESCE(forwarder_canonical_id, '00000000-0000-0000-0000-000000000000'::uuid))"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_mv_client_period_summary",
+  "name": "mi_mv_cps_client_idx",
+  "def": "CREATE INDEX mi_mv_cps_client_idx ON public.mi_mv_client_period_summary USING btree (client_id) WHERE (client_id IS NOT NULL)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_mv_client_period_summary",
+  "name": "mi_mv_cps_incoterm_idx",
+  "def": "CREATE INDEX mi_mv_cps_incoterm_idx ON public.mi_mv_client_period_summary USING btree (incoterm) WHERE (incoterm IS NOT NULL)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_mv_client_period_summary",
+  "name": "mi_mv_cps_period_idx",
+  "def": "CREATE INDEX mi_mv_cps_period_idx ON public.mi_mv_client_period_summary USING btree (period_year, period_month, modality)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_mv_company_profile",
+  "name": "mi_mv_company_profile_assigned_idx",
+  "def": "CREATE INDEX mi_mv_company_profile_assigned_idx ON public.mi_mv_company_profile USING btree (assigned_to) WHERE in_crm"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_mv_company_profile",
+  "name": "mi_mv_company_profile_teus_idx",
+  "def": "CREATE INDEX mi_mv_company_profile_teus_idx ON public.mi_mv_company_profile USING btree (teus DESC NULLS LAST) WHERE (NOT in_crm)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_mv_company_profile",
+  "name": "mi_mv_company_profile_uidx",
+  "def": "CREATE UNIQUE INDEX mi_mv_company_profile_uidx ON public.mi_mv_company_profile USING btree (counter_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_mv_company_profile",
+  "name": "mi_mv_company_profile_vertical_idx",
+  "def": "CREATE INDEX mi_mv_company_profile_vertical_idx ON public.mi_mv_company_profile USING btree (vertical) WHERE (NOT in_crm)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_mv_courier_company",
+  "name": "mi_mv_courier_company_company_idx",
+  "def": "CREATE INDEX mi_mv_courier_company_company_idx ON public.mi_mv_courier_company USING btree (ec_company_id_norm)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_mv_courier_company",
+  "name": "mi_mv_courier_company_country_idx",
+  "def": "CREATE INDEX mi_mv_courier_company_country_idx ON public.mi_mv_courier_company USING btree (country)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_mv_courier_company",
+  "name": "mi_mv_courier_company_liberador_idx",
+  "def": "CREATE INDEX mi_mv_courier_company_liberador_idx ON public.mi_mv_courier_company USING btree (liberador_raw_norm)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_mv_courier_company",
+  "name": "mi_mv_courier_company_uniq",
+  "def": "CREATE UNIQUE INDEX mi_mv_courier_company_uniq ON public.mi_mv_courier_company USING btree (period_year, period_month, modality, COALESCE(port_ec, ''::text), COALESCE(country, ''::text), COALESCE(liberador_raw_norm, ''::text), ec_company_id_norm)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_mv_courier_country",
+  "name": "mi_mv_courier_country_uniq",
+  "def": "CREATE UNIQUE INDEX mi_mv_courier_country_uniq ON public.mi_mv_courier_country USING btree (period_year, period_month, modality, COALESCE(port_ec, ''::text), country)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_mv_courier_liberador",
+  "name": "mi_mv_courier_liberador_country_idx",
+  "def": "CREATE INDEX mi_mv_courier_liberador_country_idx ON public.mi_mv_courier_liberador USING btree (country)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_mv_courier_liberador",
+  "name": "mi_mv_courier_liberador_uniq",
+  "def": "CREATE UNIQUE INDEX mi_mv_courier_liberador_uniq ON public.mi_mv_courier_liberador USING btree (period_year, period_month, modality, COALESCE(port_ec, ''::text), COALESCE(country, ''::text), liberador_raw_norm)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_mv_courier_summary",
+  "name": "mi_mv_courier_summary_country_idx",
+  "def": "CREATE INDEX mi_mv_courier_summary_country_idx ON public.mi_mv_courier_summary USING btree (country)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_mv_courier_summary",
+  "name": "mi_mv_courier_summary_uniq",
+  "def": "CREATE UNIQUE INDEX mi_mv_courier_summary_uniq ON public.mi_mv_courier_summary USING btree (period_year, period_month, modality, COALESCE(port_ec, ''::text), COALESCE(country, ''::text))"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_mv_direct_cargo_prospects",
+  "name": "mi_mv_direct_cargo_uidx",
+  "def": "CREATE UNIQUE INDEX mi_mv_direct_cargo_uidx ON public.mi_mv_direct_cargo_prospects USING btree (period_year, period_month, modality, ec_company_id, COALESCE(carrier_canonical_id, '00000000-0000-0000-0000-000000000000'::uuid))"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_mv_direct_cargo_prospects",
+  "name": "mi_mv_direct_company_idx",
+  "def": "CREATE INDEX mi_mv_direct_company_idx ON public.mi_mv_direct_cargo_prospects USING btree (ec_company_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_mv_direct_cargo_prospects",
+  "name": "mi_mv_direct_period_idx",
+  "def": "CREATE INDEX mi_mv_direct_period_idx ON public.mi_mv_direct_cargo_prospects USING btree (period_year, period_month, modality)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_mv_direct_cargo_prospects",
+  "name": "mi_mv_direct_unassigned_idx",
+  "def": "CREATE INDEX mi_mv_direct_unassigned_idx ON public.mi_mv_direct_cargo_prospects USING btree (period_year, period_month) WHERE (client_id IS NULL)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_mv_foreign_agents",
+  "name": "mi_mv_foreign_agents_country_idx",
+  "def": "CREATE INDEX mi_mv_foreign_agents_country_idx ON public.mi_mv_foreign_agents USING btree (origin_country) WHERE (origin_country IS NOT NULL)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_mv_foreign_agents",
+  "name": "mi_mv_foreign_agents_teus_idx",
+  "def": "CREATE INDEX mi_mv_foreign_agents_teus_idx ON public.mi_mv_foreign_agents USING btree (teus_fcl DESC NULLS LAST)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_mv_foreign_agents",
+  "name": "mi_mv_foreign_agents_uidx",
+  "def": "CREATE UNIQUE INDEX mi_mv_foreign_agents_uidx ON public.mi_mv_foreign_agents USING btree (partner_canonical_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_mv_forwarder_commodity",
+  "name": "mi_mv_forwarder_commodity_fwd_idx",
+  "def": "CREATE INDEX mi_mv_forwarder_commodity_fwd_idx ON public.mi_mv_forwarder_commodity USING btree (forwarder_canonical_id, teus_fcl DESC)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_mv_forwarder_commodity",
+  "name": "mi_mv_forwarder_commodity_product_idx",
+  "def": "CREATE INDEX mi_mv_forwarder_commodity_product_idx ON public.mi_mv_forwarder_commodity USING btree (producto_pmc, teus_fcl DESC)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_mv_forwarder_commodity",
+  "name": "mi_mv_forwarder_commodity_uidx",
+  "def": "CREATE UNIQUE INDEX mi_mv_forwarder_commodity_uidx ON public.mi_mv_forwarder_commodity USING btree (period_year, period_quarter, modality, forwarder_canonical_id, producto_pmc)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_mv_forwarder_detail",
+  "name": "mi_mv_forwarder_detail_fwd_idx",
+  "def": "CREATE INDEX mi_mv_forwarder_detail_fwd_idx ON public.mi_mv_forwarder_detail USING btree (forwarder_canonical_id, period_year, period_quarter)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_mv_forwarder_detail",
+  "name": "mi_mv_forwarder_detail_grain_uq",
+  "def": "CREATE UNIQUE INDEX mi_mv_forwarder_detail_grain_uq ON public.mi_mv_forwarder_detail USING btree (forwarder_canonical_id, period_year, period_quarter, period_month, modality, country, port, carrier_name, partner_name, ec_company_id, client_id) NULLS NOT DISTINCT"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_mv_forwarder_share",
+  "name": "mi_mv_forwarder_share_gloval_idx",
+  "def": "CREATE INDEX mi_mv_forwarder_share_gloval_idx ON public.mi_mv_forwarder_share USING btree (is_gloval) WHERE is_gloval"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_mv_forwarder_share",
+  "name": "mi_mv_forwarder_share_uidx",
+  "def": "CREATE UNIQUE INDEX mi_mv_forwarder_share_uidx ON public.mi_mv_forwarder_share USING btree (period_year, period_quarter, modality, forwarder_canonical_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_mv_forwarder_share_geo",
+  "name": "mi_mv_fwd_share_geo_country_idx",
+  "def": "CREATE INDEX mi_mv_fwd_share_geo_country_idx ON public.mi_mv_forwarder_share_geo USING btree (origin_country, period_year)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_mv_forwarder_share_geo",
+  "name": "mi_mv_fwd_share_geo_region_idx",
+  "def": "CREATE INDEX mi_mv_fwd_share_geo_region_idx ON public.mi_mv_forwarder_share_geo USING btree (origin_region, period_year)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_mv_forwarder_share_geo",
+  "name": "mi_mv_fwd_share_geo_uidx",
+  "def": "CREATE UNIQUE INDEX mi_mv_fwd_share_geo_uidx ON public.mi_mv_forwarder_share_geo USING btree (period_year, period_quarter, modality, origin_country, COALESCE(origin_region, ''::text), forwarder_canonical_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_mv_import_base",
+  "name": "mi_mv_import_base_imp",
+  "def": "CREATE INDEX mi_mv_import_base_imp ON public.mi_mv_import_base USING btree (ec_company_id, y)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_mv_import_base",
+  "name": "mi_mv_import_base_y",
+  "def": "CREATE INDEX mi_mv_import_base_y ON public.mi_mv_import_base USING btree (y)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_mv_market_top_players",
+  "name": "mi_mv_market_top_uidx",
+  "def": "CREATE UNIQUE INDEX mi_mv_market_top_uidx ON public.mi_mv_market_top_players USING btree (period_year, period_quarter, modality, ec_company_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_mv_market_top_players",
+  "name": "mi_mv_market_top_volume_idx",
+  "def": "CREATE INDEX mi_mv_market_top_volume_idx ON public.mi_mv_market_top_players USING btree (period_year, period_quarter, modality, teus_fcl DESC)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_mv_partner_network",
+  "name": "mi_mv_partner_network_uidx",
+  "def": "CREATE UNIQUE INDEX mi_mv_partner_network_uidx ON public.mi_mv_partner_network USING btree (period_year, period_quarter, modality, COALESCE(origin_country, ''::text), COALESCE(partner_canonical_id, '00000000-0000-0000-0000-000000000000'::uuid), origin_partner_type, COALESCE(origin_partner_office, ''::text))"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_mv_product_client_fwd",
+  "name": "mi_mv_product_client_fwd_counter_idx",
+  "def": "CREATE INDEX mi_mv_product_client_fwd_counter_idx ON public.mi_mv_product_client_fwd USING btree (counter_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_mv_product_client_fwd",
+  "name": "mi_mv_product_client_fwd_prod_year_idx",
+  "def": "CREATE INDEX mi_mv_product_client_fwd_prod_year_idx ON public.mi_mv_product_client_fwd USING btree (producto_generico, period_year)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_mv_product_month",
+  "name": "mi_mv_product_month_idx",
+  "def": "CREATE INDEX mi_mv_product_month_idx ON public.mi_mv_product_month USING btree (period_year, modality, producto_generico)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_mv_product_summary",
+  "name": "mi_mv_product_summary_prod_idx",
+  "def": "CREATE INDEX mi_mv_product_summary_prod_idx ON public.mi_mv_product_summary USING btree (producto_generico)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_mv_product_summary",
+  "name": "mi_mv_product_summary_teus_idx",
+  "def": "CREATE INDEX mi_mv_product_summary_teus_idx ON public.mi_mv_product_summary USING btree (teus_fcl DESC NULLS LAST)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_mv_product_summary",
+  "name": "mi_mv_product_summary_uidx",
+  "def": "CREATE UNIQUE INDEX mi_mv_product_summary_uidx ON public.mi_mv_product_summary USING btree (period_year, modality, producto_generico)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_mv_route_ec_zones",
+  "name": "mi_mv_route_ec_zones_idx",
+  "def": "CREATE INDEX mi_mv_route_ec_zones_idx ON public.mi_mv_route_ec_zones USING btree (period_year)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_mv_route_origin_ports",
+  "name": "mi_mv_route_origin_ports_idx",
+  "def": "CREATE INDEX mi_mv_route_origin_ports_idx ON public.mi_mv_route_origin_ports USING btree (period_year, flow, bls DESC)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_mv_route_port_options",
+  "name": "mi_mv_route_port_options_year_idx",
+  "def": "CREATE INDEX mi_mv_route_port_options_year_idx ON public.mi_mv_route_port_options USING btree (period_year)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_mv_unassigned_prospects",
+  "name": "mi_mv_unassigned_prospects_uidx",
+  "def": "CREATE UNIQUE INDEX mi_mv_unassigned_prospects_uidx ON public.mi_mv_unassigned_prospects USING btree (ec_company_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_mv_unassigned_prospects",
+  "name": "mi_mv_unassigned_provincia_idx",
+  "def": "CREATE INDEX mi_mv_unassigned_provincia_idx ON public.mi_mv_unassigned_prospects USING btree (ec_provincia) WHERE (ec_provincia IS NOT NULL)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_mv_unassigned_prospects",
+  "name": "mi_mv_unassigned_teus_idx",
+  "def": "CREATE INDEX mi_mv_unassigned_teus_idx ON public.mi_mv_unassigned_prospects USING btree (teus_fcl DESC NULLS LAST)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_mv_unassigned_prospects",
+  "name": "mi_mv_unassigned_vertical_idx",
+  "def": "CREATE INDEX mi_mv_unassigned_vertical_idx ON public.mi_mv_unassigned_prospects USING btree (ec_vertical) WHERE (ec_vertical IS NOT NULL)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_shipment_intel",
+  "name": "idx_mi_intel_match_pending",
+  "def": "CREATE INDEX idx_mi_intel_match_pending ON public.mi_shipment_intel USING btree (match_attempted_at NULLS FIRST) WHERE ((client_id IS NULL) AND (ec_company_id IS NOT NULL))"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_shipment_intel",
+  "name": "idx_mi_shipment_intel_etl_run_id",
+  "def": "CREATE INDEX idx_mi_shipment_intel_etl_run_id ON public.mi_shipment_intel USING btree (etl_run_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_shipment_intel",
+  "name": "idx_mi_shipment_intel_partner_canonical_id",
+  "def": "CREATE INDEX idx_mi_shipment_intel_partner_canonical_id ON public.mi_shipment_intel USING btree (partner_canonical_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_shipment_intel",
+  "name": "mi_intel_carrier_idx",
+  "def": "CREATE INDEX mi_intel_carrier_idx ON public.mi_shipment_intel USING btree (carrier_canonical_id) WHERE (carrier_canonical_id IS NOT NULL)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_shipment_intel",
+  "name": "mi_intel_client_idx",
+  "def": "CREATE INDEX mi_intel_client_idx ON public.mi_shipment_intel USING btree (client_id) WHERE (client_id IS NOT NULL)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_shipment_intel",
+  "name": "mi_intel_country_origin_idx",
+  "def": "CREATE INDEX mi_intel_country_origin_idx ON public.mi_shipment_intel USING btree (country_arrival_dep)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_shipment_intel",
+  "name": "mi_intel_direct_idx",
+  "def": "CREATE INDEX mi_intel_direct_idx ON public.mi_shipment_intel USING btree (is_direct_no_forwarder) WHERE is_direct_no_forwarder"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_shipment_intel",
+  "name": "mi_intel_ec_company_id_idx",
+  "def": "CREATE INDEX mi_intel_ec_company_id_idx ON public.mi_shipment_intel USING btree (ec_company_id_norm) WHERE (ec_company_id_norm IS NOT NULL)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_shipment_intel",
+  "name": "mi_intel_ec_company_name_norm_btree",
+  "def": "CREATE INDEX mi_intel_ec_company_name_norm_btree ON public.mi_shipment_intel USING btree (ec_company_name_norm)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_shipment_intel",
+  "name": "mi_intel_ec_name_trgm_idx",
+  "def": "CREATE INDEX mi_intel_ec_name_trgm_idx ON public.mi_shipment_intel USING gin (ec_company_name_norm gin_trgm_ops)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_shipment_intel",
+  "name": "mi_intel_ec_norm_date_btree",
+  "def": "CREATE INDEX mi_intel_ec_norm_date_btree ON public.mi_shipment_intel USING btree (ec_company_name_norm, operation_date DESC) WHERE (ec_company_name_norm IS NOT NULL)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_shipment_intel",
+  "name": "mi_intel_forwarder_idx",
+  "def": "CREATE INDEX mi_intel_forwarder_idx ON public.mi_shipment_intel USING btree (forwarder_canonical_id) WHERE (forwarder_canonical_id IS NOT NULL)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_shipment_intel",
+  "name": "mi_intel_origin_partner_idx",
+  "def": "CREATE INDEX mi_intel_origin_partner_idx ON public.mi_shipment_intel USING btree (origin_partner_type, origin_partner_office)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_shipment_intel",
+  "name": "mi_intel_period_idx",
+  "def": "CREATE INDEX mi_intel_period_idx ON public.mi_shipment_intel USING btree (period_year, period_month, modality)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_shipment_intel",
+  "name": "mi_intel_unmatched_idx",
+  "def": "CREATE INDEX mi_intel_unmatched_idx ON public.mi_shipment_intel USING btree (period_year, period_month, modality) WHERE (client_id IS NULL)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_shipment_intel",
+  "name": "mi_intel_vertical_idx",
+  "def": "CREATE INDEX mi_intel_vertical_idx ON public.mi_shipment_intel USING btree (ec_vertical)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_shipment_intel",
+  "name": "mi_shipment_intel_prodtext_trgm",
+  "def": "CREATE INDEX mi_shipment_intel_prodtext_trgm ON public.mi_shipment_intel USING gin (lower(((((((COALESCE(producto_pmc, ''::text) || ' '::text) || COALESCE(producto_generico, ''::text)) || ' '::text) || COALESCE(descripcion_unidad, ''::text)) || ' '::text) || COALESCE(nombre_operacion, ''::text))) gin_trgm_ops)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_shipment_intel",
+  "name": "mi_shipment_intel_route_idx",
+  "def": "CREATE INDEX mi_shipment_intel_route_idx ON public.mi_shipment_intel USING btree (period_year, modality, port_origin_destination)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_shipment_intel",
+  "name": "mi_si_port_ec_idx",
+  "def": "CREATE INDEX mi_si_port_ec_idx ON public.mi_shipment_intel USING btree (port_ec) WHERE (port_ec IS NOT NULL)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_shipment_intel",
+  "name": "mi_si_port_fgn_idx",
+  "def": "CREATE INDEX mi_si_port_fgn_idx ON public.mi_shipment_intel USING btree (port_origin_destination) WHERE (port_origin_destination IS NOT NULL)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_v_client_wallet_share",
+  "name": "mi_v_client_wallet_share_uniq",
+  "def": "CREATE UNIQUE INDEX mi_v_client_wallet_share_uniq ON public.mi_v_client_wallet_share USING btree (client_id, period_year, period_month, modality, COALESCE(port_ec, ''::text), COALESCE(incoterm, ''::text))"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_v_client_wallet_share",
+  "name": "mi_v_client_wallet_share_year_idx",
+  "def": "CREATE INDEX mi_v_client_wallet_share_year_idx ON public.mi_v_client_wallet_share USING btree (period_year)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_v_client_wallet_share",
+  "name": "mi_v_cws_executive_idx",
+  "def": "CREATE INDEX mi_v_cws_executive_idx ON public.mi_v_client_wallet_share USING btree (sales_executive_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_v_client_wallet_share",
+  "name": "mi_v_cws_period_idx",
+  "def": "CREATE INDEX mi_v_cws_period_idx ON public.mi_v_client_wallet_share USING btree (period_year, period_month, modality)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_v_client_wallet_share",
+  "name": "mi_v_cws_year_modality_idx",
+  "def": "CREATE INDEX mi_v_cws_year_modality_idx ON public.mi_v_client_wallet_share USING btree (period_year, modality)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_v_executive_scorecard",
+  "name": "mi_v_executive_scorecard_uniq",
+  "def": "CREATE UNIQUE INDEX mi_v_executive_scorecard_uniq ON public.mi_v_executive_scorecard USING btree (sales_executive_id, period_year, period_month, modality, COALESCE(port_ec, ''::text), COALESCE(incoterm, ''::text))"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_v_executive_scorecard",
+  "name": "mi_v_executive_scorecard_year_idx",
+  "def": "CREATE INDEX mi_v_executive_scorecard_year_idx ON public.mi_v_executive_scorecard USING btree (period_year)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_v_executive_scorecard",
+  "name": "mi_v_executive_scorecard_year_mod_idx",
+  "def": "CREATE INDEX mi_v_executive_scorecard_year_mod_idx ON public.mi_v_executive_scorecard USING btree (period_year, modality)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_v_lost_cargo",
+  "name": "mi_v_lost_cargo_client_idx",
+  "def": "CREATE INDEX mi_v_lost_cargo_client_idx ON public.mi_v_lost_cargo USING btree (client_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_v_lost_cargo",
+  "name": "mi_v_lost_cargo_executive_idx",
+  "def": "CREATE INDEX mi_v_lost_cargo_executive_idx ON public.mi_v_lost_cargo USING btree (sales_executive_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_v_lost_cargo",
+  "name": "mi_v_lost_cargo_period_idx",
+  "def": "CREATE INDEX mi_v_lost_cargo_period_idx ON public.mi_v_lost_cargo USING btree (period_year, period_month, modality)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_v_lost_cargo",
+  "name": "mi_v_lost_cargo_uniq",
+  "def": "CREATE UNIQUE INDEX mi_v_lost_cargo_uniq ON public.mi_v_lost_cargo USING btree (intel_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mi_v_lost_cargo",
+  "name": "mi_v_lost_cargo_year_idx",
+  "def": "CREATE INDEX mi_v_lost_cargo_year_idx ON public.mi_v_lost_cargo USING btree (period_year)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mv_consignee_top_agent",
+  "name": "ux_consignee_top_agent",
+  "def": "CREATE UNIQUE INDEX ux_consignee_top_agent ON public.mv_consignee_top_agent USING btree (consignee)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mv_entity_ar_ap",
+  "name": "mv_entity_ar_ap_pk",
+  "def": "CREATE UNIQUE INDEX mv_entity_ar_ap_pk ON public.mv_entity_ar_ap USING btree (office_id, kind, entity_name)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mv_finanzas_docs_abiertos",
+  "name": "idx_mv_fin_docs_abiertos",
+  "def": "CREATE UNIQUE INDEX idx_mv_fin_docs_abiertos ON public.mv_finanzas_docs_abiertos USING btree (company_id, doc_guid)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mv_finanzas_docs_abiertos",
+  "name": "idx_mv_fin_docs_abiertos_ent",
+  "def": "CREATE INDEX idx_mv_fin_docs_abiertos_ent ON public.mv_finanzas_docs_abiertos USING btree (office_id, kind, entity_name)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mv_shipper_top_consignee",
+  "name": "ux_shipper_top_consignee",
+  "def": "CREATE UNIQUE INDEX ux_shipper_top_consignee ON public.mv_shipper_top_consignee USING btree (shipper)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mv_wh_container_metrics",
+  "name": "ux_mv_wh_container_metrics",
+  "def": "CREATE UNIQUE INDEX ux_mv_wh_container_metrics ON public.mv_wh_container_metrics USING btree (grain, trade_dir, dim_type, dim_value, period)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mv_wh_metrics",
+  "name": "ix_mv_wh_metrics_lookup",
+  "def": "CREATE INDEX ix_mv_wh_metrics_lookup ON public.mv_wh_metrics USING btree (dim_type, grain, trade_dir, period)"
+ },
+ {
+  "schema": "public",
+  "tbl": "mv_wh_metrics",
+  "name": "ux_mv_wh_metrics",
+  "def": "CREATE UNIQUE INDEX ux_mv_wh_metrics ON public.mv_wh_metrics USING btree (grain, trade_dir, dim_type, dim_value, period)"
+ },
+ {
+  "schema": "public",
+  "tbl": "nomina_live",
+  "name": "ix_nomina_live_per",
+  "def": "CREATE INDEX ix_nomina_live_per ON public.nomina_live USING btree (office, periodo)"
+ },
+ {
+  "schema": "public",
+  "tbl": "offices",
+  "name": "offices_code_uq",
+  "def": "CREATE UNIQUE INDEX offices_code_uq ON public.offices USING btree (code) WHERE (code IS NOT NULL)"
+ },
+ {
+  "schema": "public",
+  "tbl": "ops_client_notices",
+  "name": "ops_client_notices_ship_idx",
+  "def": "CREATE INDEX ops_client_notices_ship_idx ON public.ops_client_notices USING btree (shipment_id, notice_type, sent_at DESC)"
+ },
+ {
+  "schema": "public",
+  "tbl": "ops_devolucion_vacios",
+  "name": "ops_vacios_container_uq",
+  "def": "CREATE UNIQUE INDEX ops_vacios_container_uq ON public.ops_devolucion_vacios USING btree (shipment_container_id) WHERE (shipment_container_id IS NOT NULL)"
+ },
+ {
+  "schema": "public",
+  "tbl": "ops_devolucion_vacios",
+  "name": "ops_vacios_office_limite_idx",
+  "def": "CREATE INDEX ops_vacios_office_limite_idx ON public.ops_devolucion_vacios USING btree (office, fecha_limite)"
+ },
+ {
+  "schema": "public",
+  "tbl": "ops_documents",
+  "name": "ops_documents_shipment_idx",
+  "def": "CREATE INDEX ops_documents_shipment_idx ON public.ops_documents USING btree (shipment_id, created_at DESC)"
+ },
+ {
+  "schema": "public",
+  "tbl": "ops_documents",
+  "name": "ops_documents_status_idx",
+  "def": "CREATE INDEX ops_documents_status_idx ON public.ops_documents USING btree (processing_status)"
+ },
+ {
+  "schema": "public",
+  "tbl": "ops_hbl",
+  "name": "ops_hbl_master_idx",
+  "def": "CREATE INDEX ops_hbl_master_idx ON public.ops_hbl USING btree (master_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "ops_hbl",
+  "name": "ops_hbl_shipment_idx",
+  "def": "CREATE INDEX ops_hbl_shipment_idx ON public.ops_hbl USING btree (shipment_id, updated_at)"
+ },
+ {
+  "schema": "public",
+  "tbl": "ops_inbound_emails",
+  "name": "ops_inbound_emails_msg_uq",
+  "def": "CREATE UNIQUE INDEX ops_inbound_emails_msg_uq ON public.ops_inbound_emails USING btree (mailbox, message_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "ops_inbound_emails",
+  "name": "ops_inbound_emails_shipment_idx",
+  "def": "CREATE INDEX ops_inbound_emails_shipment_idx ON public.ops_inbound_emails USING btree (shipment_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "ops_inbound_emails",
+  "name": "ops_inbound_emails_si_idx",
+  "def": "CREATE INDEX ops_inbound_emails_si_idx ON public.ops_inbound_emails USING btree (si_estado, received_at DESC) WHERE (si_estado IS NOT NULL)"
+ },
+ {
+  "schema": "public",
+  "tbl": "ops_inbound_emails",
+  "name": "ops_inbound_emails_status_idx",
+  "def": "CREATE INDEX ops_inbound_emails_status_idx ON public.ops_inbound_emails USING btree (status, received_at DESC)"
+ },
+ {
+  "schema": "public",
+  "tbl": "ops_master",
+  "name": "ops_master_mbl_idx",
+  "def": "CREATE INDEX ops_master_mbl_idx ON public.ops_master USING btree (mbl)"
+ },
+ {
+  "schema": "public",
+  "tbl": "ops_transfers",
+  "name": "ops_transfers_status_idx",
+  "def": "CREATE INDEX ops_transfers_status_idx ON public.ops_transfers USING btree (ops_status)"
+ },
+ {
+  "schema": "public",
+  "tbl": "payment_commitment",
+  "name": "payment_commitment_active_unique",
+  "def": "CREATE UNIQUE INDEX payment_commitment_active_unique ON public.payment_commitment USING btree (tenant_id, external_guid) WHERE (status = 'confirmed'::text)"
+ },
+ {
+  "schema": "public",
+  "tbl": "payment_commitment",
+  "name": "payment_commitment_committed_date_idx",
+  "def": "CREATE INDEX payment_commitment_committed_date_idx ON public.payment_commitment USING btree (tenant_id, committed_date) WHERE (status = 'confirmed'::text)"
+ },
+ {
+  "schema": "public",
+  "tbl": "payment_commitment",
+  "name": "payment_commitment_office_idx",
+  "def": "CREATE INDEX payment_commitment_office_idx ON public.payment_commitment USING btree (office_id, status)"
+ },
+ {
+  "schema": "public",
+  "tbl": "pba_payments",
+  "name": "pba_client_idx",
+  "def": "CREATE INDEX pba_client_idx ON public.pba_payments USING btree (client_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "pba_payments",
+  "name": "pba_shipment_idx",
+  "def": "CREATE INDEX pba_shipment_idx ON public.pba_payments USING btree (shipment_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "pba_payments",
+  "name": "pba_status_idx",
+  "def": "CREATE INDEX pba_status_idx ON public.pba_payments USING btree (status)"
+ },
+ {
+  "schema": "public",
+  "tbl": "phone_numbers",
+  "name": "idx_phone_numbers_contact_id",
+  "def": "CREATE INDEX idx_phone_numbers_contact_id ON public.phone_numbers USING btree (contact_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "picking_exceptions",
+  "name": "idx_picking_exc_task",
+  "def": "CREATE INDEX idx_picking_exc_task ON public.picking_exceptions USING btree (picking_task_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "picking_tasks",
+  "name": "idx_picking_tasks_assigned",
+  "def": "CREATE INDEX idx_picking_tasks_assigned ON public.picking_tasks USING btree (assigned_to)"
+ },
+ {
+  "schema": "public",
+  "tbl": "picking_tasks",
+  "name": "idx_picking_tasks_source",
+  "def": "CREATE INDEX idx_picking_tasks_source ON public.picking_tasks USING btree (manifest_source_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "picking_tasks",
+  "name": "idx_picking_tasks_status",
+  "def": "CREATE INDEX idx_picking_tasks_status ON public.picking_tasks USING btree (status)"
+ },
+ {
+  "schema": "public",
+  "tbl": "points_of_receipt",
+  "name": "idx_por_catalog_code",
+  "def": "CREATE INDEX idx_por_catalog_code ON public.points_of_receipt USING btree (catalog_code) WHERE (catalog_code IS NOT NULL)"
+ },
+ {
+  "schema": "public",
+  "tbl": "points_of_receipt",
+  "name": "idx_por_country",
+  "def": "CREATE INDEX idx_por_country ON public.points_of_receipt USING btree (country_code) WHERE active"
+ },
+ {
+  "schema": "public",
+  "tbl": "points_of_receipt",
+  "name": "idx_por_receipt_type",
+  "def": "CREATE INDEX idx_por_receipt_type ON public.points_of_receipt USING btree (receipt_type) WHERE active"
+ },
+ {
+  "schema": "public",
+  "tbl": "ports_master",
+  "name": "idx_ports_master_code",
+  "def": "CREATE INDEX idx_ports_master_code ON public.ports_master USING btree (code)"
+ },
+ {
+  "schema": "public",
+  "tbl": "ports_master",
+  "name": "idx_ports_master_search",
+  "def": "CREATE INDEX idx_ports_master_search ON public.ports_master USING gin (to_tsvector('simple'::regconfig, search_text))"
+ },
+ {
+  "schema": "public",
+  "tbl": "ports_master",
+  "name": "idx_ports_master_type",
+  "def": "CREATE INDEX idx_ports_master_type ON public.ports_master USING btree (type)"
+ },
+ {
+  "schema": "public",
+  "tbl": "pricing_rules",
+  "name": "idx_pricing_rules_active",
+  "def": "CREATE INDEX idx_pricing_rules_active ON public.pricing_rules USING btree (is_active, priority DESC) WHERE (is_active = true)"
+ },
+ {
+  "schema": "public",
+  "tbl": "pricing_rules",
+  "name": "idx_pricing_rules_agent",
+  "def": "CREATE INDEX idx_pricing_rules_agent ON public.pricing_rules USING btree (agent_id) WHERE (agent_id IS NOT NULL)"
+ },
+ {
+  "schema": "public",
+  "tbl": "pricing_rules",
+  "name": "idx_pricing_rules_approved_by",
+  "def": "CREATE INDEX idx_pricing_rules_approved_by ON public.pricing_rules USING btree (approved_by)"
+ },
+ {
+  "schema": "public",
+  "tbl": "pricing_rules",
+  "name": "idx_pricing_rules_carrier",
+  "def": "CREATE INDEX idx_pricing_rules_carrier ON public.pricing_rules USING btree (carrier_id) WHERE (carrier_id IS NOT NULL)"
+ },
+ {
+  "schema": "public",
+  "tbl": "pricing_rules",
+  "name": "idx_pricing_rules_client",
+  "def": "CREATE INDEX idx_pricing_rules_client ON public.pricing_rules USING btree (client_id) WHERE (client_id IS NOT NULL)"
+ },
+ {
+  "schema": "public",
+  "tbl": "pricing_rules",
+  "name": "idx_pricing_rules_commodity_id",
+  "def": "CREATE INDEX idx_pricing_rules_commodity_id ON public.pricing_rules USING btree (commodity_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "pricing_rules",
+  "name": "idx_pricing_rules_created_by",
+  "def": "CREATE INDEX idx_pricing_rules_created_by ON public.pricing_rules USING btree (created_by)"
+ },
+ {
+  "schema": "public",
+  "tbl": "pricing_rules",
+  "name": "idx_pricing_rules_dates",
+  "def": "CREATE INDEX idx_pricing_rules_dates ON public.pricing_rules USING btree (effective_date, expiry_date)"
+ },
+ {
+  "schema": "public",
+  "tbl": "pricing_rules",
+  "name": "idx_pricing_rules_equipment_type_id",
+  "def": "CREATE INDEX idx_pricing_rules_equipment_type_id ON public.pricing_rules USING btree (equipment_type_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "pricing_rules",
+  "name": "idx_pricing_rules_office",
+  "def": "CREATE INDEX idx_pricing_rules_office ON public.pricing_rules USING btree (office_id) WHERE (office_id IS NOT NULL)"
+ },
+ {
+  "schema": "public",
+  "tbl": "pricing_rules",
+  "name": "idx_pricing_rules_sales_rep_id",
+  "def": "CREATE INDEX idx_pricing_rules_sales_rep_id ON public.pricing_rules USING btree (sales_rep_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "prospect_enrichment_ec",
+  "name": "prospect_enrichment_ec_last_fetched_idx",
+  "def": "CREATE INDEX prospect_enrichment_ec_last_fetched_idx ON public.prospect_enrichment_ec USING btree (last_fetched_at)"
+ },
+ {
+  "schema": "public",
+  "tbl": "quote_amendments",
+  "name": "uq_amendment_pending",
+  "def": "CREATE UNIQUE INDEX uq_amendment_pending ON public.quote_amendments USING btree (quote_id) WHERE (status = 'pending'::text)"
+ },
+ {
+  "schema": "public",
+  "tbl": "quote_charges",
+  "name": "idx_quote_charges_quote_id",
+  "def": "CREATE INDEX idx_quote_charges_quote_id ON public.quote_charges USING btree (quote_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "quote_charges",
+  "name": "idx_quote_charges_rate_component_id",
+  "def": "CREATE INDEX idx_quote_charges_rate_component_id ON public.quote_charges USING btree (rate_component_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "quote_emails",
+  "name": "idx_quote_emails_quote",
+  "def": "CREATE INDEX idx_quote_emails_quote ON public.quote_emails USING btree (quote_id, created_at DESC)"
+ },
+ {
+  "schema": "public",
+  "tbl": "quote_followups",
+  "name": "idx_quote_followups_quote",
+  "def": "CREATE INDEX idx_quote_followups_quote ON public.quote_followups USING btree (quote_id, created_at DESC)"
+ },
+ {
+  "schema": "public",
+  "tbl": "quotes",
+  "name": "idx_quotes_carrier_id",
+  "def": "CREATE INDEX idx_quotes_carrier_id ON public.quotes USING btree (carrier_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "quotes",
+  "name": "idx_quotes_client",
+  "def": "CREATE INDEX idx_quotes_client ON public.quotes USING btree (client_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "quotes",
+  "name": "idx_quotes_commodity_id",
+  "def": "CREATE INDEX idx_quotes_commodity_id ON public.quotes USING btree (commodity_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "quotes",
+  "name": "idx_quotes_created_by",
+  "def": "CREATE INDEX idx_quotes_created_by ON public.quotes USING btree (created_by)"
+ },
+ {
+  "schema": "public",
+  "tbl": "quotes",
+  "name": "idx_quotes_deal_id",
+  "def": "CREATE INDEX idx_quotes_deal_id ON public.quotes USING btree (deal_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "quotes",
+  "name": "idx_quotes_destination_port_id",
+  "def": "CREATE INDEX idx_quotes_destination_port_id ON public.quotes USING btree (destination_port_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "quotes",
+  "name": "idx_quotes_equipment_type_id",
+  "def": "CREATE INDEX idx_quotes_equipment_type_id ON public.quotes USING btree (equipment_type_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "quotes",
+  "name": "idx_quotes_origin_port_id",
+  "def": "CREATE INDEX idx_quotes_origin_port_id ON public.quotes USING btree (origin_port_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "quotes",
+  "name": "idx_quotes_selected_rate_id",
+  "def": "CREATE INDEX idx_quotes_selected_rate_id ON public.quotes USING btree (selected_rate_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "rate_charges",
+  "name": "idx_rate_charges_rate",
+  "def": "CREATE INDEX idx_rate_charges_rate ON public.rate_charges USING btree (rate_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "rate_notes",
+  "name": "idx_rate_notes_rate",
+  "def": "CREATE INDEX idx_rate_notes_rate ON public.rate_notes USING btree (rate_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "rates",
+  "name": "idx_rates_active",
+  "def": "CREATE INDEX idx_rates_active ON public.rates USING btree (active)"
+ },
+ {
+  "schema": "public",
+  "tbl": "rates",
+  "name": "idx_rates_agent",
+  "def": "CREATE INDEX idx_rates_agent ON public.rates USING btree (agent_id) WHERE (agent_id IS NOT NULL)"
+ },
+ {
+  "schema": "public",
+  "tbl": "rates",
+  "name": "idx_rates_bullet",
+  "def": "CREATE INDEX idx_rates_bullet ON public.rates USING btree (is_bullet, bullet_expires_at) WHERE (is_bullet = true)"
+ },
+ {
+  "schema": "public",
+  "tbl": "rates",
+  "name": "idx_rates_commodity",
+  "def": "CREATE INDEX idx_rates_commodity ON public.rates USING btree (commodity_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "rates",
+  "name": "idx_rates_contract",
+  "def": "CREATE INDEX idx_rates_contract ON public.rates USING btree (contract_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "rates",
+  "name": "idx_rates_equipment",
+  "def": "CREATE INDEX idx_rates_equipment ON public.rates USING btree (equipment_type_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "rates",
+  "name": "idx_rates_office",
+  "def": "CREATE INDEX idx_rates_office ON public.rates USING btree (office_id) WHERE (office_id IS NOT NULL)"
+ },
+ {
+  "schema": "public",
+  "tbl": "rates",
+  "name": "idx_rates_route",
+  "def": "CREATE INDEX idx_rates_route ON public.rates USING btree (route_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "rates",
+  "name": "idx_rates_scope",
+  "def": "CREATE INDEX idx_rates_scope ON public.rates USING btree (scope, active, expiry_date)"
+ },
+ {
+  "schema": "public",
+  "tbl": "rates",
+  "name": "idx_rates_tariff_sheet",
+  "def": "CREATE INDEX idx_rates_tariff_sheet ON public.rates USING btree (tariff_sheet_id) WHERE (tariff_sheet_id IS NOT NULL)"
+ },
+ {
+  "schema": "public",
+  "tbl": "rates",
+  "name": "rates_inland_mode_idx",
+  "def": "CREATE INDEX rates_inland_mode_idx ON public.rates USING btree (inland_mode) WHERE (inland_mode <> 'PORT'::text)"
+ },
+ {
+  "schema": "public",
+  "tbl": "reception_hosts",
+  "name": "idx_reception_hosts_active",
+  "def": "CREATE INDEX idx_reception_hosts_active ON public.reception_hosts USING btree (office, active)"
+ },
+ {
+  "schema": "public",
+  "tbl": "recurring_movement",
+  "name": "idx_recurring_active",
+  "def": "CREATE INDEX idx_recurring_active ON public.recurring_movement USING btree (tenant_id, next_occurrence_date) WHERE ((active = true) AND (auto_create = true))"
+ },
+ {
+  "schema": "public",
+  "tbl": "reminders",
+  "name": "idx_reminders_shipment_id",
+  "def": "CREATE INDEX idx_reminders_shipment_id ON public.reminders USING btree (shipment_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "reminders",
+  "name": "reminders_scheduled_idx",
+  "def": "CREATE INDEX reminders_scheduled_idx ON public.reminders USING btree (scheduled_for) WHERE (status = 'PENDING'::text)"
+ },
+ {
+  "schema": "public",
+  "tbl": "reminders",
+  "name": "reminders_user_status_idx",
+  "def": "CREATE INDEX reminders_user_status_idx ON public.reminders USING btree (user_id, status)"
+ },
+ {
+  "schema": "public",
+  "tbl": "rfq_log",
+  "name": "idx_rfq_log_agent_id",
+  "def": "CREATE INDEX idx_rfq_log_agent_id ON public.rfq_log USING btree (agent_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "rfq_log",
+  "name": "idx_rfq_log_office",
+  "def": "CREATE INDEX idx_rfq_log_office ON public.rfq_log USING btree (office_id, received_at DESC)"
+ },
+ {
+  "schema": "public",
+  "tbl": "rfq_log",
+  "name": "idx_rfq_log_sender",
+  "def": "CREATE INDEX idx_rfq_log_sender ON public.rfq_log USING btree (sender_email)"
+ },
+ {
+  "schema": "public",
+  "tbl": "rfq_log",
+  "name": "idx_rfq_log_status",
+  "def": "CREATE INDEX idx_rfq_log_status ON public.rfq_log USING btree (office_id, status)"
+ },
+ {
+  "schema": "public",
+  "tbl": "role_permissions",
+  "name": "idx_role_permissions_page",
+  "def": "CREATE INDEX idx_role_permissions_page ON public.role_permissions USING btree (page)"
+ },
+ {
+  "schema": "public",
+  "tbl": "role_permissions",
+  "name": "idx_role_permissions_role_id",
+  "def": "CREATE INDEX idx_role_permissions_role_id ON public.role_permissions USING btree (role_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "routes",
+  "name": "idx_routes_client_id",
+  "def": "CREATE INDEX idx_routes_client_id ON public.routes USING btree (client_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "routes",
+  "name": "idx_routes_destination_port_id",
+  "def": "CREATE INDEX idx_routes_destination_port_id ON public.routes USING btree (destination_port_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "routes",
+  "name": "idx_routes_origin_port_id",
+  "def": "CREATE INDEX idx_routes_origin_port_id ON public.routes USING btree (origin_port_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "routes",
+  "name": "idx_routes_protected_by_ff_id",
+  "def": "CREATE INDEX idx_routes_protected_by_ff_id ON public.routes USING btree (protected_by_ff_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "sales_activities",
+  "name": "idx_sales_activities_date",
+  "def": "CREATE INDEX idx_sales_activities_date ON public.sales_activities USING btree (activity_date)"
+ },
+ {
+  "schema": "public",
+  "tbl": "sales_activities",
+  "name": "idx_sales_activities_deal_id",
+  "def": "CREATE INDEX idx_sales_activities_deal_id ON public.sales_activities USING btree (deal_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "sales_activities",
+  "name": "idx_sales_activities_sales_rep_id",
+  "def": "CREATE INDEX idx_sales_activities_sales_rep_id ON public.sales_activities USING btree (sales_rep_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "sales_quote_lines",
+  "name": "idx_sq_lines_quote",
+  "def": "CREATE INDEX idx_sq_lines_quote ON public.sales_quote_lines USING btree (quote_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "sales_quote_lines",
+  "name": "idx_sq_lines_si",
+  "def": "CREATE INDEX idx_sq_lines_si ON public.sales_quote_lines USING btree (si_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "scheduled_payment",
+  "name": "scheduled_payment_external_guid_idx",
+  "def": "CREATE INDEX scheduled_payment_external_guid_idx ON public.scheduled_payment USING btree (tenant_id, external_guid)"
+ },
+ {
+  "schema": "public",
+  "tbl": "scheduled_payment",
+  "name": "scheduled_payment_office_status_idx",
+  "def": "CREATE INDEX scheduled_payment_office_status_idx ON public.scheduled_payment USING btree (office_id, status)"
+ },
+ {
+  "schema": "public",
+  "tbl": "scheduled_payment",
+  "name": "scheduled_payment_tenant_date_idx",
+  "def": "CREATE INDEX scheduled_payment_tenant_date_idx ON public.scheduled_payment USING btree (tenant_id, scheduled_date)"
+ },
+ {
+  "schema": "public",
+  "tbl": "shipco_rates",
+  "name": "shipco_rates_dest_idx",
+  "def": "CREATE INDEX shipco_rates_dest_idx ON public.shipco_rates USING btree (destination_code, charge_code)"
+ },
+ {
+  "schema": "public",
+  "tbl": "shipment_action_items",
+  "name": "action_items_assigned_idx",
+  "def": "CREATE INDEX action_items_assigned_idx ON public.shipment_action_items USING btree (assigned_to, status)"
+ },
+ {
+  "schema": "public",
+  "tbl": "shipment_action_items",
+  "name": "action_items_due_idx",
+  "def": "CREATE INDEX action_items_due_idx ON public.shipment_action_items USING btree (due_date) WHERE (status = 'OPEN'::text)"
+ },
+ {
+  "schema": "public",
+  "tbl": "shipment_action_items",
+  "name": "action_items_shipment_idx",
+  "def": "CREATE INDEX action_items_shipment_idx ON public.shipment_action_items USING btree (shipment_id, status)"
+ },
+ {
+  "schema": "public",
+  "tbl": "shipment_action_items",
+  "name": "idx_shipment_action_items_completed_by",
+  "def": "CREATE INDEX idx_shipment_action_items_completed_by ON public.shipment_action_items USING btree (completed_by)"
+ },
+ {
+  "schema": "public",
+  "tbl": "shipment_agents",
+  "name": "shipment_agents_shipment_idx",
+  "def": "CREATE INDEX shipment_agents_shipment_idx ON public.shipment_agents USING btree (shipment_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "shipment_containers",
+  "name": "containers_number_idx",
+  "def": "CREATE INDEX containers_number_idx ON public.shipment_containers USING btree (container_number)"
+ },
+ {
+  "schema": "public",
+  "tbl": "shipment_containers",
+  "name": "containers_shipment_idx",
+  "def": "CREATE INDEX containers_shipment_idx ON public.shipment_containers USING btree (shipment_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "shipment_containers",
+  "name": "idx_shipment_containers_temperature_validated_by",
+  "def": "CREATE INDEX idx_shipment_containers_temperature_validated_by ON public.shipment_containers USING btree (temperature_validated_by)"
+ },
+ {
+  "schema": "public",
+  "tbl": "shipment_events",
+  "name": "idx_shipment_events_created_by",
+  "def": "CREATE INDEX idx_shipment_events_created_by ON public.shipment_events USING btree (created_by)"
+ },
+ {
+  "schema": "public",
+  "tbl": "shipment_events",
+  "name": "shipment_events_shipment_idx",
+  "def": "CREATE INDEX shipment_events_shipment_idx ON public.shipment_events USING btree (shipment_id, occurred_at DESC)"
+ },
+ {
+  "schema": "public",
+  "tbl": "shipment_events",
+  "name": "shipment_events_type_idx",
+  "def": "CREATE INDEX shipment_events_type_idx ON public.shipment_events USING btree (event_type)"
+ },
+ {
+  "schema": "public",
+  "tbl": "shipment_shippers",
+  "name": "shipment_shippers_shipment_idx",
+  "def": "CREATE INDEX shipment_shippers_shipment_idx ON public.shipment_shippers USING btree (shipment_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "shipments",
+  "name": "idx_shipments_created_by",
+  "def": "CREATE INDEX idx_shipments_created_by ON public.shipments USING btree (created_by)"
+ },
+ {
+  "schema": "public",
+  "tbl": "shipments",
+  "name": "shipments_archived_idx",
+  "def": "CREATE INDEX shipments_archived_idx ON public.shipments USING btree (archived_at) WHERE (archived_at IS NOT NULL)"
+ },
+ {
+  "schema": "public",
+  "tbl": "shipments",
+  "name": "shipments_client_idx",
+  "def": "CREATE INDEX shipments_client_idx ON public.shipments USING btree (client_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "shipments",
+  "name": "shipments_consolidado_idx",
+  "def": "CREATE INDEX shipments_consolidado_idx ON public.shipments USING btree (consolidado_id) WHERE (consolidado_id IS NOT NULL)"
+ },
+ {
+  "schema": "public",
+  "tbl": "shipments",
+  "name": "shipments_cs_assigned_idx",
+  "def": "CREATE INDEX shipments_cs_assigned_idx ON public.shipments USING btree (cs_assigned_to)"
+ },
+ {
+  "schema": "public",
+  "tbl": "shipments",
+  "name": "shipments_eta_idx",
+  "def": "CREATE INDEX shipments_eta_idx ON public.shipments USING btree (eta)"
+ },
+ {
+  "schema": "public",
+  "tbl": "shipments",
+  "name": "shipments_magaya_idx",
+  "def": "CREATE INDEX shipments_magaya_idx ON public.shipments USING btree (magaya_shipment_id) WHERE (magaya_shipment_id IS NOT NULL)"
+ },
+ {
+  "schema": "public",
+  "tbl": "shipments",
+  "name": "shipments_master_idx",
+  "def": "CREATE INDEX shipments_master_idx ON public.shipments USING btree (master_shipment_id) WHERE (master_shipment_id IS NOT NULL)"
+ },
+ {
+  "schema": "public",
+  "tbl": "shipments",
+  "name": "shipments_office_idx",
+  "def": "CREATE INDEX shipments_office_idx ON public.shipments USING btree (office)"
+ },
+ {
+  "schema": "public",
+  "tbl": "shipments",
+  "name": "shipments_open_status_idx",
+  "def": "CREATE INDEX shipments_open_status_idx ON public.shipments USING btree (status) WHERE (status <> ALL (ARRAY['DELIVERED'::shipment_status_t, 'CANCELLED'::shipment_status_t]))"
+ },
+ {
+  "schema": "public",
+  "tbl": "shipments",
+  "name": "shipments_sales_exec_idx",
+  "def": "CREATE INDEX shipments_sales_exec_idx ON public.shipments USING btree (sales_executive_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "shipments",
+  "name": "shipments_search_trgm_idx",
+  "def": "CREATE INDEX shipments_search_trgm_idx ON public.shipments USING gin (search_text gin_trgm_ops)"
+ },
+ {
+  "schema": "public",
+  "tbl": "shipments",
+  "name": "shipments_un_master_por_consolidado",
+  "def": "CREATE UNIQUE INDEX shipments_un_master_por_consolidado ON public.shipments USING btree (consolidado_id) WHERE is_master"
+ },
+ {
+  "schema": "public",
+  "tbl": "shipments",
+  "name": "shipments_via_origen_idx",
+  "def": "CREATE INDEX shipments_via_origen_idx ON public.shipments USING btree (via_origen) WHERE (via_origen IS NOT NULL)"
+ },
+ {
+  "schema": "public",
+  "tbl": "shipping_instructions",
+  "name": "idx_si_quote",
+  "def": "CREATE INDEX idx_si_quote ON public.shipping_instructions USING btree (quote_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "shipping_instructions",
+  "name": "idx_si_status",
+  "def": "CREATE INDEX idx_si_status ON public.shipping_instructions USING btree (status)"
+ },
+ {
+  "schema": "public",
+  "tbl": "shipping_instructions",
+  "name": "shipping_instructions_archived_idx",
+  "def": "CREATE INDEX shipping_instructions_archived_idx ON public.shipping_instructions USING btree (archived_at) WHERE (archived_at IS NULL)"
+ },
+ {
+  "schema": "public",
+  "tbl": "shipping_instructions",
+  "name": "si_shipment_viva_uq",
+  "def": "CREATE UNIQUE INDEX si_shipment_viva_uq ON public.shipping_instructions USING btree (shipment_id) WHERE ((shipment_id IS NOT NULL) AND (status <> 'cancelled'::text))"
+ },
+ {
+  "schema": "public",
+  "tbl": "shipping_instructions",
+  "name": "uq_si_quote_alive",
+  "def": "CREATE UNIQUE INDEX uq_si_quote_alive ON public.shipping_instructions USING btree (quote_id) WHERE ((quote_id IS NOT NULL) AND (status <> 'cancelled'::text))"
+ },
+ {
+  "schema": "public",
+  "tbl": "staging_check_tasks",
+  "name": "idx_staging_tasks_assigned",
+  "def": "CREATE INDEX idx_staging_tasks_assigned ON public.staging_check_tasks USING btree (assigned_to)"
+ },
+ {
+  "schema": "public",
+  "tbl": "staging_check_tasks",
+  "name": "idx_staging_tasks_status",
+  "def": "CREATE INDEX idx_staging_tasks_status ON public.staging_check_tasks USING btree (status)"
+ },
+ {
+  "schema": "public",
+  "tbl": "staging_exceptions",
+  "name": "idx_staging_exc_task",
+  "def": "CREATE INDEX idx_staging_exc_task ON public.staging_exceptions USING btree (staging_task_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "surcharge_adjustments",
+  "name": "idx_surcharge_adjustments_carrier",
+  "def": "CREATE INDEX idx_surcharge_adjustments_carrier ON public.surcharge_adjustments USING btree (carrier_id, charge_code, effective_date)"
+ },
+ {
+  "schema": "public",
+  "tbl": "surcharges",
+  "name": "idx_surcharges_carrier_id",
+  "def": "CREATE INDEX idx_surcharges_carrier_id ON public.surcharges USING btree (carrier_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "surcharges",
+  "name": "idx_surcharges_equipment_type_id",
+  "def": "CREATE INDEX idx_surcharges_equipment_type_id ON public.surcharges USING btree (equipment_type_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "tariff_sheets",
+  "name": "idx_tariff_sheets_agent",
+  "def": "CREATE INDEX idx_tariff_sheets_agent ON public.tariff_sheets USING btree (agent_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "tariff_sheets",
+  "name": "idx_tariff_sheets_carrier",
+  "def": "CREATE INDEX idx_tariff_sheets_carrier ON public.tariff_sheets USING btree (carrier_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "tariff_sheets",
+  "name": "idx_tariff_sheets_contract_id",
+  "def": "CREATE INDEX idx_tariff_sheets_contract_id ON public.tariff_sheets USING btree (contract_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "tariff_sheets",
+  "name": "idx_tariff_sheets_dates",
+  "def": "CREATE INDEX idx_tariff_sheets_dates ON public.tariff_sheets USING btree (effective_date, expiry_date)"
+ },
+ {
+  "schema": "public",
+  "tbl": "tariff_sheets",
+  "name": "idx_tariff_sheets_office",
+  "def": "CREATE INDEX idx_tariff_sheets_office ON public.tariff_sheets USING btree (office_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "tariff_sheets",
+  "name": "idx_tariff_sheets_status",
+  "def": "CREATE INDEX idx_tariff_sheets_status ON public.tariff_sheets USING btree (status)"
+ },
+ {
+  "schema": "public",
+  "tbl": "tariff_sheets",
+  "name": "idx_tariff_sheets_uploaded_by",
+  "def": "CREATE INDEX idx_tariff_sheets_uploaded_by ON public.tariff_sheets USING btree (uploaded_by)"
+ },
+ {
+  "schema": "public",
+  "tbl": "time_entries",
+  "name": "idx_time_entries_clock_in_time",
+  "def": "CREATE INDEX idx_time_entries_clock_in_time ON public.time_entries USING btree (clock_in_time)"
+ },
+ {
+  "schema": "public",
+  "tbl": "time_entries",
+  "name": "idx_time_entries_clock_out_time",
+  "def": "CREATE INDEX idx_time_entries_clock_out_time ON public.time_entries USING btree (clock_out_time)"
+ },
+ {
+  "schema": "public",
+  "tbl": "time_entries",
+  "name": "idx_time_entries_user_id",
+  "def": "CREATE INDEX idx_time_entries_user_id ON public.time_entries USING btree (user_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "transit_times",
+  "name": "idx_transit_times_carrier_id",
+  "def": "CREATE INDEX idx_transit_times_carrier_id ON public.transit_times USING btree (carrier_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "transit_times",
+  "name": "idx_transit_times_destination_port_id",
+  "def": "CREATE INDEX idx_transit_times_destination_port_id ON public.transit_times USING btree (destination_port_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "transit_times",
+  "name": "idx_transit_times_origin_port_id",
+  "def": "CREATE INDEX idx_transit_times_origin_port_id ON public.transit_times USING btree (origin_port_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "unplanned_additions",
+  "name": "idx_unplanned_task",
+  "def": "CREATE INDEX idx_unplanned_task ON public.unplanned_additions USING btree (loading_task_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "user_delegations",
+  "name": "idx_user_delegations_created_by",
+  "def": "CREATE INDEX idx_user_delegations_created_by ON public.user_delegations USING btree (created_by)"
+ },
+ {
+  "schema": "public",
+  "tbl": "user_delegations",
+  "name": "idx_user_delegations_owner_user_id",
+  "def": "CREATE INDEX idx_user_delegations_owner_user_id ON public.user_delegations USING btree (owner_user_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "user_delegations",
+  "name": "user_delegations_viewer_owner_idx",
+  "def": "CREATE INDEX user_delegations_viewer_owner_idx ON public.user_delegations USING btree (viewer_user_id, owner_user_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "user_permission_overrides",
+  "name": "idx_user_permission_overrides_page",
+  "def": "CREATE INDEX idx_user_permission_overrides_page ON public.user_permission_overrides USING btree (page)"
+ },
+ {
+  "schema": "public",
+  "tbl": "user_permission_overrides",
+  "name": "idx_user_permission_overrides_user_id",
+  "def": "CREATE INDEX idx_user_permission_overrides_user_id ON public.user_permission_overrides USING btree (user_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "users",
+  "name": "idx_users_auth_user_id",
+  "def": "CREATE UNIQUE INDEX idx_users_auth_user_id ON public.users USING btree (auth_user_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "users",
+  "name": "idx_users_invited_by",
+  "def": "CREATE INDEX idx_users_invited_by ON public.users USING btree (invited_by)"
+ },
+ {
+  "schema": "public",
+  "tbl": "users",
+  "name": "idx_users_role_id",
+  "def": "CREATE INDEX idx_users_role_id ON public.users USING btree (role_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "v_magaya_invoices_unified",
+  "name": "idx_mv_inv_counterparty",
+  "def": "CREATE INDEX idx_mv_inv_counterparty ON public.v_magaya_invoices_unified USING btree (counterparty_name)"
+ },
+ {
+  "schema": "public",
+  "tbl": "v_magaya_invoices_unified",
+  "name": "idx_mv_inv_guid",
+  "def": "CREATE UNIQUE INDEX idx_mv_inv_guid ON public.v_magaya_invoices_unified USING btree (external_guid)"
+ },
+ {
+  "schema": "public",
+  "tbl": "v_magaya_invoices_unified",
+  "name": "idx_mv_inv_office_expdate",
+  "def": "CREATE INDEX idx_mv_inv_office_expdate ON public.v_magaya_invoices_unified USING btree (office_id, direction, expected_date)"
+ },
+ {
+  "schema": "public",
+  "tbl": "v_magaya_invoices_unified",
+  "name": "idx_mv_inv_office_invdate",
+  "def": "CREATE INDEX idx_mv_inv_office_invdate ON public.v_magaya_invoices_unified USING btree (office_id, direction, invoice_date)"
+ },
+ {
+  "schema": "public",
+  "tbl": "v_magaya_invoices_unified",
+  "name": "idx_mv_inv_status",
+  "def": "CREATE INDEX idx_mv_inv_status ON public.v_magaya_invoices_unified USING btree (status)"
+ },
+ {
+  "schema": "public",
+  "tbl": "vendor_flexibility",
+  "name": "idx_vendor_flexibility_tier",
+  "def": "CREATE INDEX idx_vendor_flexibility_tier ON public.vendor_flexibility USING btree (tenant_id, tier)"
+ },
+ {
+  "schema": "public",
+  "tbl": "vendor_profile",
+  "name": "vendor_profile_intensity_idx",
+  "def": "CREATE INDEX vendor_profile_intensity_idx ON public.vendor_profile USING btree (tenant_id, intensity_score_stars DESC NULLS LAST)"
+ },
+ {
+  "schema": "public",
+  "tbl": "vendor_profile",
+  "name": "vendor_profile_tenant_idx",
+  "def": "CREATE INDEX vendor_profile_tenant_idx ON public.vendor_profile USING btree (tenant_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "visitor_badges",
+  "name": "idx_visitor_badges_status",
+  "def": "CREATE INDEX idx_visitor_badges_status ON public.visitor_badges USING btree (office, status)"
+ },
+ {
+  "schema": "public",
+  "tbl": "visitors",
+  "name": "idx_visitors_document",
+  "def": "CREATE INDEX idx_visitors_document ON public.visitors USING btree (document_number)"
+ },
+ {
+  "schema": "public",
+  "tbl": "visits",
+  "name": "idx_visits_badge",
+  "def": "CREATE INDEX idx_visits_badge ON public.visits USING btree (badge_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "visits",
+  "name": "idx_visits_checked_in",
+  "def": "CREATE INDEX idx_visits_checked_in ON public.visits USING btree (checked_in_at DESC)"
+ },
+ {
+  "schema": "public",
+  "tbl": "visits",
+  "name": "idx_visits_host",
+  "def": "CREATE INDEX idx_visits_host ON public.visits USING btree (host_user_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "visits",
+  "name": "idx_visits_status",
+  "def": "CREATE INDEX idx_visits_status ON public.visits USING btree (status)"
+ },
+ {
+  "schema": "public",
+  "tbl": "visits",
+  "name": "uniq_visit_active_badge",
+  "def": "CREATE UNIQUE INDEX uniq_visit_active_badge ON public.visits USING btree (badge_id) WHERE ((status = 'checked_in'::text) AND (badge_id IS NOT NULL))"
+ },
+ {
+  "schema": "public",
+  "tbl": "warehouse_containers",
+  "name": "idx_warehouse_containers_created_at",
+  "def": "CREATE INDEX idx_warehouse_containers_created_at ON public.warehouse_containers USING btree (created_at DESC)"
+ },
+ {
+  "schema": "public",
+  "tbl": "warehouse_containers",
+  "name": "idx_warehouse_containers_created_by",
+  "def": "CREATE INDEX idx_warehouse_containers_created_by ON public.warehouse_containers USING btree (created_by)"
+ },
+ {
+  "schema": "public",
+  "tbl": "warehouse_containers",
+  "name": "idx_warehouse_containers_created_by_user_id",
+  "def": "CREATE INDEX idx_warehouse_containers_created_by_user_id ON public.warehouse_containers USING btree (created_by_user_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "warehouse_containers",
+  "name": "idx_warehouse_containers_office",
+  "def": "CREATE INDEX idx_warehouse_containers_office ON public.warehouse_containers USING btree (office)"
+ },
+ {
+  "schema": "public",
+  "tbl": "warehouse_containers",
+  "name": "idx_warehouse_containers_owner_id",
+  "def": "CREATE INDEX idx_warehouse_containers_owner_id ON public.warehouse_containers USING btree (owner_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "warehouse_containers",
+  "name": "idx_warehouse_containers_week",
+  "def": "CREATE INDEX idx_warehouse_containers_week ON public.warehouse_containers USING btree (week)"
+ },
+ {
+  "schema": "public",
+  "tbl": "warehouse_tasks",
+  "name": "idx_warehouse_tasks_assigned_to",
+  "def": "CREATE INDEX idx_warehouse_tasks_assigned_to ON public.warehouse_tasks USING btree (assigned_to_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "warehouse_tasks",
+  "name": "idx_warehouse_tasks_created_by",
+  "def": "CREATE INDEX idx_warehouse_tasks_created_by ON public.warehouse_tasks USING btree (created_by)"
+ },
+ {
+  "schema": "public",
+  "tbl": "warehouse_tasks",
+  "name": "idx_warehouse_tasks_owner_id",
+  "def": "CREATE INDEX idx_warehouse_tasks_owner_id ON public.warehouse_tasks USING btree (owner_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "warehouse_users",
+  "name": "idx_warehouse_users_roles",
+  "def": "CREATE INDEX idx_warehouse_users_roles ON public.warehouse_users USING gin (roles)"
+ },
+ {
+  "schema": "public",
+  "tbl": "warehouse_users",
+  "name": "idx_warehouse_users_user",
+  "def": "CREATE INDEX idx_warehouse_users_user ON public.warehouse_users USING btree (user_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "warehouse_users",
+  "name": "idx_warehouse_users_warehouse",
+  "def": "CREATE INDEX idx_warehouse_users_warehouse ON public.warehouse_users USING btree (warehouse_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "wh_carga_no_identificada",
+  "name": "idx_wcni_entry",
+  "def": "CREATE INDEX idx_wcni_entry ON public.wh_carga_no_identificada USING btree (entry_date DESC)"
+ },
+ {
+  "schema": "public",
+  "tbl": "wh_carga_no_identificada",
+  "name": "idx_wcni_estado",
+  "def": "CREATE INDEX idx_wcni_estado ON public.wh_carga_no_identificada USING btree (estado)"
+ },
+ {
+  "schema": "public",
+  "tbl": "wh_containers",
+  "name": "ix_wh_containers_loader",
+  "def": "CREATE INDEX ix_wh_containers_loader ON public.wh_containers USING btree (loader)"
+ },
+ {
+  "schema": "public",
+  "tbl": "wh_containers",
+  "name": "ix_wh_containers_week",
+  "def": "CREATE INDEX ix_wh_containers_week ON public.wh_containers USING btree (board_year, week_no, status)"
+ },
+ {
+  "schema": "public",
+  "tbl": "wh_containers_external",
+  "name": "idx_wh_ext_etd",
+  "def": "CREATE INDEX idx_wh_ext_etd ON public.wh_containers_external USING btree (etd)"
+ },
+ {
+  "schema": "public",
+  "tbl": "wh_notices",
+  "name": "wh_notices_refresh_idx",
+  "def": "CREATE INDEX wh_notices_refresh_idx ON public.wh_notices USING btree (attachments_refreshed_at NULLS FIRST) WHERE (status = ANY (ARRAY['DRAFT'::text, 'READY'::text, 'ERROR'::text]))"
+ },
+ {
+  "schema": "public",
+  "tbl": "wh_notices",
+  "name": "wh_notices_status_idx",
+  "def": "CREATE INDEX wh_notices_status_idx ON public.wh_notices USING btree (status, created_at DESC)"
+ },
+ {
+  "schema": "public",
+  "tbl": "wh_report_movement_items",
+  "name": "idx_wh_movement_items_movement",
+  "def": "CREATE INDEX idx_wh_movement_items_movement ON public.wh_report_movement_items USING btree (movement_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "wh_report_movement_items",
+  "name": "idx_wh_report_movement_items_product_id",
+  "def": "CREATE INDEX idx_wh_report_movement_items_product_id ON public.wh_report_movement_items USING btree (product_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "wh_report_movements",
+  "name": "idx_wh_movements_client",
+  "def": "CREATE INDEX idx_wh_movements_client ON public.wh_report_movements USING btree (client_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "wh_report_movements",
+  "name": "idx_wh_movements_date",
+  "def": "CREATE INDEX idx_wh_movements_date ON public.wh_report_movements USING btree (date)"
+ },
+ {
+  "schema": "public",
+  "tbl": "wh_report_movements",
+  "name": "idx_wh_movements_magaya_cr",
+  "def": "CREATE UNIQUE INDEX idx_wh_movements_magaya_cr ON public.wh_report_movements USING btree (magaya_cr_id) WHERE (magaya_cr_id IS NOT NULL)"
+ },
+ {
+  "schema": "public",
+  "tbl": "wh_report_movements",
+  "name": "idx_wh_movements_magaya_wr",
+  "def": "CREATE UNIQUE INDEX idx_wh_movements_magaya_wr ON public.wh_report_movements USING btree (magaya_wr_id) WHERE (magaya_wr_id IS NOT NULL)"
+ },
+ {
+  "schema": "public",
+  "tbl": "wh_report_product_mappings",
+  "name": "idx_wh_report_product_mappings_product_id",
+  "def": "CREATE INDEX idx_wh_report_product_mappings_product_id ON public.wh_report_product_mappings USING btree (product_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "wh_report_products",
+  "name": "idx_wh_products_client",
+  "def": "CREATE INDEX idx_wh_products_client ON public.wh_report_products USING btree (client_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "wh_report_sync_log",
+  "name": "idx_sync_log_status",
+  "def": "CREATE INDEX idx_sync_log_status ON public.wh_report_sync_log USING btree (status)"
+ },
+ {
+  "schema": "public",
+  "tbl": "wh_report_sync_log",
+  "name": "idx_wh_report_sync_log_client_id",
+  "def": "CREATE INDEX idx_wh_report_sync_log_client_id ON public.wh_report_sync_log USING btree (client_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "wh_unloading_rates",
+  "name": "ux_unloading_rates",
+  "def": "CREATE UNIQUE INDEX ux_unloading_rates ON public.wh_unloading_rates USING btree (client_group, container_type, effective_from)"
+ },
+ {
+  "schema": "public",
+  "tbl": "wr_att_backfill_queue",
+  "name": "wr_att_backfill_queue_status_idx",
+  "def": "CREATE INDEX wr_att_backfill_queue_status_idx ON public.wr_att_backfill_queue USING btree (status, id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "wr_match_results",
+  "name": "idx_wr_match_results_matched_shipment_id",
+  "def": "CREATE INDEX idx_wr_match_results_matched_shipment_id ON public.wr_match_results USING btree (matched_shipment_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "wr_match_results",
+  "name": "idx_wr_match_results_resolved_by",
+  "def": "CREATE INDEX idx_wr_match_results_resolved_by ON public.wr_match_results USING btree (resolved_by)"
+ },
+ {
+  "schema": "public",
+  "tbl": "wr_match_results",
+  "name": "wr_match_client_idx",
+  "def": "CREATE INDEX wr_match_client_idx ON public.wr_match_results USING btree (matched_client_id)"
+ },
+ {
+  "schema": "public",
+  "tbl": "wr_match_results",
+  "name": "wr_match_office_idx",
+  "def": "CREATE INDEX wr_match_office_idx ON public.wr_match_results USING btree (office)"
+ },
+ {
+  "schema": "public",
+  "tbl": "wr_match_results",
+  "name": "wr_match_status_idx",
+  "def": "CREATE INDEX wr_match_status_idx ON public.wr_match_results USING btree (status)"
+ },
+ {
+  "schema": "public",
+  "tbl": "wr_saldo_queue",
+  "name": "wr_saldo_queue_pend_idx",
+  "def": "CREATE INDEX wr_saldo_queue_pend_idx ON public.wr_saldo_queue USING btree (prioridad, ultimo_intento_at NULLS FIRST) WHERE (resuelto_at IS NULL)"
+ },
+ {
+  "schema": "timeclock",
+  "tbl": "punches",
+  "name": "punches_emp_ts",
+  "def": "CREATE INDEX punches_emp_ts ON timeclock.punches USING btree (emp_id, ts)"
+ }
+]
