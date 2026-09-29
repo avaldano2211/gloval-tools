@@ -45,13 +45,28 @@ if (need.length) {
   process.exit(1);
 }
 
+// Si hay proxy HTTP (p. ej. un contenedor sin salida directa), se abre un túnel CONNECT al puerto 1433.
+async function proxyConnector() {
+  const proxy = process.env.HTTPS_PROXY || process.env.https_proxy;
+  if (!proxy) return undefined;
+  const http = await import('node:http');
+  const u = new URL(proxy);
+  return () => new Promise((resolve, reject) => {
+    const req = http.request({ host: u.hostname, port: u.port, method: 'CONNECT', path: `${process.env.AZURE_SQL_SERVER}:1433` });
+    req.on('connect', (res, socket) => (res.statusCode === 200 ? resolve(socket) : reject(new Error(`proxy CONNECT ${res.statusCode}`))));
+    req.on('error', reject);
+    req.end();
+  });
+}
+
 const sql = (await import('mssql')).default;
+const connector = await proxyConnector();
 const pool = await sql.connect({
   server: process.env.AZURE_SQL_SERVER,
   database: process.env.AZURE_SQL_DB,
   user: process.env.AZURE_SQL_USER,
   password: process.env.AZURE_SQL_PASSWORD,
-  options: { encrypt: true, trustServerCertificate: false },
+  options: { encrypt: true, trustServerCertificate: false, ...(connector ? { connector } : {}) },
   requestTimeout: 300000,
   connectionTimeout: 30000,
 });
