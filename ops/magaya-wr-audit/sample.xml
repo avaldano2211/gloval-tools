@@ -1,0 +1,12 @@
+<WarehouseReceipts>
+<WarehouseReceipt GUID="1"><Number>764903</Number><CreatedOn>2026-08-05T10:00:00</CreatedOn><Status>OnHand</Status>
+<Shipper GUID="a"><Name>Amazon</Name></Shipper><Consignee GUID="b"><Name>ILGUECORP</Name></Consignee></WarehouseReceipt>
+<WarehouseReceipt GUID="2"><Number>764794</Number><CreatedOn>2026-08-05</CreatedOn><Status>OnHand</Status>
+<ShipperName>Amazon</ShipperName><ConsigneeName>Ileana Vasquez (Ilguecorp)</ConsigneeName><DestinationAgentName>OTRO AGENTE SA</DestinationAgentName></WarehouseReceipt>
+<WarehouseReceipt GUID="3"><Number>766626</Number><CreatedOn>2026-08-18</CreatedOn><Status>InTransit</Status>
+<ConsigneeName>David Vasquez (Ilguecorp)</ConsigneeName><DestinationAgent GUID="c"><Name>GLOVAL ECUADOR S.A.</Name></DestinationAgent></WarehouseReceipt>
+<WarehouseReceipt GUID="4"><Number>700000</Number><CreatedOn>2026-08-01</CreatedOn><Status>Delivered</Status>
+<ConsigneeName>ILGUECORP SA</ConsigneeName></WarehouseReceipt>
+<WarehouseReceipt GUID="5"><Number>700001</Number><CreatedOn>2026-08-01</CreatedOn><Status>OnHand</Status>
+<ConsigneeName>OTRO CLIENTE</ConsigneeName></WarehouseReceipt>
+</WarehouseReceipts>

@@ -1,0 +1,11 @@
+{
+  "lookbackDays": 60,
+  "ignoreStatuses": ["Delivered"],
+  "rules": [
+    {
+      "name": "ILGUECORP -> GLOVAL Ecuador",
+      "consigneeContains": ["ILGUECORP"],
+      "expectedDestinationAgentContains": ["GLOVAL ECUADOR"]
+    }
+  ]
+}

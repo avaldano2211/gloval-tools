@@ -1,0 +1,27 @@
+name: Magaya WR destination-agent audit
+
+on:
+  schedule:
+    # 12:45 UTC = 07:45 Guayaquil (UTC-5) on weekdays
+    - cron: "45 12 * * 1-5"
+  workflow_dispatch: {}
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Run audit
+        run: node ops/magaya-wr-audit/audit.mjs
+        env:
+          MAGAYA_API_URL: ${{ secrets.MAGAYA_API_URL }}
+          MAGAYA_USER: ${{ secrets.MAGAYA_USER }}
+          MAGAYA_PASS: ${{ secrets.MAGAYA_PASS }}
+          GRAPH_TENANT_ID: ${{ secrets.GRAPH_TENANT_ID }}
+          GRAPH_CLIENT_ID: ${{ secrets.GRAPH_CLIENT_ID }}
+          GRAPH_CLIENT_SECRET: ${{ secrets.GRAPH_CLIENT_SECRET }}
+          ALERT_FROM: ${{ secrets.ALERT_FROM }}
+          ALERT_TO: ${{ secrets.ALERT_TO }}
