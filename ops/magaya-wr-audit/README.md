@@ -4,8 +4,16 @@ Revisa los Warehouse Receipts de Magaya Miami (últimos `lookbackDays` días) y 
 Outlook cuando un WR cuyo consignee coincide con una regla **no** tiene el agente de destino
 correcto (por eso Magaya Ecuador no lo ve).
 
-Regla actual (`rules.json`): consignee contiene `ILGUECORP` → Destination Agent debe contener `GLOVAL ECUADOR`.
-Para agregar clientes (ej. Anglo) añade otra entrada en `rules`.
+Reglas actuales (`rules.json`):
+
+| Regla | Si el consignee contiene… | Debe cumplir |
+|---|---|---|
+| ILGUECORP | `ILGUECORP` | Agente destino contiene `GLOVAL ECUADOR` |
+| ANGLO | `ANGLO` | Agente destino contiene `GLOVAL ECUADOR` |
+| Sigman | `JUAN VAYAS` o `MARIA BEATRIZ` | Consignee contiene `SIGMAN` |
+
+Cada regla tiene `match` (cuándo aplica) y `expect` (qué debe tener). Campos disponibles:
+`consignee`, `destinationAgent`, `shipper`. La comparación ignora mayúsculas y tildes.
 
 ## Ejecutar
 

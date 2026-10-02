@@ -1,7 +1,8 @@
 #!/usr/bin/env node
-// Daily audit: Warehouse Receipts in Magaya (Miami) whose consignee matches a
-// rule (e.g. ILGUECORP) but whose Destination Agent is missing or wrong, so the
-// destination office (Magaya Ecuador) can't see them. Sends an Outlook alert.
+// Daily audit: Warehouse Receipts in Magaya (Miami) that break a rule in
+// rules.json, e.g. consignee ILGUECORP but Destination Agent missing/wrong (so
+// the destination office can't see them), or cargo for Juan Vayas not under
+// SIGMAN as consignee. Sends an Outlook alert.
 //
 // Usage:
 //   node audit.mjs                 # query Magaya API, email if issues found
@@ -141,25 +142,31 @@ export function parseReceipts(xml) {
 
 // ---------- Rules ----------
 
-const norm = (s) => s.toUpperCase().replace(/\s+/g, " ").trim();
+// Case-, accent- and whitespace-insensitive ("María" == "MARIA").
+const norm = (s) =>
+  s.normalize("NFD").replace(/[̀-ͯ]/g, "").toUpperCase().replace(/\s+/g, " ").trim();
 const normStatus = (s) => s.toLowerCase().replace(/[\s_-]/g, "");
+const containsAny = (value, needles) => needles.some((n) => norm(value).includes(norm(n)));
 
+const FIELD_LABELS = { destinationAgent: "agente destino", consignee: "consignee" };
+
+// A rule: if every field in `match` contains one of its values, then every
+// field in `expect` must contain one of its values; otherwise it's an issue.
+//   { "match":  { "consignee": ["ILGUECORP"] },
+//     "expect": { "destinationAgent": ["GLOVAL ECUADOR"] } }
 export function audit(receipts, config) {
   const ignored = new Set((config.ignoreStatuses ?? []).map(normStatus));
   const issues = [];
   for (const wr of receipts) {
     if (ignored.has(normStatus(wr.status))) continue;
     for (const rule of config.rules) {
-      const hit = rule.consigneeContains.some((c) => norm(wr.consignee).includes(norm(c)));
+      const hit = Object.entries(rule.match).every(([f, vals]) => containsAny(wr[f] ?? "", vals));
       if (!hit) continue;
-      const agent = norm(wr.destinationAgent);
-      const ok = rule.expectedDestinationAgentContains.some((a) => agent.includes(norm(a)));
-      if (!ok) {
-        issues.push({
-          ...wr,
-          rule: rule.name,
-          problem: agent ? "Agente destino incorrecto" : "Sin agente destino",
-        });
+      const problems = Object.entries(rule.expect)
+        .filter(([f, vals]) => !containsAny(wr[f] ?? "", vals))
+        .map(([f]) => (wr[f] ? `${FIELD_LABELS[f] ?? f} incorrecto` : `Sin ${FIELD_LABELS[f] ?? f}`));
+      if (problems.length) {
+        issues.push({ ...wr, rule: rule.name, problem: problems.join("; ") });
       }
     }
   }

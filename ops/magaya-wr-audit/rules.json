@@ -3,9 +3,24 @@
   "ignoreStatuses": ["Delivered"],
   "rules": [
     {
-      "name": "ILGUECORP -> GLOVAL Ecuador",
-      "consigneeContains": ["ILGUECORP"],
-      "expectedDestinationAgentContains": ["GLOVAL ECUADOR"]
+      "name": "ILGUECORP -> agente GLOVAL Ecuador",
+      "match": { "consignee": ["ILGUECORP"] },
+      "expect": { "destinationAgent": ["GLOVAL ECUADOR"] }
+    },
+    {
+      "name": "ANGLO -> agente GLOVAL Ecuador",
+      "match": { "consignee": ["ANGLO"] },
+      "expect": { "destinationAgent": ["GLOVAL ECUADOR"] }
+    },
+    {
+      "name": "Juan Vayas -> consignee SIGMAN",
+      "match": { "consignee": ["JUAN VAYAS"] },
+      "expect": { "consignee": ["SIGMAN"] }
+    },
+    {
+      "name": "Maria Beatriz -> consignee SIGMAN",
+      "match": { "consignee": ["MARIA BEATRIZ"] },
+      "expect": { "consignee": ["SIGMAN"] }
     }
   ]
 }

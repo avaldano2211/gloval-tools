@@ -9,4 +9,13 @@
 <ConsigneeName>ILGUECORP SA</ConsigneeName></WarehouseReceipt>
 <WarehouseReceipt GUID="5"><Number>700001</Number><CreatedOn>2026-08-01</CreatedOn><Status>OnHand</Status>
 <ConsigneeName>OTRO CLIENTE</ConsigneeName></WarehouseReceipt>
+
+<WarehouseReceipt GUID="6"><Number>771001</Number><CreatedOn>2026-09-30</CreatedOn><Status>OnHand</Status>
+<ConsigneeName>ANGLO AUTOMOTRIZ</ConsigneeName></WarehouseReceipt>
+<WarehouseReceipt GUID="7"><Number>771002</Number><CreatedOn>2026-09-30</CreatedOn><Status>OnHand</Status>
+<ConsigneeName>Juan Vayas</ConsigneeName></WarehouseReceipt>
+<WarehouseReceipt GUID="8"><Number>771003</Number><CreatedOn>2026-09-30</CreatedOn><Status>OnHand</Status>
+<ConsigneeName>María Beatriz</ConsigneeName></WarehouseReceipt>
+<WarehouseReceipt GUID="9"><Number>771004</Number><CreatedOn>2026-09-30</CreatedOn><Status>OnHand</Status>
+<ConsigneeName>Juan Vayas (SIGMAN SERVICES)</ConsigneeName></WarehouseReceipt>
 </WarehouseReceipts>
