@@ -2,7 +2,8 @@
 // Daily audit: Warehouse Receipts in Magaya (Miami) that break a rule in
 // rules.json, e.g. consignee ILGUECORP but Destination Agent missing/wrong (so
 // the destination office can't see them), or cargo for Juan Vayas not under
-// SIGMAN as consignee. Sends an Outlook alert.
+// SIGMAN as consignee. Also flags WRs near/over the free-storage period.
+// Sends one Outlook alert with both sections.
 //
 // Usage:
 //   node audit.mjs                 # query Magaya API, email if issues found
@@ -173,25 +174,69 @@ export function audit(receipts, config) {
   return issues;
 }
 
+// ---------- Storage aging ----------
+
+const DAY = 86400000;
+const daysSince = (ymd, now) => Math.floor((now - Date.parse(`${ymd}T00:00:00Z`)) / DAY);
+
+// WRs still in the warehouse that are about to leave, or already left, the
+// free-storage period. Day count is from the WR date (CreatedOn).
+export function storageAging(receipts, storage, now = Date.now()) {
+  const inWarehouse = new Set(storage.inWarehouseStatuses.map(normStatus));
+  const out = [];
+  for (const wr of receipts) {
+    if (!inWarehouse.has(normStatus(wr.status)) || !wr.date) continue;
+    const days = daysSince(wr.date, now);
+    if (Number.isNaN(days) || days < storage.freeDays - storage.warnDaysBefore) continue;
+    const over = days - storage.freeDays;
+    out.push({
+      ...wr,
+      days,
+      stage: over > 0 ? "Generando storage" : "Por vencer",
+      billableMonths: over > 0 ? Math.ceil(over / 30) : 0,
+    });
+  }
+  return out.sort((a, b) => a.consignee.localeCompare(b.consignee) || b.days - a.days);
+}
+
 // ---------- Report + Outlook (Microsoft Graph) ----------
 
-function htmlReport(issues) {
-  const cell = (v) => `<td style="border:1px solid #ccc;padding:4px 8px">${xmlEscape(v || "—")}</td>`;
-  const rows = issues
-    .map((i) =>
-      `<tr>${[i.number, i.date, i.status, i.shipper, i.consignee, i.destinationAgent, i.problem, i.rule]
-        .map(cell)
-        .join("")}</tr>`,
-    )
+const TH = "border:1px solid #ccc;padding:4px 8px;background:#003DA5;color:#fff";
+const TD = "border:1px solid #ccc;padding:4px 8px";
+
+function table(head, rows) {
+  const h = head.map((x) => `<th style="${TH}">${x}</th>`).join("");
+  const r = rows
+    .map((row) => `<tr>${row.map((v) => `<td style="${TD}">${xmlEscape(v === "" || v == null ? "—" : v)}</td>`).join("")}</tr>`)
     .join("");
-  const head = ["WR", "Fecha", "Status", "Shipper", "Consignee", "Agente destino actual", "Problema", "Regla"]
-    .map((h) => `<th style="border:1px solid #ccc;padding:4px 8px;background:#003DA5;color:#fff">${h}</th>`)
-    .join("");
-  return (
-    `<p>Se encontraron <b>${issues.length}</b> Warehouse Receipts sin el agente de destino correcto. ` +
-    `No son visibles para la oficina de destino hasta corregirlos en Magaya.</p>` +
-    `<table style="border-collapse:collapse;font-family:Arial;font-size:12px"><tr>${head}</tr>${rows}</table>`
-  );
+  return `<table style="border-collapse:collapse;font-family:Arial;font-size:12px"><tr>${h}</tr>${r}</table>`;
+}
+
+function htmlReport(issues, aging, storage) {
+  const parts = [];
+  if (issues.length) {
+    parts.push(
+      `<h3>1. WRs con datos incorrectos (${issues.length})</h3>` +
+        `<p>No son visibles para la oficina de destino o no están a nombre del consignee correcto. Corregir en Magaya.</p>` +
+        table(
+          ["WR", "Fecha", "Status", "Shipper", "Consignee", "Agente destino actual", "Problema", "Regla"],
+          issues.map((i) => [i.number, i.date, i.status, i.shipper, i.consignee, i.destinationAgent, i.problem, i.rule]),
+        ),
+    );
+  }
+  if (aging.length) {
+    const charging = aging.filter((a) => a.billableMonths > 0).length;
+    parts.push(
+      `<h3>2. Storage: WRs en bodega cerca o pasados los ${storage.freeDays} días libres (${aging.length})</h3>` +
+        `<p>${charging} ya generando storage, ${aging.length - charging} por vencer en los próximos ${storage.warnDaysBefore} días. ` +
+        `Avisar al cliente y pedir instrucciones de embarque.</p>` +
+        table(
+          ["Consignee", "WR", "Fecha", "Status", "Días en bodega", "Estado", "Meses de storage", "Peso", "Piezas"],
+          aging.map((a) => [a.consignee, a.number, a.date, a.status, a.days, a.stage, a.billableMonths, a.weight, a.pieces]),
+        ),
+    );
+  }
+  return parts.join("<br>");
 }
 
 async function sendOutlook(subject, html) {
@@ -227,9 +272,10 @@ async function sendOutlook(subject, html) {
 
 async function main() {
   const config = JSON.parse(await readFile(path.join(here, "rules.json"), "utf8"));
+  const storage = config.storage;
   const xml = fileArg
     ? await readFile(fileArg, "utf8")
-    : await fetchWarehouseReceiptsXml(config.lookbackDays);
+    : await fetchWarehouseReceiptsXml(Math.max(config.lookbackDays, storage?.lookbackDays ?? 0));
 
   const receipts = parseReceipts(xml);
   if (receipts.length === 0) {
@@ -240,17 +286,31 @@ async function main() {
     throw new Error("Parsed receipts but no consignee names — check field mapping in parseReceipts().");
   }
 
-  const issues = audit(receipts, config);
-  console.log(`Receipts checked: ${receipts.length}. Issues: ${issues.length}.`);
+  // Rules only look at recent WRs; storage aging looks back further.
+  const now = Date.now();
+  const recent = receipts.filter((r) => !r.date || daysSince(r.date, now) <= config.lookbackDays);
+  const issues = audit(recent, config);
+  const aging = storage ? storageAging(receipts, storage, now) : [];
+
+  console.log(`Receipts checked: ${receipts.length}. Rule issues: ${issues.length}. Storage alerts: ${aging.length}.`);
   for (const i of issues) {
     console.log(`  WR ${i.number} ${i.date} [${i.status}] ${i.consignee} -> agent: "${i.destinationAgent}" (${i.problem})`);
   }
+  for (const a of aging) {
+    console.log(`  STORAGE WR ${a.number} ${a.date} [${a.status}] ${a.consignee}: ${a.days} días (${a.stage})`);
+  }
 
-  const html = htmlReport(issues);
+  const html = htmlReport(issues, aging, storage);
   await writeFile(path.join(here, "last-report.html"), html);
 
-  if (issues.length === 0 || DRY_RUN || fileArg) return;
-  await sendOutlook(`[Magaya] ${issues.length} WR sin agente destino correcto`, html);
+  if ((issues.length === 0 && aging.length === 0) || DRY_RUN || fileArg) return;
+  const subject = [
+    issues.length && `${issues.length} WR con datos incorrectos`,
+    aging.length && `${aging.length} WR con storage por vencer/vencido`,
+  ]
+    .filter(Boolean)
+    .join(" | ");
+  await sendOutlook(`[Magaya] ${subject}`, html);
   console.log("Alert email sent.");
 }
 

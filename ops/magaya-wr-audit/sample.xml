@@ -18,4 +18,7 @@
 <ConsigneeName>María Beatriz</ConsigneeName></WarehouseReceipt>
 <WarehouseReceipt GUID="9"><Number>771004</Number><CreatedOn>2026-09-30</CreatedOn><Status>OnHand</Status>
 <ConsigneeName>Juan Vayas (SIGMAN SERVICES)</ConsigneeName></WarehouseReceipt>
+
+<WarehouseReceipt GUID="10"><Number>731351</Number><CreatedOn>2026-02-02</CreatedOn><Status>OnHand</Status>
+<ConsigneeName>SIGMAN SERVICES</ConsigneeName><TotalWeight>120.5</TotalWeight><TotalPieces>3</TotalPieces></WarehouseReceipt>
 </WarehouseReceipts>

@@ -1,26 +1,69 @@
 {
   "lookbackDays": 60,
-  "ignoreStatuses": ["Delivered"],
+  "ignoreStatuses": [
+    "Delivered"
+  ],
+  "storage": {
+    "freeDays": 30,
+    "warnDaysBefore": 5,
+    "lookbackDays": 400,
+    "inWarehouseStatuses": [
+      "OnHand",
+      "InProcess"
+    ]
+  },
   "rules": [
     {
       "name": "ILGUECORP -> agente GLOVAL Ecuador",
-      "match": { "consignee": ["ILGUECORP"] },
-      "expect": { "destinationAgent": ["GLOVAL ECUADOR"] }
+      "match": {
+        "consignee": [
+          "ILGUECORP"
+        ]
+      },
+      "expect": {
+        "destinationAgent": [
+          "GLOVAL ECUADOR"
+        ]
+      }
     },
     {
       "name": "ANGLO -> agente GLOVAL Ecuador",
-      "match": { "consignee": ["ANGLO"] },
-      "expect": { "destinationAgent": ["GLOVAL ECUADOR"] }
+      "match": {
+        "consignee": [
+          "ANGLO"
+        ]
+      },
+      "expect": {
+        "destinationAgent": [
+          "GLOVAL ECUADOR"
+        ]
+      }
     },
     {
       "name": "Juan Vayas -> consignee SIGMAN",
-      "match": { "consignee": ["JUAN VAYAS"] },
-      "expect": { "consignee": ["SIGMAN"] }
+      "match": {
+        "consignee": [
+          "JUAN VAYAS"
+        ]
+      },
+      "expect": {
+        "consignee": [
+          "SIGMAN"
+        ]
+      }
     },
     {
       "name": "Maria Beatriz -> consignee SIGMAN",
-      "match": { "consignee": ["MARIA BEATRIZ"] },
-      "expect": { "consignee": ["SIGMAN"] }
+      "match": {
+        "consignee": [
+          "MARIA BEATRIZ"
+        ]
+      },
+      "expect": {
+        "consignee": [
+          "SIGMAN"
+        ]
+      }
     }
   ]
 }

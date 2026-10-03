@@ -15,6 +15,15 @@ Reglas actuales (`rules.json`):
 Cada regla tiene `match` (cuándo aplica) y `expect` (qué debe tener). Campos disponibles:
 `consignee`, `destinationAgent`, `shipper`. La comparación ignora mayúsculas y tildes.
 
+## Alerta de storage (30 días libres)
+
+Además de las reglas, el reporte incluye los WRs que siguen en bodega (`OnHand`, `InProcess`) y:
+- **Por vencer**: les faltan 5 días o menos para cumplir los 30 días libres.
+- **Generando storage**: pasaron el día 30, con los meses de storage acumulados.
+
+Se cuentan los días desde la fecha del WR (`CreatedOn`) y se revisan hasta 400 días atrás.
+Se configura en `rules.json` → `storage`. No calcula montos porque la tarifa varía por cliente.
+
 ## Ejecutar
 
 ```bash
@@ -41,4 +50,5 @@ Si falla (API caída, formato XML distinto), el job queda en rojo — no falla e
 
 - Nombres de método/parámetros SOAP (`StartSession`, `GetTransRangeByDate`, `trans_list_xml`) contra el WSDL del servidor.
 - Nombres de campos en el XML del WR (`ConsigneeName`/`Consignee/Name`, `DestinationAgentName`/`DestinationAgent/Name`, `Status`). Ajustar en `parseReceipts()` si difieren.
+- Que `CreatedOn` sea la fecha de ingreso a bodega y que los status de bodega se llamen `OnHand`/`InProcess` en el XML.
 - Que el servidor Magaya sea accesible desde internet (GitHub Actions). Si está detrás de firewall, correr el script en un PC/servidor de la oficina con el Programador de tareas.
