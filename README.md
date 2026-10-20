@@ -110,3 +110,18 @@ Cada herramienta incluye contenido específico de mercados LATAM:
 - Cambiar URLs de los CTAs de `gloval-shipping.example/...` al dominio real
 - Reverse-proxy `/herramientas/*` desde el dominio principal del sitio Eleva Builds
 - Upload admin de documentos vía Vercel Blob (TBD)
+
+## Integración QuickBooks Online (interna)
+
+Panel admin en **`/admin/quickbooks`** (protegido por contraseña, `noindex`): conectar la empresa vía OAuth 2.0, buscar/crear clientes, listar/crear/enviar facturas y ver reportes (P&L, Balance, Cuentas por cobrar, Saldo por cliente).
+
+**Setup**
+
+1. En [developer.intuit.com](https://developer.intuit.com) crea una app con scope *Accounting* y registra la Redirect URI (`https://<dominio>/api/qbo/callback`; en local `http://localhost:3000/api/qbo/callback`).
+2. Copia `.env.example` a `.env.local` (y a las env vars de Vercel) y completa los valores.
+3. Entra a `/admin/quickbooks`, ingresa la contraseña y pulsa **Conectar a QuickBooks**.
+
+**Notas**
+
+- Sin base de datos: los tokens se guardan en una cookie httpOnly cifrada (AES-256-GCM). La conexión es **por navegador**; el refresh token de Intuit dura ~100 días y se renueva solo mientras se use.
+- Código: `src/lib/qbo/*` (OAuth, cliente API, sesión) y `src/app/api/qbo/*` (rutas).
